@@ -16,10 +16,24 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/testbutton"
+        android:id="@+id/contactsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/testtext"
-        android:text="@string/button_test" />
+        android:text="@string/button_contacts" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contactsButton"
+        android:text="@string/button_settings" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingsButton"
+        android:text="@string/button_exit" />
 
 </RelativeLayout>

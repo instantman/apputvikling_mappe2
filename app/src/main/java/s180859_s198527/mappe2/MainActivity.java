@@ -11,15 +11,20 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
-    private Button testbutton;
+    private Button contactsButton, settingsButton, exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testbutton = (Button)findViewById(R.id.testbutton);
-        testbutton.setOnClickListener(this);
+        // Knytter sammen knapper og legger på lytter
+        contactsButton = (Button)findViewById(R.id.contactsButton);
+        contactsButton.setOnClickListener(this);
+        settingsButton = (Button)findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(this);
+        exitButton = (Button)findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(this);
     }
 
     @Override
@@ -44,11 +49,20 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
+    // Håndterer hva som skjer når knapper blir trykket
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.testbutton:
-                Intent i1 = new Intent(this,Register.class);
+            case R.id.contactsButton:
+                Intent i1 = new Intent(this,Contacts.class);
                 startActivity(i1);
+                break;
+            case R.id.settingsButton:
+                Intent i2 = new Intent(this,Settings.class);
+                startActivity(i2);
+                break;
+            case R.id.exitButton:
+                finish();
+                System.exit(0);
                 break;
         }
     }
