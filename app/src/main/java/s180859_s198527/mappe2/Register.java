@@ -1,5 +1,5 @@
+/** Activity to create and store objects in database */
 package s180859_s198527.mappe2;
-// Activity to create and store objects in database
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
 import java.util.Date;
 
 public class Register extends AppCompatActivity implements OnClickListener {
@@ -53,7 +52,7 @@ public class Register extends AppCompatActivity implements OnClickListener {
         super.onStop();
     }
 
-    // Tilbakeknapp i actionbar som sender tilbake til HangMain
+    // Tilbakeknapp i actionbar som sender tilbake til MainActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -84,8 +83,7 @@ public class Register extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register:
-                Intent i1 = new Intent(this,Register.class);
-                startActivity(i1);
+
                 break;
         }
     }
