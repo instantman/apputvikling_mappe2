@@ -5,14 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-public class Register extends AppCompatActivity {
+import java.util.Date;
+
+public class Register extends AppCompatActivity implements OnClickListener {
+
+    private Button register, clearFields, back;
+    public String name;
+    public int phone;
+    public Date birthdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        register = (Button)findViewById(R.id.register);
+        register.setOnClickListener(this);
 
     }
 
@@ -61,6 +73,21 @@ public class Register extends AppCompatActivity {
         getBaseContext().startActivity(i);
     }
 
+    public void registerContact(String n, int p, Date b) {
+        n = name;
+        p = phone;
+        b = birthdate;
 
+
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.register:
+                Intent i1 = new Intent(this,Register.class);
+                startActivity(i1);
+                break;
+        }
+    }
 
 }

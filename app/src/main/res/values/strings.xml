@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Mappe2</string>
+
+    <!-- MainActivity -->
     <string name="hello_world">Hello world!</string>
     <string name="button_test">Testern</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Register -->
+    <string name="register_head">Register new contact</string>
+    <string name="new_contact">Enter contact details:</string>
+    <string name="textfield_name">Fill in name</string>
+    <string name="textfield_phone">Fill in phonenumber</string>
+    <string name="textfield_date">Set birthdate</string>
+    <string name="button_register">Register contact</string>
+
 </resources>

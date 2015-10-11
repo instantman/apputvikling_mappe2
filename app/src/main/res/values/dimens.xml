@@ -2,4 +2,27 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="standard_horizontal_margin">16dp</dimen>
+    <dimen name="standard_vertical_margin">16dp</dimen>
+    <dimen name="standard_16dp_margin">16dp</dimen>
+    <dimen name="standard_8dp_margin">8dp</dimen>
+    <!-- Størrelser for 4.0" - 480x800 Portrait -->
+    <dimen name="button_textSizeMenu">16sp</dimen>
+    <dimen name="button_width">35dp</dimen>
+    <dimen name="button_height">35dp</dimen>
+    <dimen name="button_textSize">25sp</dimen>
+    <dimen name="output_textSize">25sp</dimen>
+    <dimen name="counter_textSize">18sp</dimen>
+    <dimen name="image_width">235dp</dimen>
+    <dimen name="image_height">280dp</dimen>
+    <!-- Størrelser for 4.0" - 480x800 Landscape -->
+    <dimen name="button_textSizeMenu_land">16sp</dimen>
+    <dimen name="button_widthMenu_land">250dp</dimen>
+    <dimen name="button_width_land">35dp</dimen>
+    <dimen name="button_height_land">35dp</dimen>
+    <dimen name="button_textSize_land">25sp</dimen>
+    <dimen name="output_textSize_land">25sp</dimen>
+    <dimen name="counter_textSize_land">18sp</dimen>
+    <dimen name="image_width_land">235dp</dimen>
+    <dimen name="image_height_land">280dp</dimen>
 </resources>
