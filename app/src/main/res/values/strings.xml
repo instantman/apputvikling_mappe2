@@ -23,5 +23,7 @@
 
     <!-- Settings -->
     <string name="settings_head">Change settings</string>
+    <string name="textfield_SMStext">Set SMS-text</string>
+    <string name="textfield_SMSdate">Set SMS-date</string>
 
 </resources>
