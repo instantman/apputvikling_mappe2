@@ -25,7 +25,4 @@ public class Contact {
     public String getLastname(){
         return this.lastname;
     }
-
-    public String baugern;
-
 }
