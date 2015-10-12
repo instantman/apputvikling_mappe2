@@ -26,4 +26,6 @@ public class Contact {
         return this.lastname;
     }
 
+    public String baugern;
+
 }
