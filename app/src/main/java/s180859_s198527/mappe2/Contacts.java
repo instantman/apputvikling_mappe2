@@ -10,7 +10,6 @@ import android.view.View.OnClickListener;
 
 import java.util.Date;
 
-public class Contacts extends AppCompatActivity{
 public class Contacts extends AppCompatActivity implements OnClickListener{
 
     private Button newContactButton;
@@ -24,8 +23,6 @@ public class Contacts extends AppCompatActivity implements OnClickListener{
 
         newContactButton = (Button)findViewById(R.id.button_newcontact);
         newContactButton.setOnClickListener(this);
-    }
-        Log.d("Her", "Er jeg!");
 
         DBHandler db = new DBHandler(this);
         Log.d("Legg inn:","legger til kontakter");
