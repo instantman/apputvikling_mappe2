@@ -13,9 +13,9 @@ import java.util.Date;
 public class Register extends AppCompatActivity implements OnClickListener {
 
     private Button register, clearFields, back;
-    public String name;
-    public int phone;
-    public Date birthdate;
+    private String surname, lastname;
+    private int phone;
+    private Date birthdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +72,13 @@ public class Register extends AppCompatActivity implements OnClickListener {
         getBaseContext().startActivity(i);
     }
 
-    public void registerContact(String n, int p, Date b) {
-        n = name;
+    /* wats dis?
+
+    public void registerContact(String surname,String lastname, int p, Date b) {
+        s = surname;
         p = phone;
         b = birthdate;
-
-
-    }
+    }*/
 
     public void onClick(View v) {
         switch (v.getId()) {
