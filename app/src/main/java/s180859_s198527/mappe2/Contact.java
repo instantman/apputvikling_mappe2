@@ -10,7 +10,10 @@ public class Contact {
     private int phoneNr;
     private Date birthdate;
 
+    // Tom konstruktør
+    public Contact(){
 
+    }
     public Contact(String inSurname, String inLastname, int inPhone, Date inBirthDate){
         this.surname = inSurname;
         this.lastname = inLastname;
