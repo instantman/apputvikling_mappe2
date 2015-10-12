@@ -24,6 +24,7 @@ public class Contacts extends AppCompatActivity implements OnClickListener{
         newContactButton = (Button)findViewById(R.id.button_newcontact);
         newContactButton.setOnClickListener(this);
 
+        // Oppretter nytt objekt i databasen (skal flyttes)
         DBHandler db = new DBHandler(this);
         Log.d("Legg inn:","legger til kontakter");
         db.addContact(new Contact("Ole","Overjordet",99449922,new Date()));
