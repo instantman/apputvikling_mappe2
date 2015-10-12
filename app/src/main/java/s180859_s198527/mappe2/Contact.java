@@ -18,6 +18,8 @@ public class Contact {
         this.birthdate = inBirthDate;
     }
 
-
+    public String getSurname(){
+        return this.surname;
+    }
 
 }
