@@ -24,4 +24,28 @@ public class Contact {
     public String getLastname(){
         return this.lastname;
     }
+
+    public int getPhoneNr(){
+        return this.phoneNr;
+    }
+
+    public Date getBirthdate(){
+        return this.birthdate;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setPhoneNr(int phoneNr) {
+        this.phoneNr = phoneNr;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
 }

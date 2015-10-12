@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import java.util.Date;
 
-public class Register extends AppCompatActivity implements OnClickListener {
+public class RegContact extends AppCompatActivity implements OnClickListener {
 
     private Button register, clearFields, back;
     private String surname, lastname;
@@ -20,8 +20,7 @@ public class Register extends AppCompatActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
+        setContentView(R.layout.activity_regcontact);
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(this);
 

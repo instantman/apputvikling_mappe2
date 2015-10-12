@@ -14,9 +14,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private Button contactsButton, settingsButton, exitButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
         // Knytter sammen knapper og legger på lytter
         contactsButton = (Button)findViewById(R.id.contactsButton);

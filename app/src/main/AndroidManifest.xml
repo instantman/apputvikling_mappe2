@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".Register"
+            android:name=".RegContact"
             android:label="Register" >
         </activity>
 
