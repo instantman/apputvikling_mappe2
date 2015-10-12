@@ -21,7 +21,6 @@ public class Contact {
     public String getSurname(){
         return this.surname;
     }
-
     public String getLastname(){
         return this.lastname;
     }
