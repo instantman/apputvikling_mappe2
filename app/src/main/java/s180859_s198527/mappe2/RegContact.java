@@ -23,7 +23,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         setContentView(R.layout.activity_regcontact);
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(this);
-
     }
 
     @Override
@@ -70,14 +69,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getBaseContext().startActivity(i);
     }
-
-    /* wats dis?
-
-    public void registerContact(String surname,String lastname, int p, Date b) {
-        s = surname;
-        p = phone;
-        b = birthdate;
-    }*/
 
     public void onClick(View v) {
         switch (v.getId()) {
