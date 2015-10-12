@@ -11,8 +11,10 @@
     <!-- Contacts -->
     <string name="contacts_head">Contacts</string>
 
+    <string name="button_newcontact">New contact</string>
+
     <!-- RegContact -->
-    <string name="register_head">Register new contact</string>
+    <string name="regcontact_head">Register new contact</string>
     <string name="new_contact">Enter contact details:</string>
     <string name="textfield_name">Fill in name</string>
     <string name="textfield_phone">Fill in phonenumber</string>
