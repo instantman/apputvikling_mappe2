@@ -84,7 +84,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 phone = Integer.parseInt(phonez.getText().toString());
                 Log.d("Phone:","yolo: "+phone);
                 DBHandler db = new DBHandler(this);
-                Log.d("Legg inn:", "legger til kontakter");
+                Log.d("Legg inn:", "legger til kontakter!!");
                 db.addContact(new Contact(surname, lastname, phone, new Date()));
                 break;
             case R.id.showTimePicker:
