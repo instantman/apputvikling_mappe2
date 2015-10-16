@@ -38,21 +38,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/textfield_phone"/>
-
-
-    <Button
-        android:id="@+id/showTimePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button_timepicker"/>
     <TextView
         android:id="@+id/outputDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date chosen"
+        android:text="@string/textfield_date"
         android:editable="false"
-
         />
+    <Button
+        android:id="@+id/showTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_pickdate"/>
+
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"

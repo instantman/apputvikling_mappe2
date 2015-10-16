@@ -21,10 +21,11 @@ import java.util.Date;
 
 public class RegContact extends AppCompatActivity implements OnClickListener {
 
-    private Button register;
+    private Button register,showTimePicker;
     private String surname, lastname;
     private int phone;
-    private int dateYear, dateMonth, dateDay;
+    private int dateYear, dateMonth, dateDay, startYear, startMonth, startDay;
+    private Calendar c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,13 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
 
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(this);
-        register = (Button)findViewById(R.id.showTimePicker);
-        register.setOnClickListener(this);
+        showTimePicker = (Button)findViewById(R.id.showTimePicker);
+        final Calendar c = Calendar.getInstance();
+        startDay = c.get(Calendar.DAY_OF_MONTH);
+        startMonth = c.get(Calendar.MONTH);
+        startYear = c.get(Calendar.YEAR);
+        showTimePicker.setText(startDay+"/"+startMonth+"/"+startYear);
+        showTimePicker.setOnClickListener(this);
     }
 
     @Override
@@ -95,8 +101,8 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         }
         // Når ønsket dato er valgt fra DatePickerDialog
         public void onDateSet(DatePicker view, int year, int month, int day){
-            TextView output = (TextView)getActivity().findViewById(R.id.outputDate);
-            output.setText(day+"/"+(++month)+"/"+year);
+            Button b = (Button)getActivity().findViewById(R.id.showTimePicker);
+            b.setText(day+"/"+(++month)+"/"+year);
         }
     }
 

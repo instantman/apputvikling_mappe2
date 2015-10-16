@@ -18,8 +18,9 @@
     <string name="new_contact">Enter contact details:</string>
     <string name="textfield_name">Fill in name</string>
     <string name="textfield_phone">Fill in phonenumber</string>
-    <string name="textfield_date">Set birthdate</string>
+    <string name="textfield_date">Enter birthdate</string>
     <string name="button_register">Register contact</string>
+    <string name="button_pickdate">Birthdate</string>
 
     <!-- Settings -->
     <string name="settings_head">Change settings</string>
