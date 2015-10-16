@@ -25,10 +25,19 @@
         android:textSize="@dimen/button_textSizeMenu"/>
 
     <EditText
-        android:id="@+id/textfield_name"
+        android:id="@+id/textfield_surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="20"
+        android:layout_marginTop="@dimen/standard_8dp_margin"
+        android:hint="@string/textfield_name"/>
+
+    <EditText
+        android:id="@+id/textfield_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
+        android:maxLength="20"
         android:hint="@string/textfield_name"/>
 
     <EditText

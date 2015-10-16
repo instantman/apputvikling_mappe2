@@ -16,11 +16,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_SURNAME + " TEXT," + KEY_LASTNAME + " TEXT," +
-                KEY_PHONENR +" INTEGER," + KEY_DATE + " DATE" + ")";
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_SURNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
+                KEY_PHONENR +" INTEGER, " + KEY_DATE + " DATE" + ");";
         Log.d("SQL",CREATE_TABLE);
         db.execSQL(CREATE_TABLE);
-
     }
 
     @Override
@@ -28,8 +27,6 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_CONTACTS);
         onCreate(db);
     }
-
-
     static String TABLE_CONTACTS = "Contacts";
     static String KEY_ID = "_ID";
     static String KEY_SURNAME= "Surname";
@@ -37,7 +34,7 @@ public class DBHandler extends SQLiteOpenHelper{
     static String KEY_PHONENR = "Phonenumber";
     static String KEY_DATE = "Date";
     static int DATABASE_VERSION = 1;
-    static String DATABASE_NAME ="Phonecontacts";
+    static String DATABASE_NAME ="Phonebook";
 
     public DBHandler(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -53,5 +50,4 @@ public class DBHandler extends SQLiteOpenHelper{
         db.insert(TABLE_CONTACTS,null,values);
         db.close();
     }
-
 }

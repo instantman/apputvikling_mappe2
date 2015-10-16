@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -31,10 +32,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regcontact);
-
         Log.d("Activity", "activity_regcontact created");
-
-
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(this);
         showTimePicker = (Button)findViewById(R.id.showTimePicker);
@@ -76,9 +74,18 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             case R.id.register:
                 Log.d("Button","Register-button pressed");
                 // Oppretter nytt objekt i databasen (skal flyttes)
+                EditText surN = (EditText)findViewById(R.id.textfield_surname);
+                surname = surN.getText().toString();
+                Log.d("Surname:",surname);
+                EditText lastN = (EditText)findViewById(R.id.textfield_lastname);
+                lastname = lastN.getText().toString();
+                Log.d("Lastname:",lastname);
+                EditText phonez = (EditText)findViewById(R.id.textfield_phone);
+                phone = Integer.parseInt(phonez.getText().toString());
+                Log.d("Phone:","yolo: "+phone);
                 DBHandler db = new DBHandler(this);
-                Log.d("Legg inn:","legger til kontakter");
-                db.addContact(new Contact("Ole", "Overjordet", 99449922, new Date()));
+                Log.d("Legg inn:", "legger til kontakter");
+                db.addContact(new Contact(surname, lastname, phone, new Date()));
                 break;
             case R.id.showTimePicker:
                 DialogFragment df = new DatePickerFragment();
