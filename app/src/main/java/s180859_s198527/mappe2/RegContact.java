@@ -96,8 +96,12 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            // Returnerer DatePickerDialog objekt
-            return new DatePickerDialog(getActivity(), this, year,month,day);
+            // Opretter DatePickerDialog objekt
+            DatePickerDialog d = new DatePickerDialog(getActivity(), this, year,month,day);
+            // Setter maxdato til dagens dato (siden fødselsdato).
+            d.getDatePicker().setMaxDate(new Date().getTime());
+            // Returnerer
+            return d;
         }
         // Når ønsket dato er valgt fra DatePickerDialog
         public void onDateSet(DatePicker view, int year, int month, int day){
