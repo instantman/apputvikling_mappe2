@@ -21,6 +21,8 @@
     <string name="textfield_date">Enter birthdate</string>
     <string name="button_register">Register contact</string>
     <string name="button_pickdate">Birthdate</string>
+    <string name="button_showAll">Show all</string>
+
 
     <!-- Settings -->
     <string name="settings_head">Change settings</string>

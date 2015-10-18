@@ -4,42 +4,53 @@ package s180859_s198527.mappe2;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ListFragment;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class RegContact extends AppCompatActivity implements OnClickListener {
 
-    private Button register,showTimePicker;
+    private Button register,showTimePicker,showAll;
     private String surname, lastname, birthDate;
     private int phone;
-    private int dateYear, dateMonth, dateDay, startYear, startMonth, startDay;
+    private int  startYear, startMonth, startDay;
     private Calendar c;
+
+    // Test
+    String[] myStringarray ={"I","Will","C","Hest"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regcontact);
         Log.d("Activity", "activity_regcontact created");
-        register = (Button)findViewById(R.id.register);
-        register.setOnClickListener(this);
-        showTimePicker = (Button)findViewById(R.id.showTimePicker);
+
         final Calendar c = Calendar.getInstance();
         startDay = c.get(Calendar.DAY_OF_MONTH);
         startMonth = c.get(Calendar.MONTH);
         startYear = c.get(Calendar.YEAR);
+        register = (Button)findViewById(R.id.register);
+        register.setOnClickListener(this);
+        showAll = (Button)findViewById(R.id.showAll);
+        showAll.setOnClickListener(this);
+        showTimePicker = (Button)findViewById(R.id.showTimePicker);
         showTimePicker.setText(startDay+"/"+startMonth+"/"+startYear);
         showTimePicker.setOnClickListener(this);
     }
@@ -70,6 +81,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     }
 
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.register:
                 Log.d("Button","Register-button pressed");
@@ -88,11 +100,19 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 DBHandler db = new DBHandler(this);
                 Log.d("Legg inn:", "legger til kontakter!!");
                 db.addContact(new Contact(surname, lastname, phone, birthDate));
+                List<Contact> contacts = db.getAllContacts();
+                for(Contact cn : contacts){
+                    String log = "Surname: " + cn.getSurname() + "\n Lastname: " + cn.getLastname() + "\n Phone: " + cn.getPhoneNr() + "\n Birthdatefckz: "+cn.getBirthdate();
+                    Log.d("HALLOOO:",log);
+                }
+                db.close();
                 break;
             case R.id.showTimePicker:
                 DialogFragment df = new DatePickerFragment();
                 df.show(getFragmentManager(),"Date Picker");
                 break;
+            case R.id.showAll:
+                Log.d("Showing","Allflfllflf");
         }
     }
 
@@ -131,6 +151,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 return selectedDate;
             }
         }
+
     }
 
 }
