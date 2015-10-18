@@ -17,7 +17,7 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_SURNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
-                KEY_PHONENR +" INTEGER, " + KEY_DATE + " DATE" + ");";
+                KEY_PHONENR +" INTEGER, " + KEY_DATE + " TEXT" + ");";
         Log.d("SQL",CREATE_TABLE);
         db.execSQL(CREATE_TABLE);
     }
@@ -46,7 +46,7 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(KEY_SURNAME,contact.getSurname());
         values.put(KEY_LASTNAME,contact.getLastname());
         values.put(KEY_PHONENR,contact.getPhoneNr());
-        values.put(KEY_DATE,contact.getBirthdate().getTime());
+        values.put(KEY_DATE,contact.getBirthdate());
         db.insert(TABLE_CONTACTS,null,values);
         db.close();
     }

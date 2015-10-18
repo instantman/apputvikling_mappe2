@@ -23,7 +23,7 @@ import java.util.Date;
 public class RegContact extends AppCompatActivity implements OnClickListener {
 
     private Button register,showTimePicker;
-    private String surname, lastname;
+    private String surname, lastname, birthDate;
     private int phone;
     private int dateYear, dateMonth, dateDay, startYear, startMonth, startDay;
     private Calendar c;
@@ -82,10 +82,12 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 Log.d("Lastname:",lastname);
                 EditText phonez = (EditText)findViewById(R.id.textfield_phone);
                 phone = Integer.parseInt(phonez.getText().toString());
-                Log.d("Phone:","yolo: "+phone);
+                Log.d("Phone:", "yolo: " + phone);
+                Button bDay = (Button)findViewById(R.id.showTimePicker);
+                birthDate = bDay.getText().toString();
                 DBHandler db = new DBHandler(this);
                 Log.d("Legg inn:", "legger til kontakter!!");
-                db.addContact(new Contact(surname, lastname, phone, new Date()));
+                db.addContact(new Contact(surname, lastname, phone, birthDate));
                 break;
             case R.id.showTimePicker:
                 DialogFragment df = new DatePickerFragment();
@@ -113,7 +115,21 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         // Når ønsket dato er valgt fra DatePickerDialog
         public void onDateSet(DatePicker view, int year, int month, int day){
             Button b = (Button)getActivity().findViewById(R.id.showTimePicker);
-            b.setText(day+"/"+(++month)+"/"+year);
+            String selectedDate = formatDate(year,month,day);
+            b.setText(selectedDate);
+        }
+
+        public String formatDate(int year, int month, int day){
+            String selectedDate;
+            ++month;
+            if(month<=9){
+                selectedDate = Integer.toString(year)+"-0"+Integer.toString(month)+"-"+Integer.toString(day);
+                return selectedDate;
+            }
+            else{
+                selectedDate = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
+                return selectedDate;
+            }
         }
     }
 

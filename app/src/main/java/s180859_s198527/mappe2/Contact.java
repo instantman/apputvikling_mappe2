@@ -6,15 +6,14 @@ import java.util.Date;
  * Created by Christopher on 12/10/2015.
  */
 public class Contact {
-    private String surname, lastname;
+    private String surname,lastname, birthdate   ;
     private int phoneNr;
-    private Date birthdate;
 
     // Tom konstruktør
     public Contact(){
 
     }
-    public Contact(String inSurname, String inLastname, int inPhone, Date inBirthDate){
+    public Contact(String inSurname, String inLastname, int inPhone, String inBirthDate){
         this.surname = inSurname;
         this.lastname = inLastname;
         this.phoneNr = inPhone;
@@ -32,7 +31,7 @@ public class Contact {
         return this.phoneNr;
     }
 
-    public Date getBirthdate(){
+    public String getBirthdate(){
         return this.birthdate;
     }
 
@@ -48,7 +47,7 @@ public class Contact {
         this.phoneNr = phoneNr;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 }
