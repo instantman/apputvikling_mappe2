@@ -33,9 +33,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     private int  startYear, startMonth, startDay;
     private Calendar c;
 
-    // Test
-    String[] myStringarray ={"I","Will","C","Hest"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
