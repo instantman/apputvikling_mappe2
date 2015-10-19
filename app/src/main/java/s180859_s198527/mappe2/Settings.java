@@ -1,9 +1,12 @@
 package s180859_s198527.mappe2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -13,6 +16,7 @@ public class Settings extends AppCompatActivity {
 
     private Switch switch_service;
     private EditText smstext, smsdate;
+    private Button btnStartService, btnStopService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,10 @@ public class Settings extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
         // Knytter switch og tekstfelter til layout
-        switch_service = (Switch)findViewById(R.id.switch_service);
+        /*btnStartService = (Button)findViewById(R.id.button_startService);
+        btnStopService = (Button)findViewById(R.id.button_stopService);*/
+
+        /*switch_service = (Switch)findViewById(R.id.switch_service);
         smstext = (EditText)findViewById(R.id.textfield_SMStext);
         smsdate = (EditText)findViewById(R.id.textfield_SMSdate);
 
@@ -41,23 +48,18 @@ public class Settings extends AppCompatActivity {
                     Log.d("Switch", "OFF");
                 }
             }
-        });
+        });*/
     }
 
-    // Metoder for å sette smstext og smsdate
-    public void setSmstext (String inText) {
-        smstext.setText(inText);
-    }
-    public void setSmsdate (String inDate) {
-        smsdate.setText(inDate);
+    public void startService(View view) {
+        Intent intent = new Intent(this,SMSService.class);
+        startService(intent);
     }
 
-    // Metoder for å hente smstext og smsdate
-    public String getSmstext() {
-        return smstext.toString();
-    }
-    public String getSmsdate() {
-        return smsdate.toString();
+    public void stopService(View view) {
+        Intent intent = new Intent(this,SMSService.class);
+        stopService(intent);
     }
 
 }
+

@@ -3,6 +3,7 @@
     package="s180859_s198527.mappe2" >
 
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -54,6 +55,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="s180859_s198527.mappe2.Contacts" />
         </activity>
+
+        <service android:name=".SMSService"></service>
 
     </application>
 </manifest>
