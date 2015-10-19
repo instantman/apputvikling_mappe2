@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-import java.util.Date;
-
 public class Contacts extends AppCompatActivity implements OnClickListener{
 
     private Button newContactButton;
@@ -23,9 +21,8 @@ public class Contacts extends AppCompatActivity implements OnClickListener{
 
         newContactButton = (Button)findViewById(R.id.button_newcontact);
         newContactButton.setOnClickListener(this);
-
-
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -60,5 +57,4 @@ public class Contacts extends AppCompatActivity implements OnClickListener{
                 break;
         }
     }
-
 }

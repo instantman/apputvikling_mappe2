@@ -6,13 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Christopher on 12/10/2015.
- */
 public class DBHandler extends SQLiteOpenHelper{
     static String TABLE_CONTACTS = "Contacts";
     static String KEY_ID = "_ID";
@@ -46,7 +42,6 @@ public class DBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-
     public void addContact(Contact contact){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -58,7 +53,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-        // NOT TESTET, NEED CHECKING OBS OBS OBS!!!
+    // NOT TESTET, NEED CHECKING OBS OBS OBS!!!
     public Contact getContact(int id){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_CONTACTS,new String[]{KEY_ID,KEY_SURNAME,KEY_LASTNAME,KEY_PHONENR,KEY_DATE},KEY_ID+"=?", new String[]{String.valueOf(id)},null,null,null,null);
@@ -69,7 +64,6 @@ public class DBHandler extends SQLiteOpenHelper{
         Contact contact = new Contact(cursor.getString(1),cursor.getString(2),Integer.parseInt(cursor.getString(3)),cursor.getString(4));
         return contact;
     }
-
 
     public List<Contact> getAllContacts(){
         List<Contact> contactList = new ArrayList<Contact>();

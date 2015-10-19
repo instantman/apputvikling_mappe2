@@ -4,23 +4,14 @@ package s180859_s198527.mappe2;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.ListFragment;
-import android.app.TimePickerDialog;
-import android.content.ContentValues;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -78,7 +69,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     }
 
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.register:
                 Log.d("Button","Register-button pressed");
@@ -129,6 +119,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             // Returnerer
             return d;
         }
+
         // Når ønsket dato er valgt fra DatePickerDialog
         public void onDateSet(DatePicker view, int year, int month, int day){
             Button b = (Button)getActivity().findViewById(R.id.showTimePicker);
@@ -148,7 +139,5 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 return selectedDate;
             }
         }
-
     }
-
 }

@@ -1,18 +1,12 @@
 package s180859_s198527.mappe2;
 
-import java.util.Date;
-
-/**
- * Created by Christopher on 12/10/2015.
- */
 public class Contact {
     private String surname,lastname, birthdate   ;
     private int phoneNr;
 
     // Tom konstruktør
-    public Contact(){
+    public Contact(){ }
 
-    }
     public Contact(String inSurname, String inLastname, int inPhone, String inBirthDate){
         this.surname = inSurname;
         this.lastname = inLastname;
@@ -23,6 +17,7 @@ public class Contact {
     public String getSurname(){
         return this.surname;
     }
+
     public String getLastname(){
         return this.lastname;
     }
