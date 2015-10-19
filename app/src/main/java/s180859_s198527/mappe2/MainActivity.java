@@ -10,18 +10,20 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
-    private Button contactsButton, exitButton;
+    private Button contactsButton, exitButton, testSMSButton;
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-        Log.d("Activity","activity_main created");
+        Log.d("Activity", "activity_main created");
 
         // Knytter sammen knapper og legger på lytter
         contactsButton = (Button)findViewById(R.id.contactsButton);
         contactsButton.setOnClickListener(this);
+        testSMSButton = (Button)findViewById(R.id.testSMSButton);
+        testSMSButton.setOnClickListener(this);
         exitButton = (Button)findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
     }
@@ -57,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             case R.id.contactsButton:
                 Intent i1 = new Intent(this,Contacts.class);
                 startActivity(i1);
+                break;
+            case R.id.testSMSButton:
+                Intent i2 = new Intent(this,SendSMS.class);
+                startActivity(i2);
                 break;
             case R.id.exitButton:
                 finish();
