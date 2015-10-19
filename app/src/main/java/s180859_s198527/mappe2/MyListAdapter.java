@@ -1,6 +1,7 @@
 package s180859_s198527.mappe2;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,17 @@ public class MyListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
         ViewHolder holder;
+
         if(convertView == null){
             view = mInflater.inflate(R.layout.listitem,parent,false);
+            if(position %2==0)
+            {
+                view.setBackgroundColor(Color.BLUE);
+            }
+            else
+            {
+                view.setBackgroundColor(Color.WHITE);
+            }
             holder = new ViewHolder();
             holder.avatar = (ImageView)view.findViewById(R.id.imageView1);
             holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
