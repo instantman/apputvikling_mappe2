@@ -17,24 +17,47 @@
         android:textSize="20sp"
         android:textColor="#000000" />
 
-    <EditText
-        android:id="@+id/textfield_SMStext"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:hint="@string/textfield_SMStext"/>
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/standard_8dp_margin"
+            android:text="@string/setting_smstext"
+            android:textSize="@dimen/button_textSizeMenu"/>
+        <EditText
+            android:id="@+id/textfield_SMStext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="140"
+            android:hint="@string/textfield_SMStext"
+            android:textSize="@dimen/button_textSizeMenu"/>
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/textfield_SMSdate"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/standard_8dp_margin"
-        android:hint="@string/textfield_SMSdate"/>
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/standard_8dp_margin"
+            android:text="@string/setting_smsdate"
+            android:textSize="@dimen/button_textSizeMenu"/>
+        <EditText
+            android:id="@+id/textfield_SMSdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/textfield_SMSdate"
+            android:textSize="@dimen/button_textSizeMenu"/>
+    </LinearLayout>
 
     <View style="@style/Divider"/>
 
     <TextView
-        android:id="@+id/settings_system"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
@@ -48,11 +71,11 @@
         android:layout_marginTop="@dimen/standard_8dp_margin"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/switch_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/standard_8dp_margin"
-            android:text="@string/setting_service"/>
+            android:text="@string/setting_service"
+            android:textSize="@dimen/button_textSizeMenu"/>
         <Switch
             android:id="@+id/switch_service"
             android:layout_width="wrap_content"

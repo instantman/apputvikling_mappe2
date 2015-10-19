@@ -28,8 +28,10 @@
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="settings_sms">SMS settings</string>
-    <string name="textfield_SMStext">Set SMS-text</string>
-    <string name="textfield_SMSdate">Set SMS-date</string>
+    <string name="setting_smstext">SMS-text:</string>
+    <string name="textfield_SMStext">Your text here...</string>
+    <string name="setting_smsdate">SMS-day:</string>
+    <string name="textfield_SMSdate">14.10.1991</string>
     <string name="settings_system">System settings</string>
     <string name="setting_service">Turn service ON/OFF</string>
 
