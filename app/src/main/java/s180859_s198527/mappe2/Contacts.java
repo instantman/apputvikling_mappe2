@@ -1,13 +1,21 @@
 package s180859_s198527.mappe2;
 
+import android.app.ListFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class Contacts extends AppCompatActivity {
 
@@ -22,6 +30,18 @@ public class Contacts extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
         Log.d("Activity", "activity_contacts created");
+        DBHandler db = new DBHandler(this);
+
+        List<Contact> contacts = db.getAllContacts();
+
+        for(Contact cn : contacts){
+                TextView eOut = (TextView)findViewById(R.id.listSurname);/*
+            eOut.setText(cn.getSurname()+"---");
+            TextView aOut = (TextView)findViewById(R.id.listLastname);
+            aOut.setText(cn.getLastname()+"---");*/
+                eOut.append("Surname: " + cn.getSurname() + "\n Lastname: " + cn.getLastname() + "\n Phone: " + cn.getPhoneNr() + "\n Birthdatefckz: "+cn.getBirthdate()+"\n");
+        }
+
     }
 
     @Override
@@ -75,4 +95,5 @@ public class Contacts extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
