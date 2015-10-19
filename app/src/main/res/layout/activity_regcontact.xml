@@ -10,50 +10,48 @@
     android:layout_marginRight="@dimen/activity_horizontal_margin" >
 
     <TextView
-        android:id="@+id/regcontact_head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/regcontact_head"
-        android:textSize="@dimen/output_textSize"/>
-
-    <TextView
         android:id="@+id/new_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/new_contact"
-        android:textSize="@dimen/button_textSizeMenu"/>
+        android:textSize="@dimen/counter_textSize" />
 
     <EditText
         android:id="@+id/textfield_surname"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLength="20"
         android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:hint="@string/textfield_name"/>
+        android:textSize="@dimen/button_textSizeMenu"
+        android:hint="@string/textfield_firstname"/>
 
     <EditText
         android:id="@+id/textfield_lastname"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_8dp_margin"
         android:maxLength="20"
-        android:hint="@string/textfield_name"/>
+        android:textSize="@dimen/button_textSizeMenu"
+        android:hint="@string/textfield_lastname"/>
 
     <EditText
         android:id="@+id/textfield_phone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:inputType="phone"
         android:maxLength="8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="@dimen/button_textSizeMenu"
         android:hint="@string/textfield_phone"/>
+
     <TextView
         android:id="@+id/outputDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_8dp_margin"
         android:text="@string/textfield_date"
-        android:editable="false"
-        />
+        android:textSize="@dimen/button_textSizeMenu"
+        android:editable="false" />
+
     <Button
         android:id="@+id/showTimePicker"
         android:layout_width="wrap_content"
@@ -64,6 +62,7 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_vertical_margin"
         android:text="@string/button_register"/>
 
     <Button

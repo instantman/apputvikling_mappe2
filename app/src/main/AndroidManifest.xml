@@ -27,7 +27,7 @@
 
         <activity
             android:name="s180859_s198527.mappe2.RegContact"
-            android:label="Register"
+            android:label="@string/title_activity_regcontact"
             android:parentActivityName="s180859_s198527.mappe2.Contacts">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
