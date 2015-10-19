@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 public class SMSService extends Service {
 
+    // Kjører servicen på en egen thread
     final class SMSThread implements Runnable {
         int service_id;
         SMSThread(int service_id) {
@@ -15,7 +16,7 @@ public class SMSService extends Service {
 
         @Override
         public void run() {
-
+            // Her skal det servicen gjør legges!
 
             stopSelf(service_id);
         }
@@ -26,6 +27,7 @@ public class SMSService extends Service {
         super.onCreate();
     }
 
+    // Starter servicen
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this,"Service started...",Toast.LENGTH_LONG).show();
@@ -33,6 +35,7 @@ public class SMSService extends Service {
         return START_STICKY;
     }
 
+    // Stopper servicen
     @Override
     public void onDestroy() {
         Toast.makeText(this,"Service destroyed...",Toast.LENGTH_LONG).show();
