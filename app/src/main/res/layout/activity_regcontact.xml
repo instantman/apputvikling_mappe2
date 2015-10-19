@@ -24,7 +24,7 @@
         android:maxLength="20"
         android:layout_marginTop="@dimen/standard_8dp_margin"
         android:textSize="@dimen/button_textSizeMenu"
-        android:hint="@string/textfield_firstname"/>
+        android:hint="@string/textfield_firstname" />
 
     <EditText
         android:id="@+id/textfield_lastname"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:maxLength="20"
         android:textSize="@dimen/button_textSizeMenu"
-        android:hint="@string/textfield_lastname"/>
+        android:hint="@string/textfield_lastname" />
 
     <EditText
         android:id="@+id/textfield_phone"
@@ -41,7 +41,7 @@
         android:inputType="phone"
         android:maxLength="8"
         android:textSize="@dimen/button_textSizeMenu"
-        android:hint="@string/textfield_phone"/>
+        android:hint="@string/textfield_phone" />
 
     <TextView
         android:id="@+id/outputDate"
@@ -56,19 +56,19 @@
         android:id="@+id/showTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_pickdate"/>
+        android:text="@string/button_pickdate" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_vertical_margin"
-        android:text="@string/button_register"/>
+        android:text="@string/button_register" />
 
     <Button
         android:id="@+id/showAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_showAll"/>
+        android:text="@string/button_showAll" />
 
 </LinearLayout>
