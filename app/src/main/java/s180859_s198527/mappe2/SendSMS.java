@@ -20,9 +20,6 @@ public class SendSMS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sendsms);
 
-        /*SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(sendTo, null, message, null, null);*/
-
         sendBtn = (Button) findViewById(R.id.btnSendSMS);
         txtphoneNo = (EditText) findViewById(R.id.editTextPhoneNo);
         txtMessage = (EditText) findViewById(R.id.editTextSMS);
@@ -42,7 +39,8 @@ public class SendSMS extends AppCompatActivity {
             smsManager.sendTextMessage(phoneNo, null, message, null, null);
             Toast.makeText(getApplicationContext(), "SMS sent.",
                     Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS failed, please try again.",
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
