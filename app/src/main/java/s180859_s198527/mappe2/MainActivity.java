@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     private Button contactsButton, exitButton, testSMSButton;
@@ -17,7 +19,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-        Log.d("Activity", "activity_main created");
+
+        Calendar c = Calendar.getInstance();
+        Log.d("Activity", c.getTime().toString());
 
         // Knytter sammen knapper og legger på lytter
         contactsButton = (Button)findViewById(R.id.contactsButton);

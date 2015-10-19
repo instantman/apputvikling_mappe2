@@ -31,23 +31,6 @@ public class Contacts extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
-
-        Log.d("Activity", "activity_contacts created");
-
-
-/*
-        for(Contact cn : contacts){
-                TextView eOut = (TextView)findViewById(R.id.listSurname);
-                eOut.append("Surname: " + cn.getSurname() + "\n Lastname: " + cn.getLastname() +
-                 "\n Phone: " + cn.getPhoneNr() + "\n Birthdatefckz: "+cn.getBirthdate()+"\n");
-        }
-
-*/
-
-
-       // MyListAdapter m = new MyListAdapter(this,contacts);
-
-
     }
 
     @Override

@@ -17,4 +17,15 @@
         android:textSize="20sp"
         android:textColor="#000000" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list">
+    </ListView>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="s180859_s198527.mappe2.MyListFragment"
+        android:id="@+id/fragment1"/>
 </LinearLayout>
