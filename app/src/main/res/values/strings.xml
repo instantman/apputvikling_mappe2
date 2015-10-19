@@ -1,17 +1,19 @@
 <resources>
+    <!-- Application -->
     <string name="app_name">Mappe2</string>
 
     <!-- MainActivity -->
+    <string name="title_activity_main">MainActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="button_contacts">Contacts</string>
     <string name="button_settings">Settings</string>
     <string name="button_exit">Exit</string>
-    <string name="action_settings">Settings</string>
 
     <!-- Contacts -->
+    <string name="title_activity_contacts">Contacts</string>
     <string name="contacts_head">Contacts</string>
-
-    <string name="button_newcontact">New contact</string>
+    <string name="action_addcontact">New contact</string>
+    <string name="action_settings">Settings</string>
 
     <!-- RegContact -->
     <string name="regcontact_head">Register new contact</string>

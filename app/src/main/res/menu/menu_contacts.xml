@@ -5,9 +5,15 @@
     tools:context=".Contacts">
 
     <item
+        android:id="@+id/action_addcontact"
+        android:title="@string/action_addcontact"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         app:showAsAction="never" />
 
 </menu>

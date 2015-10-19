@@ -2,25 +2,24 @@ package s180859_s198527.mappe2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.view.View.OnClickListener;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-public class Contacts extends AppCompatActivity implements OnClickListener{
-
-    private Button newContactButton;
+public class Contacts extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+        // Tilbakeknapp i ActionBar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Log.d("Activity", "activity_contacts created");
-
-        newContactButton = (Button)findViewById(R.id.button_newcontact);
-        newContactButton.setOnClickListener(this);
     }
 
     @Override
@@ -48,13 +47,30 @@ public class Contacts extends AppCompatActivity implements OnClickListener{
         super.onStop();
     }
 
-    // Håndterer hva som skjer når knapper blir trykket
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_newcontact:
+    // Oppretter og viser ActionBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_contacts, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // Håndterer knapper/valg i ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_addcontact:
                 Intent i1 = new Intent(this,RegContact.class);
                 startActivity(i1);
-                break;
+                return true;
+            case R.id.action_settings:
+                Intent i2 = new Intent(this,Settings.class);
+                startActivity(i2);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

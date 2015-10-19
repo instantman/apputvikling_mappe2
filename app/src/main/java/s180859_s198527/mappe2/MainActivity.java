@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         // Knytter sammen knapper og legger på lytter
         contactsButton = (Button)findViewById(R.id.contactsButton);
         contactsButton.setOnClickListener(this);
-        settingsButton = (Button)findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(this);
+        /*settingsButton = (Button)findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(this);*/
         exitButton = (Button)findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
     }
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Intent i1 = new Intent(this,Contacts.class);
                 startActivity(i1);
                 break;
-            case R.id.settingsButton:
+            /*case R.id.settingsButton:
                 Intent i2 = new Intent(this,Settings.class);
                 startActivity(i2);
-                break;
+                break;*/
             case R.id.exitButton:
                 finish();
                 System.exit(0);
