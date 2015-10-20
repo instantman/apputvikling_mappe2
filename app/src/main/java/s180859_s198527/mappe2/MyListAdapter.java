@@ -59,7 +59,6 @@ public class MyListAdapter extends BaseAdapter {
 
             int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
             view.setBackgroundColor(ContextCompat.getColor(view.getContext(),clr));
-
             holder.avatar = (ImageView)view.findViewById(R.id.listItem_avatar);
             holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
             holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
@@ -73,7 +72,11 @@ public class MyListAdapter extends BaseAdapter {
                         case R.id.listItem_avatar:
                             DBHandler d = new DBHandler(v.getContext());
                             Log.d("IDIDIDID", "is: " + position);
-                            d.deleteContact(position);
+                            Contact c = mContacts.get(position);
+                            Log.d("Hallo",": \n"+c.getSurname()+"\n"+c.getLastname()+"\n"+c.getDbId());
+                            Long deleteId = c.getDbId();
+                            d.deleteContact(deleteId);
+                            mContacts.remove(position);
                             notifyDataSetChanged();
                             break;
                     }

@@ -76,28 +76,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register:
-                Log.d("Button","Register-button pressed");
-                // Oppretter nytt objekt i databasen (skal flyttes)
-                EditText surN = (EditText)findViewById(R.id.textfield_surname);
-                surname = surN.getText().toString();
-                Log.d("Surname:",surname);
-                EditText lastN = (EditText)findViewById(R.id.textfield_lastname);
-                lastname = lastN.getText().toString();
-                Log.d("Lastname:",lastname);
-                EditText phonez = (EditText)findViewById(R.id.textfield_phone);
-                phone = phonez.getText().toString();
-                Log.d("Phone:", "yolo: " + phone);
-                Button bDay = (Button)findViewById(R.id.showTimePicker);
-                birthDate = bDay.getText().toString();
-                DBHandler db = new DBHandler(this);
-                Log.d("Legg inn:", "legger til kontakter!!");
-                db.addContact(new Contact(surname, lastname, phone, birthDate));
-                List<Contact> contacts = db.getAllContacts();
-                for(Contact cn : contacts){
-                    String log = "Surname: " + cn.getSurname() + "\n Lastname: " + cn.getLastname() + "\n Phone: " + cn.getPhoneNr() + "\n Birthdatefckz: "+cn.getBirthdate();
-                    Log.d("HALLOOO:",log);
-                }
-                db.close();
+                registerContact();
                 break;
             case R.id.showTimePicker:
                 DialogFragment df = new DatePickerFragment();
@@ -106,6 +85,31 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             /*case R.id.showAll:
                 Log.d("Showing","Allflfllflf");*/ // Skal vel fjernes?
         }
+    }
+
+    public void registerContact(){
+        Log.d("Button","Register-button pressed");
+        // Oppretter nytt objekt i databasen (skal flyttes)
+        EditText surN = (EditText)findViewById(R.id.textfield_surname);
+        surname = surN.getText().toString();
+        Log.d("Surname:",surname);
+        EditText lastN = (EditText)findViewById(R.id.textfield_lastname);
+        lastname = lastN.getText().toString();
+        Log.d("Lastname:",lastname);
+        EditText phonez = (EditText)findViewById(R.id.textfield_phone);
+        phone = phonez.getText().toString();
+        Log.d("Phone:", "yolo: " + phone);
+        Button bDay = (Button)findViewById(R.id.showTimePicker);
+        birthDate = bDay.getText().toString();
+        DBHandler db = new DBHandler(this);
+        Log.d("Legg inn:", "legger til kontakter!!");
+        db.addContact(new Contact(surname, lastname, phone, birthDate));
+        List<Contact> contacts = db.getAllContacts();
+        for(Contact cn : contacts){
+            String log = "Surname: " + cn.getSurname() + "\n Lastname: " + cn.getLastname() + "\n Phone: " + cn.getPhoneNr() + "\n Birthdatefckz: "+cn.getBirthdate();
+            Log.d("HALLOOO:",log);
+        }
+        db.close();
     }
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{

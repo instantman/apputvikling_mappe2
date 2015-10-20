@@ -17,7 +17,7 @@ public class DBHandler extends SQLiteOpenHelper{
     static String KEY_PHONENR = "Phonenumber";
     static String KEY_DATE = "Date";
     static int DATABASE_VERSION = 1;
-    static String DATABASE_NAME ="NewDB_TWO";
+    static String DATABASE_NAME ="NextDB";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -88,6 +88,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 cnt.setLastname(cursor.getString(2));
                 cnt.setPhoneNr(cursor.getString(3));
                 cnt.setBirthdate(cursor.getString(4));
+                cnt.setDbId(cursor.getLong(0));
                 contactList.add(cnt);
             }
             while(cursor.moveToNext());
