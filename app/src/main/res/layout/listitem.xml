@@ -24,6 +24,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/listItem_firstname" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_8dp_margin"
+        android:layout_toEndOf="@+id/listItem_lastname"
+        android:layout_alignParentEnd="true"
+        android:src="@mipmap/ic_edit"/>
     <TextView
         android:id="@+id/listItem_phone"
         android:layout_width="wrap_content"
