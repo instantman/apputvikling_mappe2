@@ -3,7 +3,7 @@
     <string name="app_name">Mappe2</string>
 
     <!-- MainActivity -->
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Bogejordet Contacts 1.0</string>
     <string name="hello_world">Hello world!</string>
     <string name="button_contacts">Contacts</string>
     <string name="button_exit">Exit</string>
