@@ -4,24 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin" >
-
-    <TextView
-        android:id="@+id/contacts_head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/contacts_head"
-        android:textSize="20sp"
-        android:textColor="@color/black" />
-
-
+    android:layout_marginTop="@dimen/standard_8dp_margin">
 
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:name="s180859_s198527.mappe2.MyListFragment"
         android:id="@+id/fragment1"/>
+
 </LinearLayout>

@@ -2,8 +2,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/standard_8dp_margin"
     android:background="@color/grey">
 
     <ImageView
@@ -11,31 +12,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_8dp_margin"
-        android:src="@mipmap/ic_previous"/>
+        android:src="@mipmap/ic_contact"/>
     <TextView
         android:id="@+id/listItem_firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="surname"
+        android:layout_marginRight="4dp"
         android:layout_toEndOf="@+id/imageView1"/>
     <TextView
         android:id="@+id/listItem_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lastname"
         android:layout_toEndOf="@+id/listItem_firstname" />
     <TextView
         android:id="@+id/listItem_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="phone"
         android:layout_toEndOf="@+id/imageView1"
         android:layout_below="@+id/listItem_lastname"/>
     <TextView
         android:id="@+id/listItem_birthdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="birthdate"
         android:layout_toEndOf="@+id/imageView1"
         android:layout_below="@+id/listItem_phone"/>
 
