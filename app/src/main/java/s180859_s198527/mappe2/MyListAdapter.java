@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.Image;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,14 +52,18 @@ public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
         if(convertView == null){
             view = mInflater.inflate(R.layout.listitem,parent,false);
             holder = new ViewHolder();
-            if(position %2==0)
+            /*if(position %2==0)
             {
                 view.setBackgroundColor(view.getResources().getColor(R.color.white));
             }
             else
             {
                 view.setBackgroundColor(view.getResources().getColor(R.color.grey));
-            }
+            }*/
+
+            int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
+            view.setBackgroundColor(ContextCompat.getColor(view.getContext(),clr));
+
             holder.avatar = (ImageView)view.findViewById(R.id.listItem_avatar);
             holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
             holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
