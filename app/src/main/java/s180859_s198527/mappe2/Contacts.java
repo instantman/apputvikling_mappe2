@@ -29,7 +29,7 @@ public class Contacts extends AppCompatActivity {
         // Oppknapp i ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
+        actionBar.setHomeAsUpIndicator(R.mipmap.ic_exit);
 
     }
 
