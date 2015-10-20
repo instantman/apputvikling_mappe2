@@ -52,14 +52,6 @@ public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
         if(convertView == null){
             view = mInflater.inflate(R.layout.listitem,parent,false);
             holder = new ViewHolder();
-            /*if(position %2==0)
-            {
-                view.setBackgroundColor(view.getResources().getColor(R.color.white));
-            }
-            else
-            {
-                view.setBackgroundColor(view.getResources().getColor(R.color.grey));
-            }*/
 
             int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
             view.setBackgroundColor(ContextCompat.getColor(view.getContext(),clr));
