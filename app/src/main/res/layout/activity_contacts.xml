@@ -17,11 +17,7 @@
         android:textSize="20sp"
         android:textColor="@color/black" />
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+
 
     <fragment
         android:layout_width="wrap_content"

@@ -38,4 +38,10 @@
         android:text="birthdate"
         android:layout_toEndOf="@+id/imageView1"
         android:layout_below="@+id/listItem_phone"/>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
 </RelativeLayout>

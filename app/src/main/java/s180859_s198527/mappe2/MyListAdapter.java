@@ -48,19 +48,20 @@ public class MyListAdapter extends BaseAdapter {
         if(convertView == null){
             view = mInflater.inflate(R.layout.listitem,parent,false);
             holder = new ViewHolder();
-            /*if(position %2==0)
+            if(position %2==0)
             {
                 view.setBackgroundColor(Color.parseColor("#cccccc"));
             }
             else
             {
                 view.setBackgroundColor(Color.parseColor("#dddddd"));
-            }*/
+            }
             holder.avatar = (ImageView)view.findViewById(R.id.imageView1);
             holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
             holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
             holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
             holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
+
             view.setTag(holder);
         }
         else{
