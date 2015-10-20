@@ -4,47 +4,38 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/standard_8dp_margin"
-    android:background="@color/grey">
-
+    android:layout_margin="@dimen/standard_8dp_margin">
     <ImageView
         android:id="@+id/listItem_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_8dp_margin"
+        android:layout_margin="@dimen/standard_14dp_margin"
         android:src="@mipmap/ic_contact"/>
-    <TextView
-        android:id="@+id/listItem_firstname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="4dp"
-        android:layout_toEndOf="@+id/listItem_avatar"/>
-    <TextView
-        android:id="@+id/listItem_lastname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/listItem_firstname" />
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_8dp_margin"
-        android:layout_toEndOf="@+id/listItem_lastname"
-        android:layout_alignParentEnd="true"
-        android:src="@mipmap/ic_edit"/>
-    <TextView
-        android:id="@+id/listItem_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/listItem_avatar"
-        android:layout_below="@+id/listItem_lastname"/>
-    <TextView
-        android:id="@+id/listItem_birthdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/listItem_avatar"
-        android:layout_below="@+id/listItem_phone"/>
-
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/standard_4dp_margin"
+        android:layout_marginBottom="@dimen/standard_4dp_margin"
+        android:layout_toEndOf="@+id/listItem_avatar">
+        <TextView
+            android:id="@+id/listItem_firstname"
+            style="@style/ListItem"
+            android:layout_marginEnd="@dimen/standard_4dp_margin"/>
+        <TextView
+            android:id="@+id/listItem_lastname"
+            style="@style/ListItem"
+            android:layout_toEndOf="@+id/listItem_firstname"/>
+        <TextView
+            android:id="@+id/listItem_phone"
+            style="@style/ListItem"
+            android:layout_below="@+id/listItem_lastname"/>
+        <TextView
+            android:id="@+id/listItem_birthdate"
+            style="@style/ListItem"
+            android:layout_below="@+id/listItem_phone"/>
+    </RelativeLayout>
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"

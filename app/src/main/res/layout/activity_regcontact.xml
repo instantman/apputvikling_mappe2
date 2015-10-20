@@ -11,56 +11,55 @@
 
     <TextView
         android:id="@+id/new_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Headline"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/new_contact"
-        android:textSize="20sp"
-        android:textColor="#000000" />
+        android:text="@string/new_contact" />
 
     <EditText
         android:id="@+id/textfield_surname"
+        style="@style/Textfield"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLength="20"
         android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:textSize="@dimen/button_textSizeMenu"
         android:hint="@string/textfield_firstname" />
 
     <EditText
         android:id="@+id/textfield_lastname"
+        style="@style/Textfield"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLength="20"
-        android:textSize="@dimen/button_textSizeMenu"
         android:hint="@string/textfield_lastname" />
 
     <EditText
         android:id="@+id/textfield_phone"
+        style="@style/Textfield"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:maxLength="8"
-        android:textSize="@dimen/button_textSizeMenu"
         android:hint="@string/textfield_phone" />
 
     <TextView
         android:id="@+id/outputDate"
+        style="@style/Textfield"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
         android:text="@string/textfield_date"
-        android:textSize="@dimen/button_textSizeMenu"
         android:editable="false" />
 
     <Button
         android:id="@+id/showTimePicker"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_pickdate" />
 
     <Button
         android:id="@+id/register"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_vertical_margin"
@@ -68,6 +67,7 @@
 
     <Button
         android:id="@+id/showAll"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_showAll" />

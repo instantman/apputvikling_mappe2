@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/standard_8dp_margin"
+            android:layout_marginEnd="@dimen/standard_8dp_margin"
             android:text="@string/setting_smstext"
             android:textSize="@dimen/button_textSizeMenu"/>
         <EditText

@@ -5,12 +5,15 @@
     <dimen name="standard_horizontal_margin">16dp</dimen>
     <dimen name="standard_vertical_margin">16dp</dimen>
     <dimen name="standard_16dp_margin">16dp</dimen>
+    <dimen name="standard_14dp_margin">14dp</dimen>
     <dimen name="standard_8dp_margin">8dp</dimen>
+    <dimen name="standard_4dp_margin">4dp</dimen>
     <!-- Størrelser for 4.0" - 480x800 Portrait -->
     <dimen name="button_textSizeMenu">16sp</dimen>
+    <dimen name="headline_textSize">20sp</dimen>
     <dimen name="button_width">35dp</dimen>
     <dimen name="button_height">35dp</dimen>
-    <dimen name="button_textSize">25sp</dimen>
+    <dimen name="button_textSize">14sp</dimen>
     <dimen name="output_textSize">25sp</dimen>
     <dimen name="counter_textSize">18sp</dimen>
     <dimen name="image_width">235dp</dimen>

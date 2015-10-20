@@ -3,7 +3,7 @@
     <item name="red" type="color">#c0392b</item>
     <item name="blue" type="color">#2980b9</item>
     <item name="white" type="color">#ecf0f1</item>
-    <item name="grey" type="color">#bdc3c7</item>
+    <item name="grey" type="color">#D5D9DB</item>
     <item name="black" type="color">#000000</item>
 </resources>
 
