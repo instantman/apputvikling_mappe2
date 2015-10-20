@@ -5,104 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin">
-
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin">
     <TextView
         android:id="@+id/settings_sms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_sms"
-        android:textSize="20sp"
-        android:textColor="#000000" />
-
+        style="@style/Headline"
+        android:text="@string/settings_sms"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
         android:orientation="horizontal">
         <TextView
+            style="@style/Textfield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/standard_8dp_margin"
-            android:text="@string/setting_smstext"
-            android:textSize="@dimen/button_textSizeMenu"/>
+            android:text="@string/setting_smstext"/>
         <EditText
             android:id="@+id/textfield_SMStext"
+            style="@style/Textfield"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:maxLength="140"
-            android:hint="@string/textfield_SMStext"
-            android:textSize="@dimen/button_textSizeMenu"/>
+            android:hint="@string/textfield_SMStext"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            style="@style/Textfield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/standard_8dp_margin"
-            android:text="@string/setting_smsdate"
-            android:textSize="@dimen/button_textSizeMenu"/>
+            android:layout_marginEnd="@dimen/standard_8dp_margin"
+            android:text="@string/setting_smsdate"/>
         <EditText
             android:id="@+id/textfield_SMSdate"
+            style="@style/Textfield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/textfield_SMSdate"
-            android:textSize="@dimen/button_textSizeMenu"/>
+            android:hint="@string/textfield_SMSdate"/>
     </LinearLayout>
-
     <View style="@style/Divider"/>
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Headline"
         android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:text="@string/settings_system"
-        android:textSize="20sp"
-        android:textColor="#000000" />
-
-    <!-- <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/standard_8dp_margin"
-            android:text="@string/setting_service"
-            android:textSize="@dimen/button_textSizeMenu"/>
-        <Switch
-            android:id="@+id/switch_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <View style="@style/Divider"/> -->
-
+        android:text="@string/settings_system"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
+        android:layout_marginBottom="@dimen/standard_8dp_margin"
         android:orientation="horizontal">
         <Button
             android:id="@+id/button_startService"
+            style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Service"
             android:onClick="startService"/>
         <Button
             android:id="@+id/button_stopService"
+            style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stop Service"
             android:onClick="stopService"/>
     </LinearLayout>
-
     <View style="@style/Divider"/>
-
 </LinearLayout>
