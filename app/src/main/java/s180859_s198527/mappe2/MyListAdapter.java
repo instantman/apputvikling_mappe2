@@ -47,15 +47,15 @@ public class MyListAdapter extends BaseAdapter {
 
         if(convertView == null){
             view = mInflater.inflate(R.layout.listitem,parent,false);
-            if(position %2==0)
+            holder = new ViewHolder();
+            /*if(position %2==0)
             {
-                view.setBackgroundColor(Color.BLUE);
+                view.setBackgroundColor(Color.parseColor("#cccccc"));
             }
             else
             {
-                view.setBackgroundColor(Color.WHITE);
-            }
-            holder = new ViewHolder();
+                view.setBackgroundColor(Color.parseColor("#dddddd"));
+            }*/
             holder.avatar = (ImageView)view.findViewById(R.id.imageView1);
             holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
             holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
