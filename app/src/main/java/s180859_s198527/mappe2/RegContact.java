@@ -4,6 +4,7 @@ package s180859_s198527.mappe2;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regcontact);
         Log.d("Activity", "activity_regcontact created");
+        DatePickerFragment d = new DatePickerFragment();
 
         // Oppknapp i ActionBar
         ActionBar actionBar = getSupportActionBar();
@@ -41,10 +43,8 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         startYear = c.get(Calendar.YEAR);
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(this);
-        /*showAll = (Button)findViewById(R.id.showAll); // Dette skal vel fjernes?
-        showAll.setOnClickListener(this);*/
         showTimePicker = (Button)findViewById(R.id.showTimePicker);
-        showTimePicker.setText(startDay+"/"+startMonth+"/"+startYear);
+        showTimePicker.setText(d.formatDate(startYear,startMonth,startDay));
         showTimePicker.setOnClickListener(this);
     }
 
@@ -77,6 +77,8 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.register:
                 registerContact();
+                Intent i = new Intent(this,Contacts.class);
+                startActivity(i);
                 break;
             case R.id.showTimePicker:
                 DialogFragment df = new DatePickerFragment();
@@ -139,14 +141,24 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         public String formatDate(int year, int month, int day){
             String selectedDate;
             ++month;
-            if(month<=9){
+            if(month<=9 && day<=9){
+                selectedDate = Integer.toString(year)+"-0"+Integer.toString(month)+"-0"+Integer.toString(day);
+                return selectedDate;
+            }
+            else if(month<=9){
                 selectedDate = Integer.toString(year)+"-0"+Integer.toString(month)+"-"+Integer.toString(day);
+                return selectedDate;
+            }
+            else if(day<=9){
+                selectedDate = Integer.toString(year)+"-"+Integer.toString(month)+"-0"+Integer.toString(day);
                 return selectedDate;
             }
             else{
                 selectedDate = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
+                Log.d("HALLO",selectedDate);
                 return selectedDate;
             }
         }
+
     }
 }

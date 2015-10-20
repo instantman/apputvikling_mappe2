@@ -105,20 +105,7 @@ public class MyListAdapter extends BaseAdapter {
         }
         return null;
     }
-/*
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.listItem_avatar:
-                DBHandler d = new DBHandler(v.getContext());
-                Log.d("IDIDIDID", "is: " + ":: ");
-                mContacts.remove(1);
-                d.deleteContact(1);
-                notifyDataSetChanged();
-                break;
-        }
-    }
-*/
+
     private  static class ViewHolder{
         public ImageView avatar;
         public TextView firstname,lastname,phone,birthdate,id;
