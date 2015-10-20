@@ -17,7 +17,7 @@ public class DBHandler extends SQLiteOpenHelper{
     static String KEY_PHONENR = "Phonenumber";
     static String KEY_DATE = "Date";
     static int DATABASE_VERSION = 1;
-    static String DATABASE_NAME ="Phonebook";
+    static String DATABASE_NAME ="NewDB";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -31,7 +31,7 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_SURNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
-                KEY_PHONENR +" INTEGER, " + KEY_DATE + " TEXT" + ");";
+                KEY_PHONENR +" TEXT, " + KEY_DATE + " TEXT" + ");";
         Log.d("SQL",CREATE_TABLE);
         db.execSQL(CREATE_TABLE);
     }
@@ -53,6 +53,11 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    public void deleteContact(Contact contact){
+
+    }
+
+    /*
     // NOT TESTET, NEED CHECKING OBS OBS OBS!!!
     public Contact getContact(int id){
         SQLiteDatabase db = getReadableDatabase();
@@ -61,9 +66,9 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor!=null){
             cursor.moveToFirst();
         }
-        Contact contact = new Contact(cursor.getString(1),cursor.getString(2),Integer.parseInt(cursor.getString(3)),cursor.getString(4));
+        Contact contact = new Contact(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
         return contact;
-    }
+    }*/
 
     public List<Contact> getAllContacts(){
         List<Contact> contactList = new ArrayList<Contact>();
@@ -75,7 +80,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 Contact cnt = new Contact();
                 cnt.setSurname(cursor.getString(1));
                 cnt.setLastname(cursor.getString(2));
-                cnt.setPhoneNr(cursor.getInt(3));
+                cnt.setPhoneNr(cursor.getString(3));
                 cnt.setBirthdate(cursor.getString(4));
                 contactList.add(cnt);
             }

@@ -20,8 +20,7 @@ import java.util.List;
 public class RegContact extends AppCompatActivity implements OnClickListener {
 
     private Button register,showTimePicker,showAll;
-    private String surname, lastname, birthDate;
-    private int phone;
+    private String surname, lastname, birthDate, phone;
     private int  startYear, startMonth, startDay;
     private Calendar c;
 
@@ -86,7 +85,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 lastname = lastN.getText().toString();
                 Log.d("Lastname:",lastname);
                 EditText phonez = (EditText)findViewById(R.id.textfield_phone);
-                phone = Integer.parseInt(phonez.getText().toString());
+                phone = phonez.getText().toString();
                 Log.d("Phone:", "yolo: " + phone);
                 Button bDay = (Button)findViewById(R.id.showTimePicker);
                 birthDate = bDay.getText().toString();

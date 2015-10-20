@@ -1,13 +1,12 @@
 package s180859_s198527.mappe2;
 
 public class Contact {
-    private String surname,lastname, birthdate   ;
-    private int phoneNr;
+    private String surname,lastname, birthdate, phoneNr;
 
     // Tom konstruktør
     public Contact(){ }
 
-    public Contact(String inSurname, String inLastname, int inPhone, String inBirthDate){
+    public Contact(String inSurname, String inLastname, String inPhone, String inBirthDate){
         this.surname = inSurname;
         this.lastname = inLastname;
         this.phoneNr = inPhone;
@@ -22,7 +21,7 @@ public class Contact {
         return this.lastname;
     }
 
-    public int getPhoneNr(){
+    public String getPhoneNr(){
         return this.phoneNr;
     }
 
@@ -38,7 +37,7 @@ public class Contact {
         this.lastname = lastname;
     }
 
-    public void setPhoneNr(int phoneNr) {
+    public void setPhoneNr(String phoneNr) {
         this.phoneNr = phoneNr;
     }
 

@@ -24,7 +24,6 @@ public class MyListFragment extends ListFragment {
 
         MyListAdapter mList = new MyListAdapter(getActivity(),c);
         setListAdapter(mList);
-
     }
 
     @Override

@@ -1,9 +1,11 @@
 package s180859_s198527.mappe2;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,7 @@ import java.util.List;
 /**
  * Created by Christopher on 19/10/2015.
  */
-public class MyListAdapter extends BaseAdapter {
+public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
 
     private LayoutInflater mInflater;
     private List<Contact> mContacts;
@@ -57,12 +59,14 @@ public class MyListAdapter extends BaseAdapter {
             {
                 view.setBackgroundColor(view.getResources().getColor(R.color.grey));
             }
-            holder.avatar = (ImageView)view.findViewById(R.id.imageView1);
+            holder.avatar = (ImageView)view.findViewById(R.id.listItem_avatar);
             holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
             holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
             holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
             holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
 
+
+            holder.avatar.setOnClickListener(this);
             view.setTag(holder);
         }
         else{
@@ -73,10 +77,19 @@ public class MyListAdapter extends BaseAdapter {
         Contact contact = mContacts.get(position);
         holder.firstname.setText(contact.getSurname());
         holder.lastname.setText(contact.getLastname());
-        holder.phone.setText(Integer.toString(contact.getPhoneNr()));
+        holder.phone.setText(contact.getPhoneNr());
         holder.birthdate.setText(contact.getBirthdate());
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.listItem_avatar:
+                Log.d("BUTTON","CLICKED FFS");
+                break;
+        }
     }
 
     private class ViewHolder{
