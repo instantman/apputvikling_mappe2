@@ -66,7 +66,6 @@ public class MyListAdapter extends BaseAdapter {
             holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
             holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
 
-            int p = position;
             holder.avatar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,7 +73,6 @@ public class MyListAdapter extends BaseAdapter {
                         case R.id.listItem_avatar:
                             DBHandler d = new DBHandler(v.getContext());
                             Log.d("IDIDIDID", "is: " + position);
-                            mContacts.remove(position);
                             d.deleteContact(position);
                             notifyDataSetChanged();
                             break;
