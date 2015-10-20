@@ -41,8 +41,8 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         startYear = c.get(Calendar.YEAR);
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(this);
-        showAll = (Button)findViewById(R.id.showAll);
-        showAll.setOnClickListener(this);
+        /*showAll = (Button)findViewById(R.id.showAll); // Dette skal vel fjernes?
+        showAll.setOnClickListener(this);*/
         showTimePicker = (Button)findViewById(R.id.showTimePicker);
         showTimePicker.setText(startDay+"/"+startMonth+"/"+startYear);
         showTimePicker.setOnClickListener(this);
@@ -103,8 +103,8 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 DialogFragment df = new DatePickerFragment();
                 df.show(getFragmentManager(),"Date Picker");
                 break;
-            case R.id.showAll:
-                Log.d("Showing","Allflfllflf");
+            /*case R.id.showAll:
+                Log.d("Showing","Allflfllflf");*/ // Skal vel fjernes?
         }
     }
 

@@ -18,9 +18,10 @@
         <item name="android:textSize">@dimen/button_textSizeMenu</item>
     </style>
     <style name="Button">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/button_textSize</item>
         <item name="android:background">@drawable/button</item>
+        <item name="android:padding">@dimen/standard_8dp_margin</item>
     </style>
     <style name="ListItem">
         <item name="android:layout_width">wrap_content</item>
