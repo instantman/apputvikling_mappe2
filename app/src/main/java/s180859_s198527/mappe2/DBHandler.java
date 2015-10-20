@@ -17,14 +17,14 @@ public class DBHandler extends SQLiteOpenHelper{
     static String KEY_PHONENR = "Phonenumber";
     static String KEY_DATE = "Date";
     static int DATABASE_VERSION = 1;
-    static String DATABASE_NAME ="NewDB";
+    static String DATABASE_NAME ="NewDB_TWO";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
     public DBHandler(Context context){
-        super(context,DATABASE_NAME,null,DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
@@ -32,7 +32,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_SURNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
                 KEY_PHONENR +" TEXT, " + KEY_DATE + " TEXT" + ");";
-        Log.d("SQL",CREATE_TABLE);
+        Log.d("SQL", CREATE_TABLE);
         db.execSQL(CREATE_TABLE);
     }
 
@@ -42,24 +42,30 @@ public class DBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    public void deleteContact(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (db == null) {
+            return;
+        }
+        db.delete("Contacts", "_id = ?", new String[] { String.valueOf(id) });
+        db.close();
+    }
     public void addContact(Contact contact){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_SURNAME,contact.getSurname());
-        values.put(KEY_LASTNAME,contact.getLastname());
+        values.put(KEY_SURNAME, contact.getSurname());
+        values.put(KEY_LASTNAME, contact.getLastname());
         values.put(KEY_PHONENR,contact.getPhoneNr());
-        values.put(KEY_DATE,contact.getBirthdate());
-        db.insert(TABLE_CONTACTS,null,values);
+        values.put(KEY_DATE, contact.getBirthdate());
+        long insertid = db.insert(TABLE_CONTACTS, null, values);
+        contact.setDbId(insertid);
+        Log.d("INSERT ID:","ER: "+insertid + "----");
         db.close();
-    }
-
-    public void deleteContact(Contact contact){
-
     }
 
     /*
     // NOT TESTET, NEED CHECKING OBS OBS OBS!!!
-    public Contact getContact(int id){
+    public Contact getContact(Long id){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_CONTACTS,new String[]{KEY_ID,KEY_SURNAME,KEY_LASTNAME,KEY_PHONENR,KEY_DATE},KEY_ID+"=?", new String[]{String.valueOf(id)},null,null,null,null);
 
@@ -88,4 +94,7 @@ public class DBHandler extends SQLiteOpenHelper{
         }
         return contactList;
     }
+
+
+
 }

@@ -2,7 +2,7 @@ package s180859_s198527.mappe2;
 
 public class Contact {
     private String surname,lastname, birthdate, phoneNr;
-
+    private Long dbId;
     // Tom konstruktør
     public Contact(){ }
 
@@ -39,6 +39,14 @@ public class Contact {
 
     public void setPhoneNr(String phoneNr) {
         this.phoneNr = phoneNr;
+    }
+
+    public void setDbId(Long id){
+        this.dbId = id;
+    }
+
+    public Long getDbId(){
+        return this.dbId;
     }
 
     public void setBirthdate(String birthdate) {
