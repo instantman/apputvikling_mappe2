@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Christopher on 19/10/2015.
  */
-public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
+public class MyListAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private List<Contact> mContacts;
@@ -43,12 +43,18 @@ public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view;
         ViewHolder holder;
 
         if(convertView == null){
             view = mInflater.inflate(R.layout.listitem,parent,false);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             holder = new ViewHolder();
 
             int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
@@ -60,8 +66,21 @@ public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
             holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
             holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
 
-            holder.avatar.setOnClickListener(this);
-            view.setOnClickListener(this);
+            int p = position;
+            holder.avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch(v.getId()){
+                        case R.id.listItem_avatar:
+                            DBHandler d = new DBHandler(v.getContext());
+                            Log.d("IDIDIDID", "is: " + position);
+                            mContacts.remove(position);
+                            d.deleteContact(position);
+                            notifyDataSetChanged();
+                            break;
+                    }
+                }
+            });
             view.setTag(holder);
     }
         else{
@@ -85,7 +104,7 @@ public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
         }
         return null;
     }
-
+/*
     @Override
     public void onClick(View v) {
         switch(v.getId()){
@@ -98,8 +117,8 @@ public class MyListAdapter extends BaseAdapter implements View.OnClickListener {
                 break;
         }
     }
-
-    private class ViewHolder{
+*/
+    private  static class ViewHolder{
         public ImageView avatar;
         public TextView firstname,lastname,phone,birthdate,id;
     }
