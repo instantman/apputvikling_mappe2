@@ -67,7 +67,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(SMSText, smsText);
         editor.putString(SMSTime, smsTime);
-        editor.commit();
+        editor.apply();
 
         Log.d("SMSTEXT", smsText);
         Log.d("SMSTIME",smsTime);
@@ -88,6 +88,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 Intent i3 = new Intent(context,SMSService.class);
                 stopService(i3);
                 break;
+            //fjernes
             case R.id.button_testSms:
                 Intent i1 = new Intent(this,SendSMS.class);
                 startActivity(i1);

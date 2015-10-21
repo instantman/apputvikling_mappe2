@@ -58,11 +58,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-
         <!-- Deklarerer service BOGERN -->
         <service
             android:name="s180859_s198527.mappe2.SMSService"
             android:exported="false"/>
-
     </application>
 </manifest>

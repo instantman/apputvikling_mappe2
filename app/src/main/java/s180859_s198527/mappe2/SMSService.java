@@ -70,11 +70,12 @@ public class SMSService extends Service {
             DBHandler d = new DBHandler(context);
             List<Contact> c = d.getAllContacts();
             SendSMS smsSender = new SendSMS();
+            String text = getText();
             for(Contact cont : c ){
                 if(cont.getBirthdate().equals(fDate)) {
                     try {
                         smsSender.sendSMSMessage("Hei "+cont.getSurname() + " "
-                                + cont.getLastname()+"! "+getText(), cont.getPhoneNr());
+                                + cont.getLastname()+"! "+text, cont.getPhoneNr());
                     } catch(Exception e) {
                         e.printStackTrace();
                     }

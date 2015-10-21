@@ -57,8 +57,6 @@ public class MyListAdapter extends BaseAdapter {
             holder = new ViewHolder();
             view = mInflater.inflate(R.layout.listitem,parent,false);
             view.setTag(holder);
-
-
     }
         else{
             view = convertView;
@@ -73,8 +71,6 @@ public class MyListAdapter extends BaseAdapter {
         holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
         holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
         holder.btn = (Button)view.findViewById(R.id.btnlol);
-
-
 
         holder.avatar.setOnClickListener(new View.OnClickListener() {
             @Override
