@@ -83,4 +83,14 @@ public class DBHandler extends SQLiteOpenHelper{
         return contactList;
     }
 
+    public void updateContact(Long id, String inFirstname, String inLastname, String inPhone, String inBirthdate){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_SURNAME, inFirstname);
+        values.put(KEY_LASTNAME, inLastname);
+        values.put(KEY_PHONENR, inPhone);
+        values.put(KEY_DATE, inBirthdate);
+        db.update(TABLE_CONTACTS,values, "_id = ?", new String[] { String.valueOf(id) });
+    }
+
 }
