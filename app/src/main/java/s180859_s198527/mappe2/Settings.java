@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class Settings extends AppCompatActivity implements OnClickListener {
 
     private Button btnSave, btnStartService, btnStopService, btnTestSms;
@@ -57,8 +59,8 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         // Get smsText and smsTime from EditText
         editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
         editSMSTime = (EditText)findViewById(R.id.textfield_SMSTime);
-        String smsText = editSMSText.toString();
-        String smsTime = editSMSTime.toString();
+        String smsText = editSMSText.getText().toString();
+        String smsTime = editSMSTime.getText().toString();
 
         // Add smsText and smsTime to shared preferences
         sharedpreferences = getSharedPreferences(SMSPreferences, Context.MODE_PRIVATE);
@@ -66,6 +68,9 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         editor.putString(SMSText, smsText);
         editor.putString(SMSTime, smsTime);
         editor.commit();
+
+        File f = getDatabasePath("SMSPrefs.xml");
+        Log.d("Filepath",""+f);
     }
 
     // Håndterer hva som skjer når knapper blir trykket
