@@ -11,9 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.io.File;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
 
@@ -39,8 +36,9 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
+
+
         setListener();
-        setSMSPreferences();
     }
 
     public void setListener() {
