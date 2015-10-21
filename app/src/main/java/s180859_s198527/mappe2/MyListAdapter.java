@@ -103,7 +103,7 @@ public class MyListAdapter extends BaseAdapter {
                         final Button inputDate = new Button(v.getContext());
                         final DBHandler d = new DBHandler(v.getContext());
                         final Contact c = getItem(position);
-                        alert.setTitle("Hola! Edito contacto por favor");
+                        alert.setTitle("Edit contact");
                         LinearLayout linearLayout = new LinearLayout(v.getContext());
                         linearLayout.setOrientation(LinearLayout.VERTICAL);
                         inputPhone.setText(c.getPhoneNr());
