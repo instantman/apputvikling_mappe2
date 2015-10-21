@@ -26,17 +26,8 @@ public class SendSMS extends AppCompatActivity implements OnClickListener {
     }
 
     protected void sendSMSMessage(String text, String number) {
-        try {
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(text, null, number, null, null);
-            Toast.makeText(getApplicationContext(), "SMS sent.",
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "SMS failed, please try again.",
-                    Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
+            smsManager.sendTextMessage(number, null, text, null, null);
     }
 
     @Override
