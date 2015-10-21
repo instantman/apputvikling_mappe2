@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class SendSMS extends AppCompatActivity {
 
-    private String smsText, smsTime;
+    private String smsText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +17,16 @@ public class SendSMS extends AppCompatActivity {
         Log.d("SendSMS","onCreate");
     }
 
+    public String getText() {
+        SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
+        smsText = shared.getString("textKey","null");
+        Log.d("text",""+smsText);
+        return smsText;
+    }
+
     protected void sendSMSMessage(String text, String number) {
-            SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
-            smsText = shared.getString("textKey","null");
-            Log.d("text",""+smsText);
-            smsTime = shared.getString("timeKey","null");
-            Log.d("time",""+smsTime);
-            String message = "Hei "+text+"! "+smsText;
+            Log.d("sendSMS","Sender SMS");
+            String message = "Hei "+text+"! "+getText();
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(number, null, message, null, null);
     }

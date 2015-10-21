@@ -59,7 +59,7 @@
             </intent-filter>
         </receiver>
 
-        <!-- Deklarerer service -->
+        <!-- Deklarerer service BOGERN -->
         <service
             android:name="s180859_s198527.mappe2.SMSService"
             android:exported="false"/>
