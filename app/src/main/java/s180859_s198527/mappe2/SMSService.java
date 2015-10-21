@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SMSService extends Service {
 
-    Context context = getApplicationContext();
+    Context context = this;
     // Kjører servicen på en egen thread
     final class SMSThread implements Runnable {
         int service_id;
@@ -37,7 +37,7 @@ public class SMSService extends Service {
             List<Contact> c = d.getAllContacts();
             SendSMS smsSender = new SendSMS();
             for(Contact cont : c ){
-                if(cont.getBirthdate().equals(fDate) && fTime.equals("12:00")) {
+                if(cont.getBirthdate().equals(fDate) && fTime.equals("17:13")) {
                     try {
                         smsSender.sendSMSMessage(cont.getSurname() + " " + cont.getLastname(), cont.getPhoneNr());
                         Log.d("SMS", "Sent to " + cont.getPhoneNr());
