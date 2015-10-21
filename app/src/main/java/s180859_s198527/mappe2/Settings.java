@@ -69,8 +69,8 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         editor.putString(SMSTime, smsTime);
         editor.commit();
 
-        File f = getDatabasePath("SMSPrefs.xml");
-        Log.d("Filepath",""+f);
+        Log.d("SMSTEXT", smsText);
+        Log.d("SMSTIME",smsTime);
     }
 
     // Håndterer hva som skjer når knapper blir trykket

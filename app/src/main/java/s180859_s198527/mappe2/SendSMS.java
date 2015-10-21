@@ -15,19 +15,16 @@ public class SendSMS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Log.d("SendSMS","onCreate");
-    }
 
-    public String getText() {
-        SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
+        /*SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
         smsText = shared.getString("textKey","null");
-        Log.d("text",""+smsText);
-        return smsText;
+        Log.d("text",""+smsText);*/
     }
 
     protected void sendSMSMessage(String text, String number) {
             Log.d("sendSMS","Sender SMS");
-            String message = "Hei "+text+"! "+getText();
+            //String message = "Hei "+text+"! "+smsText;
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(number, null, message, null, null);
+            smsManager.sendTextMessage(number, null, text, null, null);
     }
 }

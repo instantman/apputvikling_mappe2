@@ -3,8 +3,10 @@ package s180859_s198527.mappe2;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.v4.content.WakefulBroadcastReceiver;
+import android.util.Log;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,9 +45,17 @@ public class SMSService extends Service {
 
     // Runs the service in separate thread to avoid locking UI-thread
     final class SMSThread implements Runnable {
+        String smsText;
         int service_id;
         SMSThread(int service_id) {
             this.service_id = service_id;
+        }
+
+        public String getText() {
+            SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
+            smsText = shared.getString("textKey","null");
+            Log.d("text", "" + smsText);
+            return smsText;
         }
 
         @Override
@@ -63,8 +73,8 @@ public class SMSService extends Service {
             for(Contact cont : c ){
                 if(cont.getBirthdate().equals(fDate)) {
                     try {
-                        smsSender.sendSMSMessage(cont.getSurname() + " "
-                                + cont.getLastname(), cont.getPhoneNr());
+                        smsSender.sendSMSMessage("Hei "+cont.getSurname() + " "
+                                + cont.getLastname()+"! "+getText(), cont.getPhoneNr());
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
