@@ -11,8 +11,8 @@ import android.widget.EditText;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
 
-    private Button btnSave, btnSendSMS, btnStartService, btnStopService;
-    private EditText smstext, smsdate, editSMSText, editSMSNo;
+    private Button btnSave, btnStartService, btnStopService, btnTestSms;
+    private EditText editSMSText, editSMSTime, editSMSNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +24,24 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
-        smstext = (EditText)findViewById(R.id.textfield_SMStext);
-        smsdate = (EditText)findViewById(R.id.textfield_SMSdate);
-        editSMSText = (EditText)findViewById(R.id.editTextSMS);
-        editSMSNo = (EditText)findViewById(R.id.editTextPhoneNo);
+        setTextField();
         setListener();
+    }
+
+    public void setTextField() {
+        editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
+        editSMSTime = (EditText)findViewById(R.id.textfield_SMSTime);
     }
 
     public void setListener() {
         btnSave = (Button)findViewById(R.id.button_save);
         btnSave.setOnClickListener(this);
-        btnSendSMS = (Button)findViewById(R.id.button_sendSMS);
-        btnSendSMS.setOnClickListener(this);
         btnStartService = (Button)findViewById(R.id.button_startService);
         btnStartService.setOnClickListener(this);
         btnStopService = (Button)findViewById(R.id.button_stopService);
         btnStopService.setOnClickListener(this);
+        btnTestSms = (Button)findViewById(R.id.button_testSms);
+        btnTestSms.setOnClickListener(this);
     }
 
     public void startService(View view) {
@@ -58,16 +60,15 @@ public class Settings extends AppCompatActivity implements OnClickListener {
             case R.id.button_save:
                 // For å lagre tekst og tidspunkt for SMS
                 break;
-            case R.id.button_sendSMS:
-                String textern = editSMSText.getText().toString();
-                String nummerern = editSMSNo.getText().toString();
-                new SendSMS().sendSMSMessage(textern, nummerern);
-                break;
             case R.id.button_startService:
 
                 break;
             case R.id.button_stopService:
 
+                break;
+            case R.id.button_testSms:
+                Intent i1 = new Intent(this,SendSMS.class);
+                startActivity(i1);
                 break;
         }
     }

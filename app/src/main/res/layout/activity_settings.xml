@@ -8,6 +8,8 @@
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+    <!-- First line -->
     <TextView
         android:id="@+id/settings_sms"
         style="@style/Headline"
@@ -24,12 +26,12 @@
             android:layout_marginEnd="@dimen/standard_8dp_margin"
             android:text="@string/setting_smstext"/>
         <EditText
-            android:id="@+id/textfield_SMStext"
+            android:id="@+id/textfield_SMSText"
             style="@style/Textfield"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:maxLength="140"
-            android:hint="@string/textfield_SMStext"/>
+            android:hint="@string/textfield_SMSText"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,11 +44,11 @@
             android:layout_marginEnd="@dimen/standard_8dp_margin"
             android:text="@string/setting_smsdate"/>
         <EditText
-            android:id="@+id/textfield_SMSdate"
+            android:id="@+id/textfield_SMSTime"
             style="@style/Textfield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/textfield_SMSdate"/>
+            android:hint="@string/textfield_SMSTime"/>
     </LinearLayout>
     <Button
         android:id="@+id/button_save"
@@ -55,6 +57,8 @@
         android:layout_height="wrap_content"
         android:text="Save"/>
     <View style="@style/Divider"/>
+
+    <!-- Second line -->
     <TextView
         style="@style/Headline"
         android:layout_marginTop="@dimen/standard_8dp_margin"
@@ -77,27 +81,17 @@
             style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/standard_8dp_margin"
             android:text="Stop Service"
             android:onClick="stopService"/>
     </LinearLayout>
     <View style="@style/Divider"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <!-- Third line -->
+    <TextView
+        style="@style/Headline"
         android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:layout_marginBottom="@dimen/standard_8dp_margin"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/editTextPhoneNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="SMS Number"/>
-        <EditText
-            android:id="@+id/editTextSMS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="SMS Text"/>
-    </LinearLayout>
+        android:text="@string/settings_testsms"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,12 +99,11 @@
         android:layout_marginBottom="@dimen/standard_8dp_margin"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/button_sendSMS"
+            android:id="@+id/button_testSms"
             style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send SMS"
-            android:onClick="sendSMSMessage"/>
+            android:text="Test SMS"/>
     </LinearLayout>
     <View style="@style/Divider"/>
 </LinearLayout>

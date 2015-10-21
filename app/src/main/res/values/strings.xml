@@ -10,7 +10,6 @@
 
     <!-- Contacts -->
     <string name="title_activity_contacts">Contacts</string>
-    <string name="contacts_head">Contacts</string>
     <string name="action_addcontact">New contact</string>
     <string name="action_settings">Settings</string>
 
@@ -29,10 +28,10 @@
     <string name="title_activity_settings">Settings</string>
     <string name="settings_sms">SMS settings</string>
     <string name="setting_smstext">SMS-text:</string>
-    <string name="textfield_SMStext">Your text here...</string>
+    <string name="textfield_SMSText">Your text here...</string>
     <string name="setting_smsdate">SMS-day:</string>
-    <string name="textfield_SMSdate">14.10.1991</string>
+    <string name="textfield_SMSTime">14.10.1991</string>
     <string name="settings_system">System settings</string>
-    <string name="setting_service">Turn service ON/OFF</string>
+    <string name="settings_testsms">Test SMS</string>
 
 </resources>
