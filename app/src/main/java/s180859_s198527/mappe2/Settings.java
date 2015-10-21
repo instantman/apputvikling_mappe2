@@ -47,18 +47,6 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         btnTestSms.setOnClickListener(this);
     }
 
-    /* Ikke lenger i bruk
-    public void startService(View view) {
-        Intent intent = new Intent(this,SMSService.class);
-        startService(intent);
-    } */
-
-    /* Ikke lenger i bruk
-    public void stopService(View view) {
-        Intent intent = new Intent(this,SMSService.class);
-        stopService(intent);
-    }*/
-
     // Håndterer hva som skjer når knapper blir trykket
     public void onClick(View v) {
 

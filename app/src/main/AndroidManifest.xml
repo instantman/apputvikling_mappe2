@@ -21,15 +21,6 @@
         </activity>
 
         <activity
-            android:name="s180859_s198527.mappe2.SendSMS"
-            android:label="SendSMS"
-            android:parentActivityName="s180859_s198527.mappe2.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="s180859_s198527.mappe2.MainActivity" />
-        </activity>
-
-        <activity
             android:name="s180859_s198527.mappe2.Contacts"
             android:label="@string/title_activity_contacts"
             android:parentActivityName="s180859_s198527.mappe2.MainActivity">
@@ -67,7 +58,7 @@
         </receiver>
 
         <!-- Deklarerer service -->
-        <service android:name=".SMSService"> </service>
+        <service android:name="s180859_s198527.mappe2.SMSService"> </service>
 
     </application>
 </manifest>
