@@ -13,6 +13,7 @@
         android:src="@mipmap/ic_contact"/>
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/hallo"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,6 +36,12 @@
             android:id="@+id/listItem_birthdate"
             style="@style/ListItem"
             android:layout_below="@+id/listItem_phone"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/listItem_lastname"
+            android:id="@+id/btnlol"
+            android:text="Update"/>
     </RelativeLayout>
     <ListView
         android:id="@+id/list"

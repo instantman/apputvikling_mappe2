@@ -95,4 +95,5 @@ public class DBHandler extends SQLiteOpenHelper{
         }
         return contactList;
     }
+
 }

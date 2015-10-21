@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 startActivity(i2);
                 break;
             case R.id.exitButton:
-                finish();
-                System.exit(0);
+                SendSMS smsSender = new SendSMS();
+                smsSender.sendSMSMessage("Hallo", "95922316");
                 break;
         }
     }
