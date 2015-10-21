@@ -23,6 +23,7 @@ public class SMSService extends Service {
 
         @Override
         public void run() {
+            Log.d("THREAD", "run started");
             // Trenger å hente inn valgt tid og tekst for sending (eller skal det gjøres i sendSMS?
 
             // Henter nåværende dato og tidspunkt
@@ -36,26 +37,33 @@ public class SMSService extends Service {
             DBHandler d = new DBHandler(context);
             List<Contact> c = d.getAllContacts();
             SendSMS smsSender = new SendSMS();
+
             for(Contact cont : c ){
-                if(cont.getBirthdate().equals(fDate) && fTime.equals("17:13")) {
+                Log.d("THREAD", "for loop"+cont.getLastname());
+                if(cont.getBirthdate().equals(fDate) && fTime.equals("18:44")) {
+                    Log.d("THREAD", "if");
                     try {
+                        Log.d("THREAD", "try");
                         smsSender.sendSMSMessage(cont.getSurname() + " " + cont.getLastname(), cont.getPhoneNr());
                         Log.d("SMS", "Sent to " + cont.getPhoneNr());
-                        Toast.makeText(getApplicationContext(),
+                        /*Toast.makeText(getApplicationContext(),
                                 "Birthday greeting sent to " + cont.getSurname() + " " + cont.getLastname() + ".",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
                     } catch(Exception e) {
+                        Log.d("THREAD", "catch");
                         Log.d("SMS","Not sent :(");
-                        Toast.makeText(getApplicationContext(),
+                        /*Toast.makeText(getApplicationContext(),
                                 "Birthday greeting failed. Please check settings.",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
                         e.printStackTrace();
                     }
-                } else {
+                }
+                else {
                     Log.d("SMS","No burfdaiz :(");
                 }
             }
-            stopSelf(service_id);
+            Log.d("Done","zo");
+            //stopSelf(service_id);
         }
     }
 
@@ -69,6 +77,7 @@ public class SMSService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this,"Service started...",Toast.LENGTH_LONG).show();
         Thread thread = new Thread(new SMSThread(startId));
+        thread.run();
         return START_STICKY;
     }
 
