@@ -27,8 +27,8 @@ public class MyListAdapter extends BaseAdapter {
     private List<Contact> mContacts;
 
     public MyListAdapter(Context context, List<Contact> contacts){
-        mInflater = LayoutInflater.from(context);
-        mContacts = contacts;
+        this.mInflater = LayoutInflater.from(context);
+        this.mContacts = contacts;
     }
 
 
@@ -54,102 +54,93 @@ public class MyListAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if(convertView == null){
-            view = mInflater.inflate(R.layout.listitem,parent,false);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    switch (v.getId()) {
-                        case R.id.list:
-                            Log.d("HALLOOO", "HLLOO");
-                            break;
-                    }
-
-
-                }
-            });
             holder = new ViewHolder();
-
-
-            int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
-            view.setBackgroundColor(ContextCompat.getColor(view.getContext(),clr));
-            holder.avatar = (ImageView)view.findViewById(R.id.listItem_avatar);
-            holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
-            holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
-            holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
-            holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
-            holder.btn = (Button)view.findViewById(R.id.btnlol);
-
-            holder.btn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    switch (v.getId()){
-                        case R.id.btnlol:
-                            Log.d("Button pressed ID:" , " "+getItem(position).getDbId()+"---"+position);
-                            AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
-                            final EditText inputFirst = new EditText(v.getContext());
-                            final EditText inputLast = new EditText(v.getContext());
-                            final EditText inputPhone = new EditText(v.getContext());
-                            final Button inputDate = new Button(v.getContext());
-                            final DBHandler d = new DBHandler(v.getContext());
-                            final Contact c = getItem(position);
-                            alert.setTitle("Hola! Edito contacto por favor");
-                            LinearLayout linearLayout = new LinearLayout(v.getContext());
-                            linearLayout.setOrientation(LinearLayout.VERTICAL);
-                            inputPhone.setText(c.getPhoneNr());
-                            inputLast.setText(c.getLastname());
-                            inputFirst.setText(c.getSurname());
-                            inputDate.setText("1999-12-10");
-                            linearLayout.addView(inputFirst);
-                            linearLayout.addView(inputLast);
-                            linearLayout.addView(inputPhone);
-                            linearLayout.addView(inputDate);
-                            alert.setView(linearLayout);
-
-                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichbutton) {
-                                    d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
-                                    d.close();
-                                    Contact c = new Contact(inputFirst.getText().toString(),
-                                            inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
-                                    mContacts.set(position,c);
-                                    dialog.dismiss();
-                                    updateList();
-                                }
-                            });
-                            alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    // Canceled.
-                                    dialog.cancel();
-                                }
-                            });
-                            AlertDialog alertDialog = alert.create();
-                            alertDialog.show();
-                }
-            }});
-
-            holder.avatar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    switch(v.getId()){
-                        case R.id.listItem_avatar:
-                            DBHandler d = new DBHandler(v.getContext());
-                            Log.d("IDIDIDID", "is: " + position);
-                            Contact c = mContacts.get(position);
-                            Log.d("Hallo",": \n"+c.getSurname()+"\n"+c.getLastname()+"\n"+c.getDbId());
-                            Long deleteId = c.getDbId();
-                            d.deleteContact(deleteId);
-                            mContacts.remove(position);
-                            notifyDataSetChanged();
-                            break;
-                    }
-                }
-            });
+            view = mInflater.inflate(R.layout.listitem,parent,false);
             view.setTag(holder);
+
+
     }
         else{
             view = convertView;
             holder = (ViewHolder)view.getTag();
         }
+
+        int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
+        view.setBackgroundColor(ContextCompat.getColor(view.getContext(),clr));
+        holder.avatar = (ImageView)view.findViewById(R.id.listItem_avatar);
+        holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
+        holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
+        holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
+        holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
+        holder.btn = (Button)view.findViewById(R.id.btnlol);
+
+
+
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(v.getId()){
+                    case R.id.listItem_avatar:
+                        DBHandler d = new DBHandler(v.getContext());
+                        Log.d("IDIDIDID", "is: " + position);
+                        Contact c = mContacts.get(position);
+                        Log.d("Hallo",": \n"+c.getSurname()+"\n"+c.getLastname()+"\n"+c.getDbId());
+                        Long deleteId = c.getDbId();
+                        d.deleteContact(deleteId);
+                        mContacts.remove(position);
+                        notifyDataSetChanged();
+                        break;
+                }
+            }
+        });
+
+        holder.btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                switch (v.getId()){
+                    case R.id.btnlol:
+                        Log.d("Button pressed ID:" , " "+getItem(position).getDbId()+"---"+position);
+                        AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
+                        final EditText inputFirst = new EditText(v.getContext());
+                        final EditText inputLast = new EditText(v.getContext());
+                        final EditText inputPhone = new EditText(v.getContext());
+                        final Button inputDate = new Button(v.getContext());
+                        final DBHandler d = new DBHandler(v.getContext());
+                        final Contact c = getItem(position);
+                        alert.setTitle("Hola! Edito contacto por favor");
+                        LinearLayout linearLayout = new LinearLayout(v.getContext());
+                        linearLayout.setOrientation(LinearLayout.VERTICAL);
+                        inputPhone.setText(c.getPhoneNr());
+                        inputLast.setText(c.getLastname());
+                        inputFirst.setText(c.getSurname());
+                        inputDate.setText("1999-12-10");
+                        linearLayout.addView(inputFirst);
+                        linearLayout.addView(inputLast);
+                        linearLayout.addView(inputPhone);
+                        linearLayout.addView(inputDate);
+                        alert.setView(linearLayout);
+
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichbutton) {
+                                d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
+                                d.close();
+                                Contact c = new Contact(inputFirst.getText().toString(),
+                                        inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
+                                mContacts.set(position,c);
+                                dialog.dismiss();
+                                updateList();
+                            }
+                        });
+                        alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                // Canceled.
+                                dialog.cancel();
+                            }
+                        });
+                        AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
+                }
+            }});
         Log.d("POS: ","~"+position);
         Contact contact = mContacts.get(position);
         holder.firstname.setText(contact.getSurname());
@@ -165,8 +156,8 @@ public class MyListAdapter extends BaseAdapter {
 
 
     private  static class ViewHolder{
-        public ImageView avatar;
-        public TextView firstname,lastname,phone,birthdate,id;
-        public Button btn;
+        protected ImageView avatar;
+        protected TextView firstname,lastname,phone,birthdate,id;
+        protected Button btn;
     }
 }
