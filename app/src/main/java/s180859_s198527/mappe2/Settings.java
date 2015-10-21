@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.TimePicker;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
 
@@ -36,7 +38,9 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
+        /** Tester med TimePicker */
 
+        
 
         setListener();
     }
@@ -50,6 +54,10 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         btnStopService.setOnClickListener(this);
         btnTestSms = (Button)findViewById(R.id.button_testSms);
         btnTestSms.setOnClickListener(this);
+    }
+
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        // Do something with the time chosen by the user
     }
 
     public void setSMSPreferences() {

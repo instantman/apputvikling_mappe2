@@ -30,8 +30,8 @@
     <string name="settings_sms">SMS settings</string>
     <string name="setting_smstext">SMS-text:</string>
     <string name="textfield_SMSText">Your text here...</string>
-    <string name="setting_smsdate">SMS-day:</string>
-    <string name="textfield_SMSTime">14.10.1991</string>
+    <string name="setting_smsdate">SMS-time:</string>
+    <string name="textfield_SMSTime">00:00</string>
     <string name="settings_system">System settings</string>
     <string name="settings_testsms">Test SMS</string>
 

@@ -16,12 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.List;
 
-/**
- * Created by Christopher on 19/10/2015.
- */
 public class MyListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<Contact> mContacts;
@@ -57,7 +53,7 @@ public class MyListAdapter extends BaseAdapter {
             holder = new ViewHolder();
             view = mInflater.inflate(R.layout.listitem,parent,false);
             view.setTag(holder);
-    }
+        }
         else{
             view = convertView;
             holder = (ViewHolder)view.getTag();
