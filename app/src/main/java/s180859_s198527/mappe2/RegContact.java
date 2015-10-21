@@ -78,12 +78,12 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.register:
                 registerContact();
-                Intent i = new Intent(this,Contacts.class);
-                startActivity(i);
+                /*Intent i = new Intent(this,Contacts.class);
+                startActivity(i);*/
                 break;
             case R.id.showTimePicker:
                 DialogFragment df = new DatePickerFragment();
-                df.show(getFragmentManager(),"Date Picker");
+                df.show(getFragmentManager(), "Date Picker");
                 break;
             /*case R.id.showAll:
                 Log.d("Showing","Allflfllflf");*/ // Skal vel fjernes?
@@ -93,22 +93,55 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     public void registerContact(){
         Log.d("Button","Register-button pressed");
         // Oppretter nytt objekt i databasen (skal flyttes)
+        InputValidator val = new InputValidator();
         EditText surN = (EditText)findViewById(R.id.textfield_surname);
-        surname = surN.getText().toString();
-        Log.d("Surname:",surname);
         EditText lastN = (EditText)findViewById(R.id.textfield_lastname);
-        lastname = lastN.getText().toString();
-        Log.d("Lastname:",lastname);
         EditText phonez = (EditText)findViewById(R.id.textfield_phone);
-        phone = phonez.getText().toString();
-        Log.d("Phone:", "yolo: " + phone);
         Button bDay = (Button)findViewById(R.id.showTimePicker);
-        birthDate = bDay.getText().toString();
-        DBHandler db = new DBHandler(this);
-        Log.d("Legg inn:", "legger til kontakter!!");
-        db.addContact(new Contact(surname, lastname, phone, birthDate));
-        Toast.makeText(getApplicationContext(), "Contact saved...", Toast.LENGTH_LONG).show();
-        db.close();
+        boolean inputvalidationTrue = true;
+
+        if(val.checkText(surN)){
+            surname = surN.getText().toString();
+        }
+        else if(!val.checkText(surN)){
+            inputvalidationTrue = false;
+        }
+
+        if(val.checkText(lastN)){
+            lastname = lastN.getText().toString();
+        }
+        else{
+            inputvalidationTrue = false;
+        }
+
+        if(val.checkText(phonez)){
+            phone = phonez.getText().toString();
+        }
+        else{
+            inputvalidationTrue = false;
+        }
+        if(inputvalidationTrue){
+            birthDate = bDay.getText().toString();
+            DBHandler db = new DBHandler(this);
+            Log.d("Legg inn:", "legger til kontakter!!");
+            db.addContact(new Contact(surname, lastname, phone, birthDate));
+            Toast.makeText(getApplicationContext(), "Contact saved...", Toast.LENGTH_LONG).show();
+            db.close();
+        }
+
+    }
+
+    public class InputValidator{
+        public boolean checkText(EditText e){
+            if(e.getText().toString().length() == 0){
+                e.setError("Cannot be empty");
+                return false;
+            }
+            else{
+                surname = e.getText().toString();
+                return true;
+            }
+        }
     }
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
