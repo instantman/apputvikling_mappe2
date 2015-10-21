@@ -1,8 +1,10 @@
 package s180859_s198527.mappe2;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,26 +84,36 @@ public class MyListAdapter extends BaseAdapter {
                 public void onClick(View v){
                     switch (v.getId()){
                         case R.id.btnlol:
+                            Log.d("Button pressed ID:" , " "+getItem(position).getDbId()+"---"+position);
                             AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                             final EditText inputFirst = new EditText(v.getContext());
                             final EditText inputLast = new EditText(v.getContext());
                             final EditText inputPhone = new EditText(v.getContext());
-                            final RegContact.DatePickerFragment dp = new RegContact.DatePickerFragment();
-                            DBHandler d = new DBHandler(v.getContext());
-                            Contact c = mContacts.get(position);
+                            final Button inputDate = new Button(v.getContext());
+                            final DBHandler d = new DBHandler(v.getContext());
+                            final Contact c = getItem(position);
                             alert.setTitle("Hola! Edito contacto por favor");
                             LinearLayout linearLayout = new LinearLayout(v.getContext());
                             linearLayout.setOrientation(LinearLayout.VERTICAL);
                             inputPhone.setText(c.getPhoneNr());
                             inputLast.setText(c.getLastname());
                             inputFirst.setText(c.getSurname());
+                            inputDate.setText("1999-12-10");
                             linearLayout.addView(inputFirst);
                             linearLayout.addView(inputLast);
                             linearLayout.addView(inputPhone);
+                            linearLayout.addView(inputDate);
                             alert.setView(linearLayout);
 
                             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichbutton) {
+                                    d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
+                                    d.close();
+                                    Contact c = new Contact(inputFirst.getText().toString(),
+                                            inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
+                                    mContacts.set(position,c);
+                                    dialog.dismiss();
+                                    updateList();
                                 }
                             });
                             alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -146,6 +158,11 @@ public class MyListAdapter extends BaseAdapter {
         holder.birthdate.setText(contact.getBirthdate());
         return view;
     }
+
+    public void updateList(){
+        notifyDataSetChanged();
+    }
+
 
     private  static class ViewHolder{
         public ImageView avatar;
