@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
-
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
@@ -15,10 +14,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private Button contactsButton, exitButton, testSMSButton;
 
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         Calendar c = Calendar.getInstance();
         Log.d("Activity", c.getTime().toString());

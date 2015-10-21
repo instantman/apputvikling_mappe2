@@ -1,23 +1,12 @@
 package s180859_s198527.mappe2;
 
-import android.app.ListActivity;
-import android.app.ListFragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.List;
 
 public class Contacts extends AppCompatActivity {
 
@@ -30,7 +19,6 @@ public class Contacts extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_exit);
-
     }
 
     @Override
@@ -84,5 +72,4 @@ public class Contacts extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

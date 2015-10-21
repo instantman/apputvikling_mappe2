@@ -7,13 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.List;
 
-/**
- * Created by Christopher on 19/10/2015.
- */
 public class MyListFragment extends ListFragment {
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -33,5 +30,4 @@ public class MyListFragment extends ListFragment {
     public void onStart() {
         super.onStart();
     }
-
 }

@@ -27,7 +27,6 @@ public class DBHandler extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_SURNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
@@ -50,6 +49,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.delete("Contacts", "_id = ?", new String[] { String.valueOf(id) });
         db.close();
     }
+
     public void addContact(Contact contact){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -95,7 +95,4 @@ public class DBHandler extends SQLiteOpenHelper{
         }
         return contactList;
     }
-
-
-
 }

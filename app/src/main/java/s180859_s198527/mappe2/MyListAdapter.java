@@ -14,18 +14,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Christopher on 19/10/2015.
- */
 public class MyListAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private List<Contact> mContacts;
+
     public MyListAdapter(Context context, List<Contact> contacts){
         mInflater = LayoutInflater.from(context);
         mContacts = contacts;
     }
-
 
     @Override
     public int getCount() {

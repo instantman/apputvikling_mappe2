@@ -1,8 +1,10 @@
 package s180859_s198527.mappe2;
 
 public class Contact {
+
     private String surname,lastname, birthdate, phoneNr;
     private Long dbId;
+
     // Tom konstruktør
     public Contact(){ }
 

@@ -46,5 +46,4 @@ public class SendSMS extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

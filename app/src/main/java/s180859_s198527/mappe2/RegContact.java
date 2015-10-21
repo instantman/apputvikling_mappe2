@@ -1,4 +1,3 @@
-/** Activity to create and store objects in database */
 package s180859_s198527.mappe2;
 
 import android.app.DatePickerDialog;
@@ -159,6 +158,5 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 return selectedDate;
             }
         }
-
     }
 }
