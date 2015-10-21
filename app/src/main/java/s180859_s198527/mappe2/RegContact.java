@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -105,6 +106,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         DBHandler db = new DBHandler(this);
         Log.d("Legg inn:", "legger til kontakter!!");
         db.addContact(new Contact(surname, lastname, phone, birthDate));
+        Toast.makeText(getApplicationContext(), "Contact saved...", Toast.LENGTH_LONG).show();
         List<Contact> contacts = db.getAllContacts();
         for(Contact cn : contacts){
             String log = "Surname: " + cn.getSurname() + "\n Lastname: " + cn.getLastname() + "\n Phone: " + cn.getPhoneNr() + "\n Birthdatefckz: "+cn.getBirthdate();
