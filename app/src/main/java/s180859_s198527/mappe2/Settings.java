@@ -2,20 +2,30 @@ package s180859_s198527.mappe2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
 
     private Button btnSave, btnStartService, btnStopService, btnTestSms;
     private EditText editSMSText, editSMSTime, editSMSNo;
 
-    Context context = this;
+    /** Testkode for å hente SMSText herfra til SendSMS */
+    // Initialiserer
+    public static final String SMSPreferences = "SMSPrefs";
+    public static final String SMSText = "textKey";
+    public static final String SMSTime = "timeKey";
+    SharedPreferences sharedpreferences;
+
+    Context context = this; // Set context for switch-case
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +37,8 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
-        setTextField();
         setListener();
-    }
-
-    public void setTextField() {
-        editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
-        editSMSTime = (EditText)findViewById(R.id.textfield_SMSTime);
+        setSMSPreferences();
     }
 
     public void setListener() {
@@ -47,12 +52,28 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         btnTestSms.setOnClickListener(this);
     }
 
+    public void setSMSPreferences() {
+        /** Testkode for å hente SMSText herfra til SendSMS */
+        // Get smsText and smsTime from EditText
+        editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
+        editSMSTime = (EditText)findViewById(R.id.textfield_SMSTime);
+        String smsText = editSMSText.toString();
+        String smsTime = editSMSTime.toString();
+
+        // Add smsText and smsTime to shared preferences
+        sharedpreferences = getSharedPreferences(SMSPreferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(SMSText, smsText);
+        editor.putString(SMSTime, smsTime);
+        editor.commit();
+    }
+
     // Håndterer hva som skjer når knapper blir trykket
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.button_save:
-                // For å lagre tekst og tidspunkt for SMS
+                setSMSPreferences();
+                Log.d("Settings","Text n Time saved");
                 break;
             case R.id.button_startService:
                 Intent i2 = new Intent(context,SMSService.class);

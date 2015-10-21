@@ -10,9 +10,13 @@ public class SendSMS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
+
+
     protected void sendSMSMessage(String text, String number) {
+
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(number, null, text, null, null);
     }
