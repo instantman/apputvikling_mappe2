@@ -56,7 +56,18 @@
                 android:value="s180859_s198527.mappe2.Contacts" />
         </activity>
 
-        <service android:name=".SMSService"></service>
+        <!-- Deklarerer Broadcast receiver som kjører på BOOT_COMPLETED -->
+        <receiver
+            android:name="s180859_s198527.mappe2.SMSReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Deklarerer service -->
+        <service android:name=".SMSService"> </service>
 
     </application>
 </manifest>
