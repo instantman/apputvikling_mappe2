@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -82,12 +83,23 @@ public class MyListAdapter extends BaseAdapter {
                     switch (v.getId()){
                         case R.id.btnlol:
                             AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
-                            final EditText input = new EditText(v.getContext());
+                            final EditText inputFirst = new EditText(v.getContext());
+                            final EditText inputLast = new EditText(v.getContext());
+                            final EditText inputPhone = new EditText(v.getContext());
+                            final RegContact.DatePickerFragment dp = new RegContact.DatePickerFragment();
                             DBHandler d = new DBHandler(v.getContext());
                             Contact c = mContacts.get(position);
-                            alert.setTitle(c.getSurname());
-                            input.setText(c.getLastname());
-                            alert.setView(input);
+                            alert.setTitle("Hola! Edito contacto por favor");
+                            LinearLayout linearLayout = new LinearLayout(v.getContext());
+                            linearLayout.setOrientation(LinearLayout.VERTICAL);
+                            inputPhone.setText(c.getPhoneNr());
+                            inputLast.setText(c.getLastname());
+                            inputFirst.setText(c.getSurname());
+                            linearLayout.addView(inputFirst);
+                            linearLayout.addView(inputLast);
+                            linearLayout.addView(inputPhone);
+                            alert.setView(linearLayout);
+
                             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichbutton) {
                                 }
