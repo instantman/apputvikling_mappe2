@@ -7,8 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -68,13 +73,26 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 startActivity(i2);
                 break;
             case R.id.exitButton:
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_MONTH, 0);
+                Date date = calendar.getTime();
+                String fDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+                String fTime = new SimpleDateFormat("HH:mm").format(date);
+                Log.d("Mer dato","Datoen er "+fDate+", tiden er "+fTime);
+
                 DBHandler d = new DBHandler(this);
                 List<Contact> c = d.getAllContacts();
+                Log.d("SendSMS",""+c.size());
                 SendSMS smsSender = new SendSMS();
                 for(Contact cont : c ){
-                    if(cont.getBirthdate().equals("18-10-2015")){
-                        smsSender.sendSMSMessage(cont.getSurname()+" "+cont.getLastname(), "95922316");
-                        Log.d("SMS --- ", "Sent");
+                    Log.d("22",cont.getBirthdate());
+                    if(cont.getBirthdate().equals(fDate)){
+                        smsSender.sendSMSMessage(cont.getSurname()+" "+cont.getLastname(), cont.getPhoneNr());
+                        Log.d("SMS sent to", cont.getPhoneNr());
+                    }
+                    else {
+                        Log.d("SMS","No burfdaiz :(");
                     }
                 }
                 break;
