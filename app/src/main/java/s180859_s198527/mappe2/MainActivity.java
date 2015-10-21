@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -67,8 +68,15 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 startActivity(i2);
                 break;
             case R.id.exitButton:
+                DBHandler d = new DBHandler(this);
+                List<Contact> c = d.getAllContacts();
                 SendSMS smsSender = new SendSMS();
-                smsSender.sendSMSMessage("Hallo", "95922316");
+                for(Contact cont : c ){
+                    if(cont.getBirthdate().equals("18-10-2015")){
+                        smsSender.sendSMSMessage(cont.getSurname()+" "+cont.getLastname(), "95922316");
+                        Log.d("SMS --- ", "Sent");
+                    }
+                }
                 break;
         }
     }

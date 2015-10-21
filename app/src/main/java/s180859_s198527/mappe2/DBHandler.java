@@ -63,19 +63,6 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-    /*
-    // NOT TESTET, NEED CHECKING OBS OBS OBS!!!
-    public Contact getContact(Long id){
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_CONTACTS,new String[]{KEY_ID,KEY_SURNAME,KEY_LASTNAME,KEY_PHONENR,KEY_DATE},KEY_ID+"=?", new String[]{String.valueOf(id)},null,null,null,null);
-
-        if(cursor!=null){
-            cursor.moveToFirst();
-        }
-        Contact contact = new Contact(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
-        return contact;
-    }*/
-
     public List<Contact> getAllContacts(){
         List<Contact> contactList = new ArrayList<Contact>();
         String sqlQ = "SELECT * FROM "+TABLE_CONTACTS+";";

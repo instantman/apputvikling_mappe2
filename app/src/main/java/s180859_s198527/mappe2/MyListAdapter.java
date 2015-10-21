@@ -112,7 +112,6 @@ public class MyListAdapter extends BaseAdapter {
                             Log.d("IDIDIDID", "is: " + position);
                             Contact c = mContacts.get(position);
                             Log.d("Hallo",": \n"+c.getSurname()+"\n"+c.getLastname()+"\n"+c.getDbId());
-
                             Long deleteId = c.getDbId();
                             d.deleteContact(deleteId);
                             mContacts.remove(position);
