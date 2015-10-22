@@ -1,5 +1,11 @@
+/** 
+ * This is a class used to create contacts (Contact-objects).
+ * Has constructor that accepts parameters, as well as an empty constructor.
+ * Includes GET- and SET-methods for all Contact-parameters.
+*/
+
 package s180859_s198527.mappe2;
-// Edit Test
+
 public class Contact {
 
     private String surname,lastname, birthdate, phoneNr;
@@ -7,7 +13,8 @@ public class Contact {
 
     // Tom konstruktør
     public Contact(){ }
-
+    
+    /* Created a new contact based on input-paramteres */
     public Contact(String inSurname, String inLastname, String inPhone, String inBirthDate){
         this.surname = inSurname;
         this.lastname = inLastname;
