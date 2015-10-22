@@ -1,3 +1,9 @@
+/** 
+ * This will be the MainActivity when the application is finished.
+ * Displays all saved contacts in a ListView with data from database.
+ * Includes buttons and logic to start all other activities.
+*/
+
 package s180859_s198527.mappe2;
 
 import android.content.Intent;
@@ -13,7 +19,7 @@ public class Contacts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-        // Oppknapp i ActionBar
+        /* UP-button in ActionBar */
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_exit);
@@ -44,7 +50,7 @@ public class Contacts extends AppCompatActivity {
         super.onStop();
     }
 
-    // Oppretter og viser ActionBar
+    /* Create and shows the ActionBar */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -53,18 +59,18 @@ public class Contacts extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Håndterer knapper/valg i ActionBar
+    /* Handles onClick-events in the ActionBar */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_addcontact:
                 Intent i1 = new Intent(this,RegContact.class);
-                startActivity(i1);
+                startActivity(i1); // Starts RecContact-activity
                 return true;
             case R.id.action_settings:
                 Intent i2 = new Intent(this,Settings.class);
-                startActivity(i2);
+                startActivity(i2); // Starts Settings-activity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
