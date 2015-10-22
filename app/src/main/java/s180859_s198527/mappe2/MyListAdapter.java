@@ -1,9 +1,11 @@
 package s180859_s198527.mappe2;
 
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,39 +84,41 @@ public class MyListAdapter extends BaseAdapter {
             }
         });
 
-        holder.btn.setOnClickListener(new View.OnClickListener(){
+        holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                switch (v.getId()){
+            public void onClick(View v) {
+                switch (v.getId()) {
                     case R.id.btnlol:
-                        Log.d("Button pressed ID:" , " "+getItem(position).getDbId()+"---"+position);
+                        Log.d("Button pressed ID:", " " + getItem(position).getDbId() + "---" + position);
                         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                         final EditText inputFirst = new EditText(v.getContext());
+                        inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
                         final EditText inputLast = new EditText(v.getContext());
+                        inputLast.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
                         final EditText inputPhone = new EditText(v.getContext());
-                        final Button inputDate = new Button(v.getContext());
+                        inputPhone.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+                        final TextView birthDate = new TextView(v.getContext());
                         final DBHandler d = new DBHandler(v.getContext());
                         final Contact c = getItem(position);
                         alert.setTitle("Edit contact");
                         LinearLayout linearLayout = new LinearLayout(v.getContext());
                         linearLayout.setOrientation(LinearLayout.VERTICAL);
-                        inputPhone.setText(c.getPhoneNr());
-                        inputLast.setText(c.getLastname());
                         inputFirst.setText(c.getSurname());
-                        inputDate.setText("1999-12-10");
+                        inputLast.setText(c.getLastname());
+                        inputPhone.setText(c.getPhoneNr());
+                        birthDate.setText(c.getBirthdate());
                         linearLayout.addView(inputFirst);
                         linearLayout.addView(inputLast);
                         linearLayout.addView(inputPhone);
-                        linearLayout.addView(inputDate);
+                        linearLayout.addView(birthDate);
                         alert.setView(linearLayout);
-
                         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichbutton) {
-                                d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
+                                d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
                                 d.close();
                                 Contact c = new Contact(inputFirst.getText().toString(),
-                                        inputLast.getText().toString(), inputPhone.getText().toString(), inputDate.getText().toString());
-                                mContacts.set(position,c);
+                                        inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
+                                mContacts.set(position, c);
                                 dialog.dismiss();
                                 updateList();
                             }
@@ -125,6 +129,7 @@ public class MyListAdapter extends BaseAdapter {
                                 dialog.cancel();
                             }
                         });
+
                         AlertDialog alertDialog = alert.create();
                         alertDialog.show();
                 }
@@ -134,7 +139,7 @@ public class MyListAdapter extends BaseAdapter {
         holder.firstname.setText(contact.getSurname());
         holder.lastname.setText(contact.getLastname());
         holder.phone.setText(contact.getPhoneNr());
-        holder.birthdate.setText(contact.getBirthdate());
+        holder.birthdate.setText("Birthdate: "+contact.getBirthdate());
         return view;
     }
 

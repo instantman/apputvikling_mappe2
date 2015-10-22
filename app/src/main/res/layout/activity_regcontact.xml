@@ -21,12 +21,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLength="20"
+        android:inputType="textPersonName"
         android:layout_marginTop="@dimen/standard_8dp_margin"
         android:hint="@string/textfield_firstname" />
 
     <EditText
         android:id="@+id/textfield_lastname"
         style="@style/Textfield"
+        android:inputType="textPersonName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLength="20"
@@ -47,8 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:text="@string/textfield_date"
-        android:editable="false" />
+        android:text="@string/textfield_date" />
 
     <Button
         android:id="@+id/showTimePicker"
@@ -63,14 +64,4 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_vertical_margin"
         android:text="@string/button_register" />
-
-    <!-- Denne skal vel fjernes?
-    <Button
-        android:id="@+id/showAll"
-        style="@style/Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_showAll" />
-    -->
-
 </LinearLayout>
