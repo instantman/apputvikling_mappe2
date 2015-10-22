@@ -1,3 +1,8 @@
+/** 
+ * This is an activity used to send SMS-messages based on received input parameters.
+ * Uses smsText and phonenumber received from SMSService.
+*/
+
 package s180859_s198527.mappe2;
 
 import android.os.Bundle;
@@ -10,7 +15,7 @@ public class SendSMS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
+    /* Sends SMS-message to received number with received text */
     protected void sendSMSMessage(String text, String number) {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(number, null, text, null, null);
