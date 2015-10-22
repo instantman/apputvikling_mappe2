@@ -1,7 +1,9 @@
 package s180859_s198527.mappe2;
+/*
+Custom adapter used to communicate with ListView
+*/
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
@@ -47,6 +49,7 @@ public class MyListAdapter extends BaseAdapter {
         View view;
         ViewHolder holder;
 
+        // Inflate view during initial calls
         if(convertView == null){
             holder = new ViewHolder();
             view = mInflater.inflate(R.layout.listitem,parent,false);
@@ -57,15 +60,19 @@ public class MyListAdapter extends BaseAdapter {
             holder = (ViewHolder)view.getTag();
         }
 
+        // Ternary if to check for position and alternate between two colors.
         int clr = (position % 2 == 0 ? R.color.white : R.color.grey);
         view.setBackgroundColor(ContextCompat.getColor(view.getContext(),clr));
+        /* Setting viewholder references for item components*/
         holder.avatar = (ImageView)view.findViewById(R.id.listItem_avatar);
         holder.firstname = (TextView)view.findViewById(R.id.listItem_firstname);
         holder.lastname = (TextView)view.findViewById(R.id.listItem_lastname);
         holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
         holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
         holder.btn = (Button)view.findViewById(R.id.btnlol);
+        holder.deletebtn = (Button)view.findViewById(R.id.deletebtn);
 
+        /* OnClickListener for deleting NEEDS FIXING PSPS PSPSPSPSPS*/
         holder.avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +99,9 @@ public class MyListAdapter extends BaseAdapter {
                         Log.d("Button pressed ID:", " " + getItem(position).getDbId() + "---" + position);
                         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                         final EditText inputFirst = new EditText(v.getContext());
-                        inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+                        inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
                         final EditText inputLast = new EditText(v.getContext());
-                        inputLast.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+                        inputLast.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
                         final EditText inputPhone = new EditText(v.getContext());
                         inputPhone.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
                         final TextView birthDate = new TextView(v.getContext());
@@ -154,6 +161,6 @@ public class MyListAdapter extends BaseAdapter {
     private  static class ViewHolder{
         protected ImageView avatar;
         protected TextView firstname,lastname,phone,birthdate,id;
-        protected Button btn;
+        protected Button btn, deletebtn;
     }
 }

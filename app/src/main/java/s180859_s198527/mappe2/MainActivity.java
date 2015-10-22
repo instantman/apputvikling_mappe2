@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Knytter sammen knapper og legger på lytter
+        // Add listeners to objects in view
         contactsButton = (Button)findViewById(R.id.contactsButton);
         contactsButton.setOnClickListener(this);
         testSMSButton = (Button)findViewById(R.id.testSMSButton);
@@ -55,18 +55,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onStop();
     }
 
-    // Håndterer hva som skjer når knapper blir trykket
+    // View handling
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.contactsButton:
                 Intent i1 = new Intent(this,Contacts.class);
                 startActivity(i1);
-                break;
-            case R.id.testSMSButton:
-                Intent i2 = new Intent(this,SendSMS.class);
-                startActivity(i2);
-                break;
-            case R.id.exitButton:
                 break;
         }
     }

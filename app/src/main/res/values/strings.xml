@@ -24,6 +24,7 @@
     <string name="button_register">Save contact</string>
     <string name="button_pickdate">Birthdate</string>
     <string name="button_showAll">Show all</string>
+    <string name="button_del">Delete</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>

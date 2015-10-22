@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper{
+    /* Values used in Database-handling */
     static String TABLE_CONTACTS = "Contacts";
     static String KEY_ID = "_ID";
     static String KEY_FIRSTNAME= "Firstname";
@@ -27,6 +28,7 @@ public class DBHandler extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /* Create database*/
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_FIRSTNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
@@ -41,15 +43,17 @@ public class DBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    /* Delete row in Contacts based in ID*/
     public void deleteContact(long id){
         SQLiteDatabase db = this.getWritableDatabase();
         if (db == null) {
             return;
         }
-        db.delete("Contacts", "_id = ?", new String[] { String.valueOf(id) });
+        db.delete(TABLE_CONTACTS, "_id = ?", new String[] { String.valueOf(id) });
         db.close();
     }
 
+    /* Insert new contact */
     public void addContact(Contact contact){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -57,12 +61,12 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(KEY_LASTNAME, contact.getLastname());
         values.put(KEY_PHONENR,contact.getPhoneNr());
         values.put(KEY_DATE, contact.getBirthdate());
+        /* Get unique id from DB and add to Contact*/
         long insertid = db.insert(TABLE_CONTACTS, null, values);
         contact.setDbId(insertid);
-        Log.d("INSERT ID:","ER: "+insertid + "----");
         db.close();
     }
-
+    /* Fill Custom List with Contacts from DB and return*/
     public List<Contact> getAllContacts(){
         List<Contact> contactList = new ArrayList<Contact>();
         String sqlQ = "SELECT * FROM "+TABLE_CONTACTS+";";
@@ -80,9 +84,10 @@ public class DBHandler extends SQLiteOpenHelper{
             }
             while(cursor.moveToNext());
         }
+        cursor.close();
         return contactList;
     }
-
+    /* Update contact */
     public void updateContact(Long id, String inFirstname, String inLastname, String inPhone, String inBirthdate){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -90,6 +95,7 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(KEY_LASTNAME, inLastname);
         values.put(KEY_PHONENR, inPhone);
         values.put(KEY_DATE, inBirthdate);
+        /* Update contact with ID = */
         db.update(TABLE_CONTACTS,values, "_id = ?", new String[] { String.valueOf(id) });
     }
 }
