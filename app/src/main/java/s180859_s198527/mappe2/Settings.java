@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
     
@@ -130,7 +131,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 break;
             case R.id.button_save:
                 setSMSPreferences();
-                Log.d("Settings","Text n Time saved");
+                Log.d("Settings","Settings saved");
                 break;
             case R.id.button_startService:
                 Log.d("Settings", "Start service pressed");

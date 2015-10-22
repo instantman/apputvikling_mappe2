@@ -27,7 +27,7 @@
         <TextView
             android:id="@+id/listItem_lastname"
             style="@style/ListItem"
-            android:layout_toEndOf="@+id/listItem_firstname"/>
+            android:layout_below="@+id/listItem_firstname"/>
         <TextView
             android:id="@+id/listItem_phone"
             style="@style/ListItem"

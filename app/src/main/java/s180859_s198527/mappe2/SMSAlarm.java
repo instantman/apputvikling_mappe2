@@ -38,17 +38,35 @@ public class SMSAlarm extends Service {
         thread.run();
         Log.d("SMSAlarm", "Service started");*/
 
-        Calendar cal = Calendar.getInstance();
+        // Get smsTime from SharedPreferences
+        SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
+        String smsTime = shared.getString("timeKey", "null");
+        Log.d("SAVED TIME",smsTime);
+        // Format smsTime to milliseconds
+        Date d = Calendar.getInstance().getTime();
+        Log.d("CURRENT DATETIME",""+d);
+        SimpleDateFormat f = new SimpleDateFormat("hh:mm");
+        long millis;
+
+        try {
+            d = f.parse(smsTime);
+            Log.d("SAVED TIME FORMATTED",""+d);
+        }
+        catch (ParseException e) {
+            Log.d("ParseException",""+e);
+        }
+
+        millis = d.getTime();
+        Log.d("SAVED TIME IN MILLIS",""+millis);
+
+        //Calendar cal = Calendar.getInstance();
         Intent i = new Intent(context, SMSService.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), SystemClock.elapsedRealtime() + 15 * 1000 , pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, millis, AlarmManager.INTERVAL_DAY , pintent); //type, første, repeat interval, pintent
         Log.d("SMSAlarm", "Alarm SET");
         return super.onStartCommand(intent, flags, startId);
 
-
-
-        //return START_STICKY;
     }
 
     /* Stops the service */
@@ -67,14 +85,14 @@ public class SMSAlarm extends Service {
     }
 
     /* Runs the service in separate worker-thread to avoid locking UI-thread */
-    final class AlarmThread implements Runnable {
+    /* class AlarmThread implements Runnable {
         int service_id;
         AlarmThread(int service_id) {
             this.service_id = service_id;
         }
         @Override
         public void run() {
-            /*Log.d("SMSAlarm", "Thread started");
+            Log.d("SMSAlarm", "Thread started");
             // Get smsTime from SharedPreferences
             SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
             String smsTime = shared.getString("timeKey", "null");
@@ -102,7 +120,7 @@ public class SMSAlarm extends Service {
             cal.add(Calendar.MILLISECOND, 30000);
             // Alarm fires at specified smsTime and repeats once a day until stopped
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 30 * 1000, alarmIntent);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30000, alarmIntent);*/
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30000, alarmIntent);
         }
-    }
+    }*/
 }
