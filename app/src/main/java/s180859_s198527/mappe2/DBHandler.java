@@ -92,5 +92,4 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(KEY_DATE, inBirthdate);
         db.update(TABLE_CONTACTS,values, "_id = ?", new String[] { String.valueOf(id) });
     }
-
 }

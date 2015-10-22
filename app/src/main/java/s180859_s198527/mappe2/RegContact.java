@@ -1,10 +1,8 @@
-/** Activity to create and store objects in database */
 package s180859_s198527.mappe2;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class RegContact extends AppCompatActivity implements OnClickListener {
 
@@ -85,8 +82,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 DialogFragment df = new DatePickerFragment();
                 df.show(getFragmentManager(), "Date Picker");
                 break;
-            /*case R.id.showAll:
-                Log.d("Showing","Allflfllflf");*/ // Skal vel fjernes?
         }
     }
 
@@ -106,14 +101,12 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         else if(!val.checkText(surN)){
             inputvalidationTrue = false;
         }
-
         if(val.checkText(lastN)){
             lastname = lastN.getText().toString();
         }
         else{
             inputvalidationTrue = false;
         }
-
         if(val.checkText(phonez)){
             phone = phonez.getText().toString();
         }
@@ -128,7 +121,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             Toast.makeText(getApplicationContext(), "Contact saved...", Toast.LENGTH_LONG).show();
             db.close();
         }
-
     }
 
     public class InputValidator{
@@ -189,6 +181,5 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 return selectedDate;
             }
         }
-
     }
 }

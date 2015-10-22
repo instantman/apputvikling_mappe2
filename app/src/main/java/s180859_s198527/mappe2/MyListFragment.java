@@ -1,6 +1,5 @@
 package s180859_s198527.mappe2;
 
-
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import java.util.List;
 
 public class MyListFragment extends ListFragment {
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

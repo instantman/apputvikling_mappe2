@@ -1,10 +1,8 @@
 package s180859_s198527.mappe2;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,8 +24,6 @@ public class MyListAdapter extends BaseAdapter {
         this.mInflater = LayoutInflater.from(context);
         this.mContacts = contacts;
     }
-
-
 
     @Override
     public int getCount() {
@@ -145,7 +141,6 @@ public class MyListAdapter extends BaseAdapter {
     public void updateList(){
         notifyDataSetChanged();
     }
-
 
     private  static class ViewHolder{
         protected ImageView avatar;
