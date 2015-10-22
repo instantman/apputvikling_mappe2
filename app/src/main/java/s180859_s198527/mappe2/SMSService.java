@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
@@ -28,7 +27,7 @@ public class SMSService extends Service {
         Toast.makeText(this,"Service started...",Toast.LENGTH_LONG).show();
         Thread thread = new Thread(new SMSThread(startId));
         thread.run();
-        WakefulBroadcastReceiver.completeWakefulIntent(intent); //Lar enheten gå i sleep igjen
+        Log.d("SMSService","Service started");
         return START_STICKY;
     }
 
@@ -36,6 +35,7 @@ public class SMSService extends Service {
     @Override
     public void onDestroy() {
         Toast.makeText(this,"Service destroyed...",Toast.LENGTH_LONG).show();
+        Log.d("SMSService", "Service destroyed");
     }
 
     @Override
@@ -45,42 +45,36 @@ public class SMSService extends Service {
 
     // Runs the service in separate thread to avoid locking UI-thread
     final class SMSThread implements Runnable {
-        String smsText;
         int service_id;
         SMSThread(int service_id) {
             this.service_id = service_id;
         }
 
-        public String getText() {
-            SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
-            smsText = shared.getString("textKey","null");
-            Log.d("text", "" + smsText);
-            return smsText;
-        }
-
         @Override
         public void run() {
+            Log.d("SMSService", "Thread started");
             // Get current device date
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH, 0);
             Date date = calendar.getTime();
             String fDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-            /** String fTime = new SimpleDateFormat("HH:mm").format(date);  Skal flyttes til AlarmManager */
             // Sends SMS to contacts with birthday matching current date
             DBHandler d = new DBHandler(context);
             List<Contact> c = d.getAllContacts();
             SendSMS smsSender = new SendSMS();
-            String text = getText();
+            SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
+            String smsText = shared.getString("textKey", "null");
             for(Contact cont : c ){
                 if(cont.getBirthdate().equals(fDate)) {
                     try {
                         smsSender.sendSMSMessage("Hei "+cont.getSurname() + " "
-                                + cont.getLastname()+"! "+text, cont.getPhoneNr());
+                                + cont.getLastname()+"! "+smsText, cont.getPhoneNr());
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
+            Log.d("SMSService", "Thread stopped");
             stopSelf(service_id); // Service stops itself on complete
         }
     }

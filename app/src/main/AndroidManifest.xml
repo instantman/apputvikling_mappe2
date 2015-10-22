@@ -62,5 +62,8 @@
         <service
             android:name="s180859_s198527.mappe2.SMSService"
             android:exported="false"/>
+        <service
+            android:name="s180859_s198527.mappe2.SMSAlarm"
+            android:exported="false"/>
     </application>
 </manifest>
