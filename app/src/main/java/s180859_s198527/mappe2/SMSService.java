@@ -1,3 +1,8 @@
+/** This is a service used to run SendSMS in the background.
+ * Receives start and stop requests from SMSReceiver.
+ * Runs service in separate worker-thread.
+*/
+
 package s180859_s198527.mappe2;
 
 import android.app.Service;
@@ -14,14 +19,14 @@ import java.util.List;
 
 public class SMSService extends Service {
 
-    Context context = this; // Set context for DBHandler in Thread
+    Context context = this; /* Sets the service context */
 
     @Override
     public void onCreate() {
         super.onCreate();
     }
 
-    // Starts the service
+    /* Starts the service */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this,"Service started...",Toast.LENGTH_LONG).show();
@@ -31,7 +36,7 @@ public class SMSService extends Service {
         return START_STICKY;
     }
 
-    // Stops the service
+    /* Stops the service */
     @Override
     public void onDestroy() {
         Toast.makeText(this,"Service destroyed...",Toast.LENGTH_LONG).show();
@@ -43,7 +48,7 @@ public class SMSService extends Service {
         return null;
     }
 
-    // Runs the service in separate thread to avoid locking UI-thread
+    /* Inner class that runs service on separate worker-thread to avoid locking UI-thread */
     final class SMSThread implements Runnable {
         int service_id;
         SMSThread(int service_id) {
@@ -53,22 +58,25 @@ public class SMSService extends Service {
         @Override
         public void run() {
             Log.d("SMSService", "Thread started");
-            // Get current device date
+            /* Get current device date */
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH, 0);
             Date date = calendar.getTime();
             String fDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-            // Sends SMS to contacts with birthday matching current date
+            /* Sends SMS to contacts with birthday matching current date */
+            /* Use DBHandler to get contatcs from database */
             DBHandler d = new DBHandler(context);
             List<Contact> c = d.getAllContacts();
-            SendSMS smsSender = new SendSMS();
+            /* Get smsText from SharedPreferences */
             SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
             String smsText = shared.getString("textKey", "null");
-            for(Contact cont : c ){
-                if(cont.getBirthdate().equals(fDate)) {
+            /* Create new instance of SendSMS */
+            SendSMS smsSender = new SendSMS();
+            for(Contact cont : c ){ // Loop throuch all contacts
+                if(cont.getBirthdate().equals(fDate)) { // Check if birthday matches current date
                     try {
                         smsSender.sendSMSMessage("Hei "+cont.getSurname() + " "
-                                + cont.getLastname()+"! "+smsText, cont.getPhoneNr());
+                                + cont.getLastname()+"! "+smsText, cont.getPhoneNr()); // Send SMS
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
