@@ -1,3 +1,8 @@
+/** 
+ * This is a temporary MainActivity used to start and test activities and services.
+ * PS! This activity will be deleted, and MainActivity will be Contacts. 
+*/
+
 package s180859_s198527.mappe2;
 
 import android.content.Intent;
