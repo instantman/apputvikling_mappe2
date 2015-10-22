@@ -20,15 +20,15 @@ import java.util.Calendar;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
 
+    Context context = this;
+
     private Button btnSave, btnStartService, btnStopService, btnTimupikku;
-    private EditText editSMSText, editSMSTime;
+    private EditText editSMSText;
 
     public static final String SMSPreferences = "SMSPrefs";
     public static final String SMSText = "textKey";
     public static final String SMSTime = "timeKey";
     SharedPreferences sharedpreferences;
-
-    Context context = this; // Set context for switch-case
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,11 +127,14 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 Log.d("Settings","Text n Time saved");
                 break;
             case R.id.button_startService:
-                Intent i2 = new Intent(context,SMSService.class);
+                Log.d("Settings", "Start service pressed");
+                Intent i2 = new Intent(context,SMSAlarm.class);
                 startService(i2);
+                Log.d("SMSAlarm", "Service started");
                 break;
             case R.id.button_stopService:
-                Intent i3 = new Intent(context,SMSService.class);
+                Log.d("Settings", "Stop service pressed");
+                Intent i3 = new Intent(context,SMSAlarm.class);
                 stopService(i3);
                 break;
         }
