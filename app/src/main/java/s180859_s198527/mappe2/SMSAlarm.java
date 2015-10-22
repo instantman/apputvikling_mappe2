@@ -5,9 +5,15 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class SMSAlarm extends Service {
 
@@ -47,13 +53,29 @@ public class SMSAlarm extends Service {
         @Override
         public void run() {
             Log.d("SMSAlarm", "Thread started");
+            SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
+            String smsTime = shared.getString("timeKey", "null");
+            Log.d("PREFS",smsTime);
+            SimpleDateFormat f = new SimpleDateFormat("hh:mm");
+            long millis = 600000;
+            try {
+                Date d = f.parse(smsTime);
+                Log.d("FORMATTED",""+d);
+                millis = d.getTime();
+                Log.d("IN MILLIS",""+millis);
+            }catch (ParseException pe) {
+                Log.d("ParseException",""+pe);
+            }
+
             AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
+            // Alarm fires once 60 seconds after start
             Calendar cal = Calendar.getInstance();
-            //set the alarms to start in the time period
-            cal.add(Calendar.MILLISECOND,60000);
-            Intent i = new Intent(context, SMSReceiver.class);
-            PendingIntent getSqlUpdatesTimer = PendingIntent.getBroadcast(context, 0, i, 0);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 7200000, getSqlUpdatesTimer);
+            cal.add(Calendar.MILLISECOND,30000);
+            PendingIntent alarmIntent;
+            Intent intent = new Intent(context, SMSReceiver.class);
+            alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+            //alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 60 * 1000, alarmIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30000, alarmIntent);
         }
     }
 }

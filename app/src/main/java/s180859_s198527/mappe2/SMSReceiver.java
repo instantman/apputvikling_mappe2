@@ -16,8 +16,8 @@ public class SMSReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             Log.d("SMSReceiver", "BOOT_COMPLETED received");
             wl.acquire();
-            Intent myIntent = new Intent(context, SMSService.class);
-            context.startService(myIntent);
+            Intent smsIntent = new Intent(context, SMSService.class);
+            context.startService(smsIntent);
             wl.release();
         }
         else if (intent != null) {
