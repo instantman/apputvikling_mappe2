@@ -43,18 +43,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/standard_8dp_margin"
             android:text="@string/setting_smsdate"/>
-        <EditText
-            android:id="@+id/textfield_SMSTime"
-            style="@style/Textfield"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:hint="@string/textfield_SMSTime"/>
         <Button
             android:id="@+id/timupikku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_picktime" />
+            android:text="@string/textfield_SMSTime"/>
     </LinearLayout>
     <Button
         android:id="@+id/button_save"

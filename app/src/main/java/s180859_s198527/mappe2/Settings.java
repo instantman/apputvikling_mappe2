@@ -34,13 +34,44 @@ public class Settings extends AppCompatActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
         // Oppknapp i ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
 
+        SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
+        editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
+        btnTimupikku = (Button)findViewById(R.id.timupikku);
+        editSMSText.setText(shared.getString("textKey", "null"));
+        btnTimupikku.setText(shared.getString("timeKey", "null"));
+
         setListener();
+    }
+
+    public void setListener() {
+        btnTimupikku.setOnClickListener(this);
+        btnSave = (Button)findViewById(R.id.button_save);
+        btnSave.setOnClickListener(this);
+        btnStartService = (Button)findViewById(R.id.button_startService);
+        btnStartService.setOnClickListener(this);
+        btnStopService = (Button)findViewById(R.id.button_stopService);
+        btnStopService.setOnClickListener(this);
+    }
+
+    public void setSMSPreferences() {
+        // Get smsText and smsTime
+        String smsText = editSMSText.getText().toString();
+        String smsTime = btnTimupikku.getText().toString();
+
+        // Add smsText and smsTime to shared preferences
+        sharedpreferences = getSharedPreferences(SMSPreferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(SMSText, smsText);
+        editor.putString(SMSTime, smsTime);
+        editor.apply();
+
+        Log.d("SMSTEXT", smsText);
+        Log.d("SMSTIME", smsTime);
     }
 
     public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
@@ -59,38 +90,29 @@ public class Settings extends AppCompatActivity implements OnClickListener {
 
         public void onTimeSet(TimePicker view, int setHour, int setMinute) {
             Button b = (Button)getActivity().findViewById(R.id.timupikku);
-            String selectedTime = setHour+":"+setMinute;
+            String selectedTime = formatTime(setHour,setMinute);
             b.setText(selectedTime);
         }
     }
 
-    public void setListener() {
-        btnTimupikku = (Button)findViewById(R.id.timupikku);
-        btnTimupikku.setOnClickListener(this);
-        btnSave = (Button)findViewById(R.id.button_save);
-        btnSave.setOnClickListener(this);
-        btnStartService = (Button)findViewById(R.id.button_startService);
-        btnStartService.setOnClickListener(this);
-        btnStopService = (Button)findViewById(R.id.button_stopService);
-        btnStopService.setOnClickListener(this);
-
-    }
-
-    public void setSMSPreferences() {
-        // Get smsText and smsTime from EditText
-        editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
-        editSMSTime = (EditText)findViewById(R.id.textfield_SMSTime);
-        String smsText = editSMSText.getText().toString();
-        String smsTime = editSMSTime.getText().toString();
-        // Add smsText and smsTime to shared preferences
-        sharedpreferences = getSharedPreferences(SMSPreferences, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(SMSText, smsText);
-        editor.putString(SMSTime, smsTime);
-        editor.apply();
-
-        Log.d("SMSTEXT", smsText);
-        Log.d("SMSTIME",smsTime);
+    public static String formatTime(int hour, int minute) {
+        String selectedTime;
+        if (hour <= 9 && minute <= 9) {
+            selectedTime = "0"+Integer.toString(hour)+":0"+Integer.toString(minute);
+            return selectedTime;
+        }
+        else if (hour <= 9 && minute > 9) {
+            selectedTime = "0"+Integer.toString(hour)+":"+Integer.toString(minute);
+            return selectedTime;
+        }
+        else if (hour > 9 && minute <= 9) {
+            selectedTime = Integer.toString(hour)+":0"+Integer.toString(minute);
+            return selectedTime;
+        }
+        else {
+            selectedTime = Integer.toString(hour)+":"+Integer.toString(minute);
+            return selectedTime;
+        }
     }
 
     // Håndterer hva som skjer når knapper blir trykket
