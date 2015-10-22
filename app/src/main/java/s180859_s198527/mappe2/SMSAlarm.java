@@ -32,10 +32,18 @@ public class SMSAlarm extends Service {
 
     /* Starts the service */
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Thread thread = new Thread(new AlarmThread(startId));
+        /*Thread thread = new Thread(new AlarmThread(startId));
         thread.run();
-        Log.d("SMSAlarm", "Service started");
-        return START_STICKY;
+        Log.d("SMSAlarm", "Service started");*/
+
+        Calendar cal = Calendar.getInstance();
+        Intent i = new Intent(context, SMSService.class);
+        PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
+        AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60000 * 1000, pintent);
+        return super.onStartCommand(intent, flags, startId);
+
+        //return START_STICKY;
     }
 
     /* Stops the service */
@@ -57,12 +65,12 @@ public class SMSAlarm extends Service {
         }
         @Override
         public void run() {
-            Log.d("SMSAlarm", "Thread started");
-            /* Get smsTime from SharedPreferences */
+            /*Log.d("SMSAlarm", "Thread started");
+            // Get smsTime from SharedPreferences
             SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
             String smsTime = shared.getString("timeKey", "null");
             Log.d("PREFS",smsTime);
-            /* Format smsTime til milliseconds */
+            // Format smsTime to milliseconds
             SimpleDateFormat f = new SimpleDateFormat("hh:mm");
             long millis = 600000;
             try {
@@ -74,18 +82,18 @@ public class SMSAlarm extends Service {
                 Log.d("ParseException",""+pe);
             }
             
-            /* Create new AlarmManager */
+            // Create new AlarmManager
             AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
-            /* Create new intents and point to SMSReceiver */
+            // Create new intents and point to SMSReceiver
             PendingIntent alarmIntent;
-            Intent intent = new Intent(context, SMSService.class);
+            Intent intent = new Intent(context, SMSReceiver.class);
             alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-            /* Alarm fires once 30 seconds after start */
+            // Alarm fires once 30 seconds after start
             Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.MILLISECOND,30000);
-            /* Alarm fires at specified smsTime and repeats once a day until stopped */
-            //alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 60 * 1000, alarmIntent);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30000, alarmIntent);
+            cal.add(Calendar.MILLISECOND, 30000);
+            // Alarm fires at specified smsTime and repeats once a day until stopped
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 30 * 1000, alarmIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30000, alarmIntent);*/
         }
     }
 }

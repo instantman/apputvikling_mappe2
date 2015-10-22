@@ -23,16 +23,8 @@ public class SMSReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             Log.d("SMSReceiver", "BOOT_COMPLETED received");
             wl.acquire(); // Activate WakeLock
-            Intent smsIntent = new Intent(context, SMSService.class);
-            context.startService(smsIntent); // Start service
-            wl.release(); // Deactivate WakeLock
-        }
-        /* Run SMSService when receiving any intent */
-        else if (intent != null) {
-            Log.d("SMSReceiver", "Intent received");
-            wl.acquire(); // Activate WakeLock
-            Intent myIntent = new Intent(context, SMSService.class);
-            context.startService(myIntent); // Start service
+            Intent smsIntent = new Intent(context, SMSAlarm.class);
+            context.startService(smsIntent); // Start SMSAlarm
             wl.release(); // Deactivate WakeLock
         }
     }
