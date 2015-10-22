@@ -50,16 +50,19 @@
             android:layout_height="wrap_content"
             android:inputType="time"
             android:hint="@string/textfield_SMSTime"/>
-        <TimePicker
-            android:id="@+id/timePicker"
+        <Button
+            android:id="@+id/timupikku"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/button_picktime"
+            android:onClick="showTimePickerDialog" />
     </LinearLayout>
     <Button
         android:id="@+id/button_save"
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/standard_8dp_margin"
         android:text="Save"/>
     <View style="@style/Divider"/>
 
@@ -89,26 +92,6 @@
             android:layout_marginBottom="@dimen/standard_8dp_margin"
             android:text="Stop Service"
             android:onClick="stopService"/>
-    </LinearLayout>
-    <View style="@style/Divider"/>
-
-    <!-- Third line -->
-    <TextView
-        style="@style/Headline"
-        android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:text="@string/settings_testsms"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_8dp_margin"
-        android:layout_marginBottom="@dimen/standard_8dp_margin"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button_testSms"
-            style="@style/Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test SMS"/>
     </LinearLayout>
     <View style="@style/Divider"/>
 </LinearLayout>

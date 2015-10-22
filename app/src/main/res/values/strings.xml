@@ -32,6 +32,7 @@
     <string name="textfield_SMSText">Your text here...</string>
     <string name="setting_smsdate">SMS-time:</string>
     <string name="textfield_SMSTime">00:00</string>
+    <string name="button_picktime">Time to send SMS</string>
     <string name="settings_system">System settings</string>
     <string name="settings_testsms">Test SMS</string>
 
