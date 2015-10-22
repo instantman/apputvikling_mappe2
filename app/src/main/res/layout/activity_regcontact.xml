@@ -20,7 +20,7 @@
         style="@style/Textfield"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:maxLength="20"
+        android:maxLength="14"
         android:inputType="textPersonName"
         android:layout_marginTop="@dimen/standard_8dp_margin"
         android:hint="@string/textfield_firstname" />
@@ -31,7 +31,7 @@
         android:inputType="textPersonName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:maxLength="20"
+        android:maxLength="14"
         android:hint="@string/textfield_lastname" />
 
     <EditText

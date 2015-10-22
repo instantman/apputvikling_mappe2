@@ -22,6 +22,8 @@ public class Contact {
         this.birthdate = inBirthDate;
     }
 
+    /* GETTERS AND SETTERS */
+
     public String getFirstname(){
         return this.firstname;
     }
