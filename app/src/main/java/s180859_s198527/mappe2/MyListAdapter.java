@@ -70,14 +70,14 @@ public class MyListAdapter extends BaseAdapter {
         holder.phone = (TextView)view.findViewById(R.id.listItem_phone);
         holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
         holder.btn = (Button)view.findViewById(R.id.btnlol);
-        holder.deletebtn = (Button)view.findViewById(R.id.deletebtn);
+        holder.delete = (Button)view.findViewById(R.id.deletebtn);
 
         /* OnClickListener for deleting NEEDS FIXING PSPS PSPSPSPSPS*/
-        holder.avatar.setOnClickListener(new View.OnClickListener() {
+        holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch(v.getId()){
-                    case R.id.listItem_avatar:
+                    case R.id.deletebtn:
                         DBHandler d = new DBHandler(v.getContext());
                         Log.d("IDIDIDID", "is: " + position);
                         Contact c = mContacts.get(position);
@@ -85,7 +85,7 @@ public class MyListAdapter extends BaseAdapter {
                         Long deleteId = c.getDbId();
                         d.deleteContact(deleteId);
                         mContacts.remove(position);
-                        notifyDataSetChanged();
+                        updateList();
                         break;
                 }
             }
@@ -124,11 +124,14 @@ public class MyListAdapter extends BaseAdapter {
                         linearLayout.addView(birthDate);
                         alert.setView(linearLayout);
                         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichbutton) {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                Log.d("DB ID ","IS :" +c.getDbId());
+                                Long holdId = c.getDbId();
                                 d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
                                 d.close();
                                 Contact c = new Contact(inputFirst.getText().toString(),
                                         inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
+                                c.setDbId(holdId);
                                 mContacts.set(position, c);
                                 dialog.dismiss();
                                 updateList();
@@ -136,7 +139,7 @@ public class MyListAdapter extends BaseAdapter {
                         });
                         alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                // Canceled.
+                                // Cancel dialog
                                 dialog.cancel();
                             }
                         });
@@ -161,6 +164,6 @@ public class MyListAdapter extends BaseAdapter {
     private  static class ViewHolder{
         protected ImageView avatar;
         protected TextView firstname,lastname,phone,birthdate,id;
-        protected Button btn, deletebtn;
+        protected Button btn, delete;
     }
 }
