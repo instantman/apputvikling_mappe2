@@ -22,11 +22,13 @@ import java.util.Date;
 
 public class SMSAlarm extends Service {
 
-    Context context = this; /* Sets the activity context */
+    Context context; /* Sets the activity context */
 
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
+
         Log.d("SMSAlarm", "Class created");
     }
 
@@ -40,8 +42,11 @@ public class SMSAlarm extends Service {
         Intent i = new Intent(context, SMSService.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60000 * 1000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), SystemClock.elapsedRealtime() + 15 * 1000 , pintent);
+        Log.d("SMSAlarm", "Alarm SET");
         return super.onStartCommand(intent, flags, startId);
+
+
 
         //return START_STICKY;
     }
@@ -49,6 +54,10 @@ public class SMSAlarm extends Service {
     /* Stops the service */
     @Override
     public void onDestroy() {
+        Intent i = new Intent(context, SMSService.class);
+        PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
+        AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarm.cancel(pintent);
         Log.d("SMSAlarm", "Service destroyed");
     }
 
