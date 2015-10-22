@@ -1,7 +1,7 @@
 /** 
  * This is an activity used to edit settings in the application by the user.
  * Handles input of SMSText and SMSTime and saves the data to SharedPreferences.
- * Includes buttons to start and stop SMSService 
+ * Includes buttons to start and stop SMSService.
  */
 
 package s180859_s198527.mappe2;
@@ -79,7 +79,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         editor.apply();
     }
     
-    /* Inner class for TimePicker used to store SMSTime */
+    /* Inner class for TimePicker used to store smsTime */
     public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                     this, hour, minute, DateFormat.is24HourFormat(getActivity()));
             return t;
         }
-        /* Listens for user input and sets SMSTime */
+        /* Listens for user input and sets smsTime */
         public void onTimeSet(TimePicker view, int setHour, int setMinute) {
             Button b = (Button)getActivity().findViewById(R.id.timupikku);
             String selectedTime = formatTime(setHour,setMinute);
