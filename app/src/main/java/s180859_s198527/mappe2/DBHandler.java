@@ -12,12 +12,12 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper{
     static String TABLE_CONTACTS = "Contacts";
     static String KEY_ID = "_ID";
-    static String KEY_SURNAME= "Surname";
+    static String KEY_FIRSTNAME= "Firstname";
     static String KEY_LASTNAME = "Lastname";
     static String KEY_PHONENR = "Phonenumber";
     static String KEY_DATE = "Date";
     static int DATABASE_VERSION = 1;
-    static String DATABASE_NAME ="NextDB";
+    static String DATABASE_NAME ="Final_DB";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -29,7 +29,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_SURNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("+ KEY_ID + " INTEGER PRIMARY KEY, " + KEY_FIRSTNAME + " TEXT, " + KEY_LASTNAME + " TEXT, " +
                 KEY_PHONENR +" TEXT, " + KEY_DATE + " TEXT" + ");";
         Log.d("SQL", CREATE_TABLE);
         db.execSQL(CREATE_TABLE);
@@ -53,7 +53,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public void addContact(Contact contact){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_SURNAME, contact.getSurname());
+        values.put(KEY_FIRSTNAME, contact.getFirstname());
         values.put(KEY_LASTNAME, contact.getLastname());
         values.put(KEY_PHONENR,contact.getPhoneNr());
         values.put(KEY_DATE, contact.getBirthdate());
@@ -71,7 +71,7 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             do{
                 Contact cnt = new Contact();
-                cnt.setSurname(cursor.getString(1));
+                cnt.setFirstname(cursor.getString(1));
                 cnt.setLastname(cursor.getString(2));
                 cnt.setPhoneNr(cursor.getString(3));
                 cnt.setBirthdate(cursor.getString(4));
@@ -86,7 +86,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public void updateContact(Long id, String inFirstname, String inLastname, String inPhone, String inBirthdate){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_SURNAME, inFirstname);
+        values.put(KEY_FIRSTNAME, inFirstname);
         values.put(KEY_LASTNAME, inLastname);
         values.put(KEY_PHONENR, inPhone);
         values.put(KEY_DATE, inBirthdate);

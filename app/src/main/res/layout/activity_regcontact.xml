@@ -16,7 +16,7 @@
         android:text="@string/new_contact" />
 
     <EditText
-        android:id="@+id/textfield_surname"
+        android:id="@+id/textfield_firstname"
         style="@style/Textfield"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -20,7 +20,7 @@ import java.util.Date;
 public class RegContact extends AppCompatActivity implements OnClickListener {
 
     private Button register,showTimePicker;
-    private String surname, lastname, birthDate, phone;
+    private String firstname, lastname, birthDate, phone;
     private int  startYear, startMonth, startDay;
     private Calendar c;
 
@@ -91,18 +91,17 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         Log.d("Button","Register-button pressed");
         // Oppretter nytt objekt i databasen (skal flyttes)
         InputValidator val = new InputValidator();
-        EditText surN = (EditText)findViewById(R.id.textfield_surname);
+        EditText firsT = (EditText)findViewById(R.id.textfield_firstname);
         EditText lastN = (EditText)findViewById(R.id.textfield_lastname);
         EditText phonez = (EditText)findViewById(R.id.textfield_phone);
         Button bDay = (Button)findViewById(R.id.showTimePicker);
         boolean inputvalidationTrue = true;
-        Log.d("surN","--"+surN.getText().toString());
-        if(val.checkText(surN)){
-            Log.d("A","OK: "+surname);
-            surname = surN.getText().toString();
-            Log.d("A","OK2: "+surname);
+        if(val.checkText(firsT)){
+            Log.d("A","OK: "+firstname);
+            firstname = firsT.getText().toString();
+            Log.d("A","OK2: "+firstname);
         }
-        else if(!val.checkText(surN)){
+        else if(!val.checkText(firsT)){
             inputvalidationTrue = false;
         }
         if(val.checkText(lastN)){
@@ -112,19 +111,17 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             inputvalidationTrue = false;
         }
         if(val.checkText(phonez)){
-            Log.d("A","OK3: "+surname);
             phone = phonez.getText().toString();
-            Log.d("A","OK4: "+surname);
         }
         else{
             inputvalidationTrue = false;
         }
         if(inputvalidationTrue){
-            Log.d("surN","--"+surN.getText().toString()+"---"+surname);
+            Log.d("surN","--"+firsT.getText().toString()+"---"+firstname);
             birthDate = bDay.getText().toString();
             DBHandler db = new DBHandler(this);
-            Log.d("Legg inn:", "legger til kontakter!!" + surname);
-            db.addContact(new Contact(surname, lastname, phone, birthDate));
+            Log.d("Legg inn:", "legger til kontakter!!" + firstname);
+            db.addContact(new Contact(firstname, lastname, phone, birthDate));
             Toast.makeText(getApplicationContext(), "Contact saved...", Toast.LENGTH_LONG).show();
             db.close();
             return true;

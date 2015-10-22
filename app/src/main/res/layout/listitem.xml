@@ -41,6 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
             style="@style/Button"
             android:id="@+id/btnlol"
             android:text="@string/edit_button"/>

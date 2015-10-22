@@ -74,7 +74,7 @@ public class MyListAdapter extends BaseAdapter {
                         DBHandler d = new DBHandler(v.getContext());
                         Log.d("IDIDIDID", "is: " + position);
                         Contact c = mContacts.get(position);
-                        Log.d("Hallo",": \n"+c.getSurname()+"\n"+c.getLastname()+"\n"+c.getDbId());
+                        Log.d("Hallo",": \n"+c.getFirstname()+"\n"+c.getLastname()+"\n"+c.getDbId());
                         Long deleteId = c.getDbId();
                         d.deleteContact(deleteId);
                         mContacts.remove(position);
@@ -98,12 +98,16 @@ public class MyListAdapter extends BaseAdapter {
                         final EditText inputPhone = new EditText(v.getContext());
                         inputPhone.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
                         final TextView birthDate = new TextView(v.getContext());
+                        // Set textview to Style with 70% opacity
+                        birthDate.setTextAppearance(v.getContext(),R.style.UneditableTextfield);
+                        // Added padding to birthdate field.
+                        birthDate.setPadding(16,4,4,4);
                         final DBHandler d = new DBHandler(v.getContext());
                         final Contact c = getItem(position);
                         alert.setTitle("Edit contact");
                         LinearLayout linearLayout = new LinearLayout(v.getContext());
                         linearLayout.setOrientation(LinearLayout.VERTICAL);
-                        inputFirst.setText(c.getSurname());
+                        inputFirst.setText(c.getFirstname());
                         inputLast.setText(c.getLastname());
                         inputPhone.setText(c.getPhoneNr());
                         birthDate.setText(c.getBirthdate());
@@ -136,7 +140,7 @@ public class MyListAdapter extends BaseAdapter {
             }});
         Log.d("POS: ","~"+position);
         Contact contact = mContacts.get(position);
-        holder.firstname.setText(contact.getSurname());
+        holder.firstname.setText(contact.getFirstname());
         holder.lastname.setText(contact.getLastname());
         holder.phone.setText(contact.getPhoneNr());
         holder.birthdate.setText("Birthdate: "+contact.getBirthdate());

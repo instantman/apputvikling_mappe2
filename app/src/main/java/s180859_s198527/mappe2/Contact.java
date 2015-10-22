@@ -8,22 +8,22 @@ package s180859_s198527.mappe2;
 
 public class Contact {
 
-    private String surname,lastname, birthdate, phoneNr;
+    private String firstname,lastname, birthdate, phoneNr;
     private Long dbId;
 
-    // Tom konstruktør
+    /* Empty constructor */
     public Contact(){ }
     
     /* Created a new contact based on input-paramteres */
-    public Contact(String inSurname, String inLastname, String inPhone, String inBirthDate){
-        this.surname = inSurname;
+    public Contact(String inFirstname, String inLastname, String inPhone, String inBirthDate){
+        this.firstname = inFirstname;
         this.lastname = inLastname;
         this.phoneNr = inPhone;
         this.birthdate = inBirthDate;
     }
 
-    public String getSurname(){
-        return this.surname;
+    public String getFirstname(){
+        return this.firstname;
     }
 
     public String getLastname(){
@@ -38,8 +38,8 @@ public class Contact {
         return this.birthdate;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstname(String surname) {
+        this.firstname = surname;
     }
 
     public void setLastname(String lastname) {
