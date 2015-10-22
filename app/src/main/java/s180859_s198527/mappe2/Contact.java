@@ -1,5 +1,5 @@
 package s180859_s198527.mappe2;
-
+// Edit Test
 public class Contact {
 
     private String surname,lastname, birthdate, phoneNr;
