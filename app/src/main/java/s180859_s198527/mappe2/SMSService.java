@@ -1,4 +1,5 @@
-/** This is a service used to run SendSMS in the background.
+/** 
+ * This is a service used to run SendSMS in the background.
  * Receives start and stop requests from SMSReceiver.
  * Runs service in separate worker-thread.
 */
