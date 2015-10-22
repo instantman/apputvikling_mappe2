@@ -54,8 +54,7 @@
             android:id="@+id/timupikku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_picktime"
-            android:onClick="showTimePickerDialog" />
+            android:text="@string/button_picktime" />
     </LinearLayout>
     <Button
         android:id="@+id/button_save"

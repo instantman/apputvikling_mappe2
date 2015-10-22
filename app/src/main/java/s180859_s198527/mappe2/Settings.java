@@ -43,7 +43,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         setListener();
     }
 
-    public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker
@@ -52,17 +52,15 @@ public class Settings extends AppCompatActivity implements OnClickListener {
             int minute = c.get(Calendar.MINUTE);
 
             // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    DateFormat.is24HourFormat(getActivity()));
+            TimePickerDialog t = new TimePickerDialog(getActivity(),
+                    this, hour, minute, DateFormat.is24HourFormat(getActivity()));
+            return t;
         }
 
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // Do something with the time chosen by the user
-        }
-
-        public void showTimePickerDialog(View v) {
-            DialogFragment newFragment = new TimePickerFragment();
-            newFragment.show(getSupportFragmentManager(), "timePicker");
+        public void onTimeSet(TimePicker view, int setHour, int setMinute) {
+            Button b = (Button)getActivity().findViewById(R.id.timupikku);
+            String selectedTime = setHour+":"+setMinute;
+            b.setText(selectedTime);
         }
     }
 
@@ -99,7 +97,8 @@ public class Settings extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.timupikku:
-
+                TimePickerFragment tf = new TimePickerFragment();
+                tf.show(getFragmentManager(), "Time Picker");
                 break;
             case R.id.button_save:
                 setSMSPreferences();
