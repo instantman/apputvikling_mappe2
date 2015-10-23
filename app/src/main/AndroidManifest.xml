@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="s180859_s198527.mappe2" >
 
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -12,25 +13,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Contacts"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_main"
+            android:label="@string/application_name"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".Contacts"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_contacts"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="s180859_s198527.mappe2.MainActivity" />
         </activity>
         <activity
             android:name=".RegContact"
@@ -53,24 +43,24 @@
                 android:value="s180859_s198527.mappe2.Contacts" />
         </activity>
 
-        <!-- Deklarerer Broadcast receiver som kjører på BOOT_COMPLETED -->
+        <!-- Declares BroadcastReceiver -->
         <receiver
             android:name=".SMSReceiver"
             android:enabled="true"
             android:exported="false"
             android:process=":remote" >
             <intent-filter>
+                <!-- Will run on BOOT_COMPLETED -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <!-- Deklarerer service BOGERN -->
+
+        <!-- Declares services -->
         <service
             android:name=".SMSService"
             android:exported="false" />
         <service
             android:name=".SMSAlarm"
             android:exported="false" />
-
     </application>
-
 </manifest>
