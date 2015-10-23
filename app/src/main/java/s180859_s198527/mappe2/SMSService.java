@@ -76,8 +76,11 @@ public class SMSService extends Service {
             for(Contact cont : c ){ // Loop throuch all contacts
                 if(cont.getBirthdate().equals(fDate)) { // Check if birthday matches current date
                     try {
-                        smsSender.sendSMSMessage("Hei "+cont.getFirstname() + " "
-                                + cont.getLastname()+"! "+smsText, cont.getPhoneNr()); // Send SMS
+                        Calendar h = Calendar.getInstance();
+
+                        smsSender.sendSMSMessage("Hei " + cont.getFirstname() + " "
+                                + cont.getLastname() + "! " + smsText + " KL: " + h.getTime(),
+                        cont.getPhoneNr()); // Send SMS
                     } catch(Exception e) {
                         e.printStackTrace();
                     }

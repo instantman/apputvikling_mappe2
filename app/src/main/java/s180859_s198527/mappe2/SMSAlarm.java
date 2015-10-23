@@ -42,31 +42,36 @@ public class SMSAlarm extends Service {
         SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
         String smsTime = shared.getString("timeKey", "null");
         Log.d("SAVED TIME",smsTime);
-        // Format smsTime to milliseconds
-        Date d = Calendar.getInstance().getTime();
-        Log.d("CURRENT DATETIME",""+d);
-        SimpleDateFormat f = new SimpleDateFormat("hh:mm");
-        long millis;
+        // Format smsTime by spliting string
+        String[] time = smsTime.split(":");
+        String newHr = time[0];
+        String newMin = time[1];
 
-        try {
-            d = f.parse(smsTime);
-            Log.d("SAVED TIME FORMATTED",""+d);
-        }
-        catch (ParseException e) {
-            Log.d("ParseException",""+e);
-        }
 
-        millis = d.getTime();
-        Log.d("SAVED TIME IN MILLIS",""+millis);
+        long alarma;
+        Calendar calTarget = Calendar.getInstance();
+        Calendar calNow = Calendar.getInstance();
+        calTarget.setTimeInMillis(System.currentTimeMillis());
+        calTarget.set(Calendar.HOUR_OF_DAY, Integer.parseInt(newHr));
+        calTarget.set(Calendar.MINUTE, Integer.parseInt(newMin));
+
+        if(calTarget.getTimeInMillis()<=calNow.getTimeInMillis()){
+           alarma = calTarget.getTimeInMillis() + (AlarmManager.INTERVAL_DAY+1);
+        }
+        else{
+            alarma = calTarget.getTimeInMillis();
+        }
+        Log.d("TID2: ", "" + calTarget.getTime());
+
+
 
         //Calendar cal = Calendar.getInstance();
         Intent i = new Intent(context, SMSService.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, millis, AlarmManager.INTERVAL_DAY , pintent); //type, første, repeat interval, pintent
-        Log.d("SMSAlarm", "Alarm SET");
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, alarma, AlarmManager.INTERVAL_DAY, pintent); //type, første, repeat interval, pintent
+        Log.d("SMSAlarm", "Alarm SET: " +" - - "+alarma);
         return super.onStartCommand(intent, flags, startId);
-
     }
 
     /* Stops the service */
