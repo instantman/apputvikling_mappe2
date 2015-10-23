@@ -3,6 +3,7 @@ package s180859_s198527.mappe2;
 Custom adapter used to communicate with ListView
 */
 
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -75,7 +76,7 @@ public class MyListAdapter extends BaseAdapter {
         holder.birthdate = (TextView)view.findViewById(R.id.listItem_birthdate);
         holder.btn = (Button)view.findViewById(R.id.btnlol);
         holder.delete = (Button)view.findViewById(R.id.deletebtn);
-
+        holder.firstNamePro = (EditText)view.findViewById(R.id.textfield_firstname);
         /* OnClickListener for deleting NEEDS FIXING PSPS PSPSPSPSPS*/
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,26 +100,12 @@ public class MyListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnlol:
-                        InputFilter editFilter = new InputFilter() {
-                            public CharSequence filter(CharSequence source, int start, int end,
-                                                       Spanned go, int tstart, int tend) {
-                                for (int i = start; i < end; i++) {
-                                    if (!Character.isLetterOrDigit(source.charAt(i))) {
-                                        return "";
-                                    }
-                                }
-                                return null;
-                            }
-                        };
                         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                         final EditText inputFirst = new EditText(v.getContext());
                         inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
-                        inputFirst.setFilters(new InputFilter[]{editFilter});
                         final EditText inputLast = new EditText(v.getContext());
                         inputLast.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
                         inputLast.setTextAppearance(v.getContext(), R.style.Textfield);
-                        inputLast.setInputType(InputType.TYPE_CLASS_TEXT);
-                        inputLast.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
                         /* PHONE EDITTEXT WITH INPUT VALIDATION*/
                         final EditText inputPhone = new EditText(v.getContext());
                         inputPhone.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
@@ -192,5 +179,6 @@ public class MyListAdapter extends BaseAdapter {
         protected ImageView avatar;
         protected TextView firstname,lastname,phone,birthdate,id;
         protected Button btn, delete;
+        protected EditText firstNamePro;
     }
 }
