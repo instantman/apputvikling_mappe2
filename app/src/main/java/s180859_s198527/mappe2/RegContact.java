@@ -187,7 +187,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             }
             else{
                 selectedDate = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
-                Log.d("HALLO",selectedDate);
                 return selectedDate;
             }
         }
