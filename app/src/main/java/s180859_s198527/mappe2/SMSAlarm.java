@@ -56,9 +56,11 @@ public class SMSAlarm extends Service {
         Calendar calTarget = Calendar.getInstance();
         Calendar calNow = Calendar.getInstance();
         calTarget.setTimeInMillis(System.currentTimeMillis());
+        /* Set targeted alarmtime */
         calTarget.set(Calendar.SECOND, 0);
         calTarget.set(Calendar.HOUR_OF_DAY, Integer.parseInt(newHr));
         calTarget.set(Calendar.MINUTE, Integer.parseInt(newMin));
+        /* Check if today's targeted alarm-check has past, if yes -> reschedule alarm-check to next day*/
         if(calTarget.getTimeInMillis()<=calNow.getTimeInMillis()){
            alarmTime = calTarget.getTimeInMillis() + (AlarmManager.INTERVAL_DAY+1);
         }

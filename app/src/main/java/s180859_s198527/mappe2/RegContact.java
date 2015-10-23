@@ -28,10 +28,9 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regcontact);
-        Log.d("Activity", "activity_regcontact created");
         DatePickerFragment d = new DatePickerFragment();
 
-        // Oppknapp i ActionBar
+        // Up-button in Actionbar.
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
@@ -74,6 +73,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
 
     public void onClick(View v) {
         switch (v.getId()) {
+            /* If registration complete, send back to contacts */
             case R.id.register:
                 if(registerContact()){
                     Intent i = new Intent(this,Contacts.class);
@@ -86,35 +86,35 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
                 break;
         }
     }
-
+    /* Register new contact when button pressed */
     public boolean registerContact(){
-        Log.d("Button","Register-button pressed");
-        // Oppretter nytt objekt i databasen (skal flyttes)
+        /* Instantiate validator */
         InputValidator val = new InputValidator();
         EditText firsT = (EditText)findViewById(R.id.textfield_firstname);
         EditText lastN = (EditText)findViewById(R.id.textfield_lastname);
         EditText phonez = (EditText)findViewById(R.id.textfield_phone);
         Button bDay = (Button)findViewById(R.id.showTimePicker);
-        boolean inputvalidationTrue = true;
+        boolean inputvalidation = true;
         if(val.checkText(firsT)){
             firstname = firsT.getText().toString();
         }
         else if(!val.checkText(firsT)){
-            inputvalidationTrue = false;
+            inputvalidation = false;
         }
         if(val.checkText(lastN)){
             lastname = lastN.getText().toString();
         }
         else{
-            inputvalidationTrue = false;
+            inputvalidation = false;
         }
         if(val.checkText(phonez)){
             phone = phonez.getText().toString();
         }
         else{
-            inputvalidationTrue = false;
+            inputvalidation = false;
         }
-        if(inputvalidationTrue){
+        /* Validation passed - save new contact */
+        if(inputvalidation){
             birthDate = bDay.getText().toString();
             DBHandler db = new DBHandler(this);
             Log.d("Legg inn:", "legger til kontakter!!" + firstname);
@@ -127,9 +127,9 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             return false;
         }
     }
-
+    /* Class used for Validating input-strings */
     public class InputValidator{
-
+        /* Check if string is empty, return errormessage */
         public boolean checkText(EditText e){
             if(e.getText().toString().length() == 0){
                 e.setError("Cannot be empty");
@@ -148,27 +148,28 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Lager ny DatePickerDialogboks med d.d. som startverdi
+            // Create new DatePickerDialogbox with today as value.
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            // Opretter DatePickerDialog objekt
+            // new DatePickerDialog objekt
             DatePickerDialog d = new DatePickerDialog(getActivity(), this, year,month,day);
-            // Setter maxdato til dagens dato (siden fødselsdato).
+            // Setting maxdate to today (Since birth date)
             d.getDatePicker().setMaxDate(new Date().getTime());
-            // Returnerer
+            // Return
             return d;
         }
 
-        // Når ønsket dato er valgt fra DatePickerDialog
+        // Set selected date on button (formatted).
         public void onDateSet(DatePicker view, int year, int month, int day){
             Button b = (Button)getActivity().findViewById(R.id.showTimePicker);
             String selectedDate = formatDate(year,month,day);
             b.setText(selectedDate);
         }
 
+        /* Format date to "yyyy-mm-dd" and adding zeros where needed*/
         public String formatDate(int year, int month, int day){
             String selectedDate;
             ++month;
