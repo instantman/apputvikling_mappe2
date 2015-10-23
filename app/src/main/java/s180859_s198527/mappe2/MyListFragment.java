@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 
+/* Creating Custom ListFragment */
 public class MyListFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

@@ -37,13 +37,14 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL(CREATE_TABLE);
     }
 
+    /* On DB Upgrade */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_CONTACTS);
         onCreate(db);
     }
 
-    /* Delete row in Contacts based in ID*/
+    /* Delete row in Contacts based on ID*/
     public void deleteContact(long id){
         SQLiteDatabase db = this.getWritableDatabase();
         if (db == null) {
@@ -53,7 +54,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-    /* Insert new contact */
+    /* Insert new Contact */
     public void addContact(Contact contact){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -71,6 +72,7 @@ public class DBHandler extends SQLiteOpenHelper{
         List<Contact> contactList = new ArrayList<Contact>();
         String sqlQ = "SELECT * FROM "+TABLE_CONTACTS+";";
         SQLiteDatabase db = this.getWritableDatabase();
+        /* Using Cursor object as reference to object */
         Cursor cursor = db.rawQuery(sqlQ,null);
         if(cursor.moveToFirst()){
             do{

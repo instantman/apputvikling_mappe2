@@ -47,7 +47,7 @@ public class SMSAlarm extends Service {
         noti.flags |= Notification.FLAG_ONGOING_EVENT;
         notificationManager.notify(1, noti); // Shows notification
 
-        /* Format smsTime by spliting string */
+        /* Format smsTime by splitting string on : */
         String[] time = smsTime.split(":");
         String newHr = time[0];
         String newMin = time[1];

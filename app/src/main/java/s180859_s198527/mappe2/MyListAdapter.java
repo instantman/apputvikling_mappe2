@@ -10,8 +10,6 @@ import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,11 +75,12 @@ public class MyListAdapter extends BaseAdapter {
         holder.btn = (Button)view.findViewById(R.id.btnlol);
         holder.delete = (Button)view.findViewById(R.id.deletebtn);
         holder.firstNamePro = (EditText)view.findViewById(R.id.textfield_firstname);
-        /* OnClickListener for deleting NEEDS FIXING PSPS PSPSPSPSPS*/
+        /* OnClickListener for deleting*/
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch(v.getId()){
+                    /* Delete when click on button*/
                     case R.id.deletebtn:
                         DBHandler d = new DBHandler(v.getContext());
                         Contact c = mContacts.get(position);
@@ -100,13 +99,14 @@ public class MyListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnlol:
+                        /* Building AlertDialog with inputfields*/
                         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                         final EditText inputFirst = new EditText(v.getContext());
                         inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
                         final EditText inputLast = new EditText(v.getContext());
                         inputLast.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
                         inputLast.setTextAppearance(v.getContext(), R.style.Textfield);
-                        /* PHONE EDITTEXT WITH INPUT VALIDATION*/
+                        /* Phone edittext with validation*/
                         final EditText inputPhone = new EditText(v.getContext());
                         inputPhone.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
                         inputPhone.setInputType(InputType.TYPE_CLASS_PHONE);
@@ -129,6 +129,7 @@ public class MyListAdapter extends BaseAdapter {
                         linearLayout.addView(inputPhone);
                         linearLayout.addView(birthDate);
                         alert.setView(linearLayout);
+                        /* if ok */
                         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 Long holdId = c.getDbId();
@@ -142,6 +143,7 @@ public class MyListAdapter extends BaseAdapter {
                                 dialog.dismiss();
                                 updateList();
                             }
+                            /* If not OK */
                         });
                         alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
@@ -149,7 +151,7 @@ public class MyListAdapter extends BaseAdapter {
                                 dialog.cancel();
                             }
                         });
-
+                        /* Prompt Dialog */
                         AlertDialog alertDialog = alert.create();
                         alertDialog.show();
                 }
@@ -162,6 +164,7 @@ public class MyListAdapter extends BaseAdapter {
         return view;
     }
 
+    /* Method for handling multiple toasts */
     public void getToast(int inId){
         if( inId==1 ) {
             Toast.makeText(mInflater.getContext(), R.string.contact_updated, Toast.LENGTH_LONG).show();
@@ -171,11 +174,13 @@ public class MyListAdapter extends BaseAdapter {
         }
     }
 
+    /* Refresh ListView when changes are made*/
     public void updateList(){
         notifyDataSetChanged();
     }
 
-    private  static class ViewHolder{
+    /* Define ViewHolder-class */
+    private static class ViewHolder{
         protected ImageView avatar;
         protected TextView firstname,lastname,phone,birthdate,id;
         protected Button btn, delete;
