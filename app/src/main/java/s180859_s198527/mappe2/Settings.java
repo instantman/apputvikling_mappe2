@@ -76,6 +76,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(SMSText, smsText);
         editor.putString(SMSTime, smsTime);
+        Toast.makeText(this, "Settings saved!", Toast.LENGTH_LONG).show();
         editor.apply();
     }
     
@@ -133,18 +134,15 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 Intent i1 = new Intent(context,SMSAlarm.class);
                 stopService(i1);
                 startService(i1);
-                Toast.makeText(this, "Settings saved!", Toast.LENGTH_LONG).show();
                 break;
             case R.id.button_startService:
                 Log.d("Settings", "Start service pressed");
                 Intent i2 = new Intent(context,SMSAlarm.class);
                 startService(i2);
-                Toast.makeText(this, "Service started.", Toast.LENGTH_LONG).show();
                 break;
             case R.id.button_stopService:
                 Intent i3 = new Intent(context,SMSAlarm.class);
                 stopService(i3);
-                Toast.makeText(this, "Service stopped.", Toast.LENGTH_LONG).show();
                 break;
         }
     }

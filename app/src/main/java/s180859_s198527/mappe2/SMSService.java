@@ -34,7 +34,7 @@ public class SMSService extends Service {
         Thread thread = new Thread(new SMSThread(startId));
         thread.run();
         Log.d("SMSService","Service started");
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     /* Stops the service */

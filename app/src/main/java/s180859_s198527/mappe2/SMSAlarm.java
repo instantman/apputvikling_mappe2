@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.util.Calendar;
 
 public class SMSAlarm extends Service {
@@ -37,13 +39,12 @@ public class SMSAlarm extends Service {
         Intent nintent = new Intent(this, Settings.class);
         PendingIntent pnintent = PendingIntent.getActivity(this, 0, nintent, 0);
         Notification noti = new Notification.Builder(this)
-                .setContentTitle("TITTEL")
-                .setContentText("TEXT")
+                .setContentTitle("SMSAlarm")
+                .setContentText("Service is running.")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pnintent).build();
-
         noti.flags |= Notification.FLAG_ONGOING_EVENT;
-        notificationManager.notify(0, noti);
+        notificationManager.notify(1, noti);
 
         // Get smsTime from SharedPreferences
         SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
@@ -74,7 +75,10 @@ public class SMSAlarm extends Service {
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, alarma, AlarmManager.INTERVAL_DAY, pintent); //type, første, repeat interval, pintent
-        Log.d("SMSAlarm", "Alarm SET: " +" - - "+alarma);
+        Log.d("SMSAlarm", "Alarm SET: " + " - - " + alarma);
+
+        Toast.makeText(this, "Service started.", Toast.LENGTH_LONG).show();
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -86,11 +90,11 @@ public class SMSAlarm extends Service {
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-
-        
-
+        // Destroys notification
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancel(1);
+        Toast.makeText(this, "Service stopped.", Toast.LENGTH_LONG).show();
         super.onDestroy();
-        Log.d("SMSAlarm", "Service destroyed");
     }
 
     @Override
