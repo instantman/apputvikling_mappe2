@@ -86,6 +86,7 @@ public class SMSService extends Service {
                     }
                 }
             }
+            d.close();
             Log.d("SMSService", "Thread stopped");
             stopSelf(service_id); // Service stops itself on complete
         }

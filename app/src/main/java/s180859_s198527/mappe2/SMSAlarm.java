@@ -52,6 +52,7 @@ public class SMSAlarm extends Service {
         Calendar calTarget = Calendar.getInstance();
         Calendar calNow = Calendar.getInstance();
         calTarget.setTimeInMillis(System.currentTimeMillis());
+        calTarget.set(Calendar.SECOND, 0);
         calTarget.set(Calendar.HOUR_OF_DAY, Integer.parseInt(newHr));
         calTarget.set(Calendar.MINUTE, Integer.parseInt(newMin));
 

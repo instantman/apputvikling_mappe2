@@ -49,7 +49,7 @@ public class DBHandler extends SQLiteOpenHelper{
         if (db == null) {
             return;
         }
-        db.delete(TABLE_CONTACTS, "_id = ?", new String[] { String.valueOf(id) });
+        db.delete(TABLE_CONTACTS, "_id = ?", new String[]{String.valueOf(id)});
         db.close();
     }
 
@@ -85,7 +85,9 @@ public class DBHandler extends SQLiteOpenHelper{
             while(cursor.moveToNext());
         }
         cursor.close();
+        db.close();
         return contactList;
+
     }
     /* Update contact */
     public void updateContact(Long id, String inFirstname, String inLastname, String inPhone, String inBirthdate){
@@ -97,5 +99,6 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(KEY_DATE, inBirthdate);
         /* Update contact with ID = */
         db.update(TABLE_CONTACTS,values, "_id = ?", new String[] { String.valueOf(id) });
+        db.close();
     }
 }
