@@ -9,19 +9,14 @@ package s180859_s198527.mappe2;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.Notification.Builder;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.util.Log;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class SMSAlarm extends Service {
 
@@ -72,7 +67,7 @@ public class SMSAlarm extends Service {
         else{
             alarma = calTarget.getTimeInMillis();
         }
-        Log.d("TID2: ", "" + calTarget.getTime());
+        Log.d("TID2: ", "" + alarma);
 
         //AlarmManager
         Intent i = new Intent(context, SMSService.class);
@@ -86,10 +81,15 @@ public class SMSAlarm extends Service {
     /* Stops the service */
     @Override
     public void onDestroy() {
+        // Destroys alarm
         Intent i = new Intent(context, SMSService.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
+
+        
+
+        super.onDestroy();
         Log.d("SMSAlarm", "Service destroyed");
     }
 

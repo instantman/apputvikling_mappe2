@@ -23,9 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import java.util.Calendar;
-import java.util.Date;
 
 public class Settings extends AppCompatActivity implements OnClickListener {
     
@@ -47,14 +45,13 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_previous);
-        
         /* Get SharedPreferences and fill text fields */
         SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
         editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
         btnTimupikku = (Button)findViewById(R.id.timupikku);
         editSMSText.setText(shared.getString("textKey", "null"));
         btnTimupikku.setText(shared.getString("timeKey", "null"));
-        
+
         setListener();
     }
     
@@ -142,12 +139,12 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 Log.d("Settings", "Start service pressed");
                 Intent i2 = new Intent(context,SMSAlarm.class);
                 startService(i2);
-                Log.d("SMSAlarm", "Service started");
+                Toast.makeText(this, "Service started.", Toast.LENGTH_LONG).show();
                 break;
             case R.id.button_stopService:
-                Log.d("Settings", "Stop service pressed");
                 Intent i3 = new Intent(context,SMSAlarm.class);
                 stopService(i3);
+                Toast.makeText(this, "Service stopped.", Toast.LENGTH_LONG).show();
                 break;
         }
     }
