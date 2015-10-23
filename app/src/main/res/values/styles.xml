@@ -15,7 +15,12 @@
     <style name="Textfield">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/button_textSizeMenu</item>
-        <item name="android:digits">abcdefghijklmnopqrstuvwqyzæøåABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ_-0123456789"</item>
+        <item name="android:digits">abcdefghijklmnopqrstuvwqyzæøåABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ_-0123456789 "</item>
+</style>
+    <style name="TextfieldSMS">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/button_textSizeMenu</item>
+        <item name="android:digits">abcdefghijklmnopqrstuvwqyzæøåABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ_-?!0123456789 "</item>
 
     </style>
     <style name="Button">

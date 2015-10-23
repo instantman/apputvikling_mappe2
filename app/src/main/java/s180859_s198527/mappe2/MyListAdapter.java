@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,13 +99,30 @@ public class MyListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnlol:
+                        InputFilter editFilter = new InputFilter() {
+                            public CharSequence filter(CharSequence source, int start, int end,
+                                                       Spanned go, int tstart, int tend) {
+                                for (int i = start; i < end; i++) {
+                                    if (!Character.isLetterOrDigit(source.charAt(i))) {
+                                        return "";
+                                    }
+                                }
+                                return null;
+                            }
+                        };
                         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                         final EditText inputFirst = new EditText(v.getContext());
                         inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
+                        inputFirst.setFilters(new InputFilter[]{editFilter});
                         final EditText inputLast = new EditText(v.getContext());
                         inputLast.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
+                        inputLast.setTextAppearance(v.getContext(), R.style.Textfield);
+                        inputLast.setInputType(InputType.TYPE_CLASS_TEXT);
+                        inputLast.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+                        /* PHONE EDITTEXT WITH INPUT VALIDATION*/
                         final EditText inputPhone = new EditText(v.getContext());
                         inputPhone.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+                        inputPhone.setInputType(InputType.TYPE_CLASS_PHONE);
                         final TextView birthDate = new TextView(v.getContext());
                         // Set textview to Style with 70% opacity
                         birthDate.setTextAppearance(v.getContext(),R.style.UneditableTextfield);
