@@ -3,8 +3,6 @@ package s180859_s198527.mappe2;
 Custom adapter used to communicate with ListView
 */
 
-package s180859_s198527.mappe2;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
