@@ -14,7 +14,9 @@
 
         <activity
             android:name="s180859_s198527.mappe2.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,7 +26,9 @@
         <activity
             android:name="s180859_s198527.mappe2.Contacts"
             android:label="@string/title_activity_contacts"
-            android:parentActivityName="s180859_s198527.mappe2.MainActivity">
+            android:parentActivityName="s180859_s198527.mappe2.MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="s180859_s198527.mappe2.MainActivity" />
@@ -33,7 +37,9 @@
         <activity
             android:name="s180859_s198527.mappe2.RegContact"
             android:label="@string/title_activity_regcontact"
-            android:parentActivityName="s180859_s198527.mappe2.Contacts">
+            android:parentActivityName="s180859_s198527.mappe2.Contacts"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="s180859_s198527.mappe2.Contacts" />
@@ -42,7 +48,9 @@
         <activity
             android:name="s180859_s198527.mappe2.Settings"
             android:label="Settings"
-            android:parentActivityName="s180859_s198527.mappe2.Contacts">
+            android:parentActivityName="s180859_s198527.mappe2.Contacts"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="s180859_s198527.mappe2.Contacts" />
