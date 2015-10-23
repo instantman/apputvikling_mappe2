@@ -15,7 +15,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -28,32 +27,31 @@ public class SMSAlarm extends Service {
     public void onCreate() {
         super.onCreate();
         context = this;
-
-        Log.d("SMSAlarm", "Class created");
     }
 
     /* Starts the service */
     public int onStartCommand(Intent intent, int flags, int startId) {
+        /* Get smsTime from SharedPreferences */
+        SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
+        String smsTime = shared.getString("timeKey", "null");
+
         /* Shows notification when service is running */
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Intent nintent = new Intent(this, Settings.class);
+        Intent nintent = new Intent();
         PendingIntent pnintent = PendingIntent.getActivity(this, 0, nintent, 0);
         Notification noti = new Notification.Builder(this)
                 .setContentTitle("SMSAlarm")
-                .setContentText("Alarm is set.")
+                .setContentText("Alarm is set to "+smsTime+".")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pnintent).build();
         noti.flags |= Notification.FLAG_ONGOING_EVENT;
         notificationManager.notify(1, noti); // Shows notification
 
-        /* Get smsTime from SharedPreferences */
-        SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
-        String smsTime = shared.getString("timeKey", "null");
         /* Format smsTime by spliting string */
         String[] time = smsTime.split(":");
         String newHr = time[0];
         String newMin = time[1];
-        long alarma;
+        long alarmTime;
 
         Calendar calTarget = Calendar.getInstance();
         Calendar calNow = Calendar.getInstance();
@@ -62,10 +60,10 @@ public class SMSAlarm extends Service {
         calTarget.set(Calendar.HOUR_OF_DAY, Integer.parseInt(newHr));
         calTarget.set(Calendar.MINUTE, Integer.parseInt(newMin));
         if(calTarget.getTimeInMillis()<=calNow.getTimeInMillis()){
-           alarma = calTarget.getTimeInMillis() + (AlarmManager.INTERVAL_DAY+1);
+           alarmTime = calTarget.getTimeInMillis() + (AlarmManager.INTERVAL_DAY+1);
         }
-        else {
-            alarma = calTarget.getTimeInMillis();
+        else{
+            alarmTime = calTarget.getTimeInMillis();
         }
 
         /* Creates new alarm */
@@ -73,7 +71,7 @@ public class SMSAlarm extends Service {
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         // Triggers at predefined time, then repeats every 24 hours
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, alarma, AlarmManager.INTERVAL_DAY, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, alarmTime, AlarmManager.INTERVAL_DAY, pintent);
         Toast.makeText(this, "Alarm set.", Toast.LENGTH_LONG).show();
         return super.onStartCommand(intent, flags, startId);
     }

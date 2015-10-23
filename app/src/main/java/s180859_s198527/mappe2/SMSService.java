@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.util.Log;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,18 +29,15 @@ public class SMSService extends Service {
     /* Starts the service */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this,"Service started...",Toast.LENGTH_LONG).show();
         Thread thread = new Thread(new SMSThread(startId));
         thread.run();
-        Log.d("SMSService","Service started");
         return START_NOT_STICKY;
     }
 
     /* Stops the service */
     @Override
     public void onDestroy() {
-        Toast.makeText(this,"Service destroyed...",Toast.LENGTH_LONG).show();
-        Log.d("SMSService", "Service destroyed");
+        super.onDestroy();
     }
 
     @Override
@@ -58,7 +54,6 @@ public class SMSService extends Service {
 
         @Override
         public void run() {
-            Log.d("SMSService", "Thread started");
             /* Get current device date */
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH, 0);
@@ -77,7 +72,7 @@ public class SMSService extends Service {
                 if(cont.getBirthdate().equals(fDate)) { // Check if birthday matches current date
                     try {
                         Calendar h = Calendar.getInstance();
-
+                        Toast.makeText(context, "SMS sent to "+cont.getFirstname()+".", Toast.LENGTH_LONG).show();
                         smsSender.sendSMSMessage("Hei " + cont.getFirstname() + " "
                                 + cont.getLastname() + "! " + smsText + " KL: " + h.getTime(),
                         cont.getPhoneNr()); // Send SMS
@@ -87,7 +82,6 @@ public class SMSService extends Service {
                 }
             }
             d.close();
-            Log.d("SMSService", "Thread stopped");
             stopSelf(service_id); // Service stops itself on complete
         }
     }
