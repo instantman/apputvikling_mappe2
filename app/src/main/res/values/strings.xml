@@ -26,6 +26,7 @@
     <string name="button_showAll">Show all</string>
     <string name="button_del">Delete</string>
     <string name="contact_updated">Contact updated&#8230;</string>
+    <string name="contact_deleted">Contact deleted&#8230;</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>

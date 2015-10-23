@@ -81,12 +81,11 @@ public class MyListAdapter extends BaseAdapter {
                 switch(v.getId()){
                     case R.id.deletebtn:
                         DBHandler d = new DBHandler(v.getContext());
-                        Log.d("IDIDIDID", "is: " + position);
                         Contact c = mContacts.get(position);
-                        Log.d("Hallo", ": \n" + c.getFirstname() + "\n" + c.getLastname() + "\n" + c.getDbId());
                         Long deleteId = c.getDbId();
                         d.deleteContact(deleteId);
                         mContacts.remove(position);
+                        getToast(2);
                         updateList();
                         break;
                 }
@@ -134,7 +133,7 @@ public class MyListAdapter extends BaseAdapter {
                                         inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
                                 c.setDbId(holdId);
                                 mContacts.set(position, c);
-                                getToast(2);
+                                getToast(1);
                                 dialog.dismiss();
                                 updateList();
                             }
@@ -160,8 +159,11 @@ public class MyListAdapter extends BaseAdapter {
     }
 
     public void getToast(int inId){
-        if(inId==1) {
+        if( inId==1 ) {
             Toast.makeText(mInflater.getContext(), R.string.contact_updated, Toast.LENGTH_LONG).show();
+        }
+        if(inId == 2 ){
+            Toast.makeText(mInflater.getContext(), R.string.contact_deleted, Toast.LENGTH_LONG).show();
         }
     }
 
