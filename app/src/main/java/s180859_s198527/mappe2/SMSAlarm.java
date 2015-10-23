@@ -7,6 +7,9 @@
 package s180859_s198527.mappe2;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.Notification.Builder;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -34,9 +37,18 @@ public class SMSAlarm extends Service {
 
     /* Starts the service */
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /*Thread thread = new Thread(new AlarmThread(startId));
-        thread.run();
-        Log.d("SMSAlarm", "Service started");*/
+        // Notifications
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent nintent = new Intent(this, Settings.class);
+        PendingIntent pnintent = PendingIntent.getActivity(this, 0, nintent, 0);
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("TITTEL")
+                .setContentText("TEXT")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentIntent(pnintent).build();
+
+        noti.flags |= Notification.FLAG_ONGOING_EVENT;
+        notificationManager.notify(0, noti);
 
         // Get smsTime from SharedPreferences
         SharedPreferences shared = getSharedPreferences("SMSPrefs", MODE_PRIVATE);
@@ -47,7 +59,6 @@ public class SMSAlarm extends Service {
         String newHr = time[0];
         String newMin = time[1];
 
-
         long alarma;
         Calendar calTarget = Calendar.getInstance();
         Calendar calNow = Calendar.getInstance();
@@ -55,7 +66,6 @@ public class SMSAlarm extends Service {
         calTarget.set(Calendar.SECOND, 0);
         calTarget.set(Calendar.HOUR_OF_DAY, Integer.parseInt(newHr));
         calTarget.set(Calendar.MINUTE, Integer.parseInt(newMin));
-
         if(calTarget.getTimeInMillis()<=calNow.getTimeInMillis()){
            alarma = calTarget.getTimeInMillis() + (AlarmManager.INTERVAL_DAY+1);
         }
@@ -64,9 +74,7 @@ public class SMSAlarm extends Service {
         }
         Log.d("TID2: ", "" + calTarget.getTime());
 
-
-
-        //Calendar cal = Calendar.getInstance();
+        //AlarmManager
         Intent i = new Intent(context, SMSService.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, i, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);

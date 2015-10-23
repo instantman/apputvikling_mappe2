@@ -22,6 +22,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -134,7 +136,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 Intent i1 = new Intent(context,SMSAlarm.class);
                 stopService(i1);
                 startService(i1);
-                Log.d("Settings","Settings saved");
+                Toast.makeText(this, "Settings saved!", Toast.LENGTH_LONG).show();
                 break;
             case R.id.button_startService:
                 Log.d("Settings", "Start service pressed");
