@@ -131,9 +131,9 @@ public class Settings extends AppCompatActivity implements OnClickListener {
                 break;
             case R.id.button_save:
                 setSMSPreferences();
-                /*Intent i1 = new Intent(context,SMSAlarm.class);
+                Intent i1 = new Intent(context,SMSAlarm.class);
                 stopService(i1);
-                startService(i1);*/
+                startService(i1);
                 Log.d("Settings","Settings saved");
                 break;
             case R.id.button_startService:
