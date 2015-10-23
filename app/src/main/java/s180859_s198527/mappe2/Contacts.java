@@ -1,5 +1,5 @@
 /** 
- * This will be the MainActivity when the application is finished.
+ *
  * Displays all saved contacts in a ListView with data from database.
  * Includes buttons and logic to start all other activities.
 */
