@@ -97,7 +97,6 @@ public class MyListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnlol:
-                        Log.d("Button pressed ID:", " " + getItem(position).getDbId() + "---" + position);
                         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
                         final EditText inputFirst = new EditText(v.getContext());
                         inputFirst.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
@@ -149,7 +148,6 @@ public class MyListAdapter extends BaseAdapter {
                         alertDialog.show();
                 }
             }});
-        Log.d("POS: ","~"+position);
         Contact contact = mContacts.get(position);
         holder.firstname.setText(contact.getFirstname());
         holder.lastname.setText(contact.getLastname());

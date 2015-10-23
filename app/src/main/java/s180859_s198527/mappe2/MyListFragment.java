@@ -14,7 +14,6 @@ public class MyListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         DBHandler db = new DBHandler(getActivity());
         List<Contact> c = db.getAllContacts();
-        Log.d("List", "ER HER");
         MyListAdapter mList = new MyListAdapter(getActivity(),c);
         setListAdapter(mList);
     }
