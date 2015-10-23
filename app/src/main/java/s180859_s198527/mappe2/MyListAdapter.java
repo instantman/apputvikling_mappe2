@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 
 public class MyListAdapter extends BaseAdapter {
@@ -81,7 +83,7 @@ public class MyListAdapter extends BaseAdapter {
                         DBHandler d = new DBHandler(v.getContext());
                         Log.d("IDIDIDID", "is: " + position);
                         Contact c = mContacts.get(position);
-                        Log.d("Hallo",": \n"+c.getFirstname()+"\n"+c.getLastname()+"\n"+c.getDbId());
+                        Log.d("Hallo", ": \n" + c.getFirstname() + "\n" + c.getLastname() + "\n" + c.getDbId());
                         Long deleteId = c.getDbId();
                         d.deleteContact(deleteId);
                         mContacts.remove(position);
@@ -108,7 +110,7 @@ public class MyListAdapter extends BaseAdapter {
                         // Set textview to Style with 70% opacity
                         birthDate.setTextAppearance(v.getContext(),R.style.UneditableTextfield);
                         // Added padding to birthdate field.
-                        birthDate.setPadding(16,4,4,4);
+                        birthDate.setPadding(16, 4, 4, 4);
                         final DBHandler d = new DBHandler(v.getContext());
                         final Contact c = getItem(position);
                         alert.setTitle("Edit contact");
@@ -125,7 +127,6 @@ public class MyListAdapter extends BaseAdapter {
                         alert.setView(linearLayout);
                         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                Log.d("DB ID ","IS :" +c.getDbId());
                                 Long holdId = c.getDbId();
                                 d.updateContact(c.getDbId(), inputFirst.getText().toString(), inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
                                 d.close();
@@ -133,6 +134,7 @@ public class MyListAdapter extends BaseAdapter {
                                         inputLast.getText().toString(), inputPhone.getText().toString(), birthDate.getText().toString());
                                 c.setDbId(holdId);
                                 mContacts.set(position, c);
+                                getToast(2);
                                 dialog.dismiss();
                                 updateList();
                             }
@@ -155,6 +157,12 @@ public class MyListAdapter extends BaseAdapter {
         holder.phone.setText(contact.getPhoneNr());
         holder.birthdate.setText("Birthdate: "+contact.getBirthdate());
         return view;
+    }
+
+    public void getToast(int inId){
+        if(inId==1) {
+            Toast.makeText(mInflater.getContext(), R.string.contact_updated, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void updateList(){

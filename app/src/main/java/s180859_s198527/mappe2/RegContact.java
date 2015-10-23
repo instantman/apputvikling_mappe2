@@ -97,9 +97,7 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
         Button bDay = (Button)findViewById(R.id.showTimePicker);
         boolean inputvalidationTrue = true;
         if(val.checkText(firsT)){
-            Log.d("A","OK: "+firstname);
             firstname = firsT.getText().toString();
-            Log.d("A","OK2: "+firstname);
         }
         else if(!val.checkText(firsT)){
             inputvalidationTrue = false;
@@ -117,7 +115,6 @@ public class RegContact extends AppCompatActivity implements OnClickListener {
             inputvalidationTrue = false;
         }
         if(inputvalidationTrue){
-            Log.d("surN","--"+firsT.getText().toString()+"---"+firstname);
             birthDate = bDay.getText().toString();
             DBHandler db = new DBHandler(this);
             Log.d("Legg inn:", "legger til kontakter!!" + firstname);
