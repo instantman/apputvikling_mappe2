@@ -1,14 +1,14 @@
-package s180859_s198527.mappe2;
-/*
-Custom adapter used to communicate with ListView
+/**
+ * Custom adapter used to communicate with ListView
 */
+
+package s180859_s198527.mappe2;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

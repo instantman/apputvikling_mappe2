@@ -29,7 +29,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
     
     Context context = this; /* Sets the activity context */
     
-    private Button btnSave, btnStartService, btnStopService, btnTimupikku;
+    private Button btnSave, btnStartService, btnStopService, btnPickTime;
     private EditText editSMSText;
     /* Initialize SharedPreferences static parameters */
     public static final String SMSPreferences = "SMSPrefs";
@@ -48,16 +48,16 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         /* Get SharedPreferences and fill text fields */
         SharedPreferences shared = getSharedPreferences("SMSPrefs",MODE_PRIVATE);
         editSMSText = (EditText)findViewById(R.id.textfield_SMSText);
-        btnTimupikku = (Button)findViewById(R.id.timupikku);
+        btnPickTime = (Button)findViewById(R.id.pickTime);
         editSMSText.setText(shared.getString("textKey", "null"));
-        btnTimupikku.setText(shared.getString("timeKey", "null"));
+        btnPickTime.setText(shared.getString("timeKey", "null"));
 
         setListener();
     }
     
     /* Point buttons to UI and add listeners */
     public void setListener() {
-        btnTimupikku.setOnClickListener(this);
+        btnPickTime.setOnClickListener(this);
         btnSave = (Button)findViewById(R.id.button_save);
         btnSave.setOnClickListener(this);
         btnStartService = (Button)findViewById(R.id.button_startService);
@@ -70,7 +70,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
     public void setSMSPreferences() {
         /* Get smsText and smsTime */
         String smsText = editSMSText.getText().toString();
-        String smsTime = btnTimupikku.getText().toString();
+        String smsTime = btnPickTime.getText().toString();
         /* Add smsText and smsTime to shared preferences */
         sharedpreferences = getSharedPreferences(SMSPreferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -95,7 +95,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
         }
         /* Listens for user input and sets smsTime */
         public void onTimeSet(TimePicker view, int setHour, int setMinute) {
-            Button b = (Button)getActivity().findViewById(R.id.timupikku);
+            Button b = (Button)getActivity().findViewById(R.id.pickTime);
             String selectedTime = formatTime(setHour,setMinute);
             b.setText(selectedTime);
         }
@@ -125,7 +125,7 @@ public class Settings extends AppCompatActivity implements OnClickListener {
     /* Listens for button press and performs related actions */
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.timupikku:
+            case R.id.pickTime:
                 TimePickerFragment tf = new TimePickerFragment();
                 tf.show(getFragmentManager(), "Time Picker");
                 break;

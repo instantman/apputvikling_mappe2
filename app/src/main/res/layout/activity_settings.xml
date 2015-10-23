@@ -44,7 +44,7 @@
             android:layout_marginEnd="@dimen/standard_8dp_margin"
             android:text="@string/setting_smsdate"/>
         <Button
-            android:id="@+id/timupikku"
+            android:id="@+id/pickTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/textfield_SMSTime"/>

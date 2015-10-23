@@ -1,6 +1,6 @@
 /** 
  * This is an activity used to send SMS-messages based on received input parameters.
- * Uses smsText and phonenumber received from SMSService.
+ * Uses smsText and phone number received from SMSService.
 */
 
 package s180859_s198527.mappe2;
